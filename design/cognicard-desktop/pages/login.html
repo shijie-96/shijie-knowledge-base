@@ -1,0 +1,808 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 / 注册 | CogniCard 认知名片平台</title>
+    <style id="theme-vars">
+/* CogniCard Design Tokens — 认知名片平台 */
+
+:root {
+  /* Font system */
+  --cognicard-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cognicard-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius scale */
+  --cognicard-radius-sm: 4px;
+  --cognicard-radius-md: 8px;
+  --cognicard-radius-lg: 12px;
+  --cognicard-radius-full: 9999px;
+
+  /* Light mode (day / star-map daytime) */
+  --cognicard-background: #F6F7F9;
+  --cognicard-foreground: #0A0E1A;
+  --cognicard-card: #FFFFFF;
+  --cognicard-card-foreground: #0A0E1A;
+  --cognicard-popover: #FFFFFF;
+  --cognicard-popover-foreground: #0A0E1A;
+  --cognicard-primary: #1E3A5F;
+  --cognicard-primary-foreground: #FFFFFF;
+  --cognicard-muted: #E8EBF0;
+  --cognicard-muted-foreground: #5A6578;
+  --cognicard-border: #D8DCE5;
+  --cognicard-input: #FFFFFF;
+  --cognicard-ring: #4A9EFF;
+
+  /* Brand tints */
+  --cognicard-brand-50: #E8F4FF;
+  --cognicard-brand-100: #C7E6FF;
+  --cognicard-brand-200: #96D0FF;
+  --cognicard-brand-300: #5AB8FF;
+  --cognicard-brand-400: #4A9EFF;
+  --cognicard-brand-500: #2B8AFC;
+  --cognicard-brand-600: #1E6FD1;
+  --cognicard-brand-700: #1E3A5F;
+
+  /* Surface scale (dark mode overrides below) */
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  /* Member / state accents */
+  --cognicard-gold: #D4AF37;
+  --cognicard-gold-light: #F3E5AB;
+  --cognicard-silver: #A8B4C4;
+
+  /* State colors (semantic only) */
+  --cognicard-state-success: #22C55E;
+  --cognicard-state-warning: #F59E0B;
+  --cognicard-state-error: #EF4444;
+  --cognicard-state-info: #3B82F6;
+
+  /* Glow / shadow */
+  --cognicard-glow-primary: 0 0 24px rgba(74, 158, 255, 0.35);
+  --cognicard-glow-gold: 0 0 24px rgba(212, 175, 55, 0.35);
+  --cognicard-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(10, 14, 26, 0.18);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(10, 14, 26, 0.30);
+}
+
+.dark {
+  /* Dark mode (night / tool dashboard / immersive) */
+  --cognicard-background: #0A0E1A;
+  --cognicard-foreground: #E8ECF5;
+  --cognicard-card: #1A2233;
+  --cognicard-card-foreground: #E8ECF5;
+  --cognicard-popover: #1A2233;
+  --cognicard-popover-foreground: #E8ECF5;
+  --cognicard-primary: #4A9EFF;
+  --cognicard-primary-foreground: #0A0E1A;
+  --cognicard-muted: #232D42;
+  --cognicard-muted-foreground: #8A96AD;
+  --cognicard-border: #2A3A55;
+  --cognicard-input: #1A2233;
+  --cognicard-ring: #4A9EFF;
+
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  --cognicard-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.40);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Typography utilities */
+.cognicard-display {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cognicard-h1 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cognicard-h2 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cognicard-h3 {
+  font-family: var(--cognicard-font-sans);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cognicard-body {
+  font-family: var(--cognicard-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cognicard-body-lg {
+  font-family: var(--cognicard-font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cognicard-caption {
+  font-family: var(--cognicard-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.cognicard-mono {
+  font-family: var(--cognicard-font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cognicard-background);
+    --color-foreground: var(--cognicard-foreground);
+    --color-card: var(--cognicard-card);
+    --color-card-foreground: var(--cognicard-card-foreground);
+    --color-popover: var(--cognicard-popover);
+    --color-popover-foreground: var(--cognicard-popover-foreground);
+    --color-primary: var(--cognicard-primary);
+    --color-primary-foreground: var(--cognicard-primary-foreground);
+    --color-muted: var(--cognicard-muted);
+    --color-muted-foreground: var(--cognicard-muted-foreground);
+    --color-border: var(--cognicard-border);
+    --color-input: var(--cognicard-input);
+    --color-ring: var(--cognicard-ring);
+    --radius-sm: var(--cognicard-radius-sm);
+    --radius-md: var(--cognicard-radius-md);
+    --radius-lg: var(--cognicard-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cognicard-background); color: var(--cognicard-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cognicard-background); }
+      .text-background { color: var(--cognicard-background); }
+      .border-background { border-color: var(--cognicard-background); }
+      .ring-background { --tw-ring-color: var(--cognicard-background); }
+      .bg-foreground { background-color: var(--cognicard-foreground); }
+      .text-foreground { color: var(--cognicard-foreground); }
+      .border-foreground { border-color: var(--cognicard-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cognicard-foreground); }
+      .bg-card { background-color: var(--cognicard-card); }
+      .text-card { color: var(--cognicard-card); }
+      .border-card { border-color: var(--cognicard-card); }
+      .ring-card { --tw-ring-color: var(--cognicard-card); }
+      .bg-card-foreground { background-color: var(--cognicard-card-foreground); }
+      .text-card-foreground { color: var(--cognicard-card-foreground); }
+      .border-card-foreground { border-color: var(--cognicard-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cognicard-card-foreground); }
+      .bg-popover { background-color: var(--cognicard-popover); }
+      .text-popover { color: var(--cognicard-popover); }
+      .border-popover { border-color: var(--cognicard-popover); }
+      .ring-popover { --tw-ring-color: var(--cognicard-popover); }
+      .bg-popover-foreground { background-color: var(--cognicard-popover-foreground); }
+      .text-popover-foreground { color: var(--cognicard-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cognicard-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cognicard-popover-foreground); }
+      .bg-primary { background-color: var(--cognicard-primary); }
+      .text-primary { color: var(--cognicard-primary); }
+      .border-primary { border-color: var(--cognicard-primary); }
+      .ring-primary { --tw-ring-color: var(--cognicard-primary); }
+      .bg-primary-foreground { background-color: var(--cognicard-primary-foreground); }
+      .text-primary-foreground { color: var(--cognicard-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cognicard-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cognicard-primary-foreground); }
+      .bg-muted { background-color: var(--cognicard-muted); }
+      .text-muted { color: var(--cognicard-muted); }
+      .border-muted { border-color: var(--cognicard-muted); }
+      .ring-muted { --tw-ring-color: var(--cognicard-muted); }
+      .bg-muted-foreground { background-color: var(--cognicard-muted-foreground); }
+      .text-muted-foreground { color: var(--cognicard-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cognicard-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cognicard-muted-foreground); }
+      .bg-border { background-color: var(--cognicard-border); }
+      .text-border { color: var(--cognicard-border); }
+      .border-border { border-color: var(--cognicard-border); }
+      .ring-border { --tw-ring-color: var(--cognicard-border); }
+      .bg-input { background-color: var(--cognicard-input); }
+      .text-input { color: var(--cognicard-input); }
+      .border-input { border-color: var(--cognicard-input); }
+      .ring-input { --tw-ring-color: var(--cognicard-input); }
+      .bg-ring { background-color: var(--cognicard-ring); }
+      .text-ring { color: var(--cognicard-ring); }
+      .border-ring { border-color: var(--cognicard-ring); }
+      .ring-ring { --tw-ring-color: var(--cognicard-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+  <div class="starfield" aria-hidden="true">
+    <div class="shooting-star"></div>
+  </div>
+
+  <main class="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
+    <section
+      class="glass-card w-full max-w-[420px] rounded-2xl p-8 sm:p-10"
+      aria-labelledby="auth-title"
+    >
+      <!-- Brand -->
+      <div class="flex flex-col items-center text-center mb-8">
+        <div class="logo-mark" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" fill-opacity="0.95"/>
+            <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <h1 id="auth-title" class="text-2xl font-bold text-white tracking-wide mb-1">CogniCard</h1>
+        <p class="text-sm text-[var(--cognicard-muted-foreground)]">认知名片平台 · 连接你的星图</p>
+      </div>
+
+      <!-- Tabs -->
+      <div role="tablist" aria-label="登录或注册" class="flex border-b border-[var(--cognicard-border)] mb-6">
+        <button
+          id="tab-login"
+          class="tab-btn"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-login"
+          tabindex="0"
+        >登录</button>
+        <button
+          id="tab-register"
+          class="tab-btn"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-register"
+          tabindex="-1"
+        >注册</button>
+      </div>
+
+      <!-- Login Panel -->
+      <div id="panel-login" class="auth-panel active" role="tabpanel" aria-labelledby="tab-login">
+        <form class="space-y-5" onsubmit="event.preventDefault();">
+          <div>
+            <label for="login-phone" class="sr-only">手机号</label>
+            <input
+              id="login-phone"
+              type="tel"
+              class="auth-input"
+              placeholder="请输入手机号"
+              inputmode="tel"
+              autocomplete="tel"
+              required
+            />
+          </div>
+
+          <div class="flex gap-3">
+            <div class="flex-1">
+              <label for="login-code" class="sr-only">验证码</label>
+              <input
+                id="login-code"
+                type="text"
+                class="auth-input"
+                placeholder="验证码"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                required
+              />
+            </div>
+            <button type="button" class="btn-code">发送验证码</button>
+          </div>
+
+          <button type="submit" class="btn-primary">登录 / 进入星图</button>
+        </form>
+      </div>
+
+      <!-- Register Panel -->
+      <div id="panel-register" class="auth-panel" role="tabpanel" aria-labelledby="tab-register">
+        <form class="space-y-5" onsubmit="event.preventDefault();">
+          <div>
+            <label for="register-phone" class="sr-only">手机号</label>
+            <input
+              id="register-phone"
+              type="tel"
+              class="auth-input"
+              placeholder="请输入手机号"
+              inputmode="tel"
+              autocomplete="tel"
+              required
+            />
+          </div>
+
+          <div class="flex gap-3">
+            <div class="flex-1">
+              <label for="register-code" class="sr-only">验证码</label>
+              <input
+                id="register-code"
+                type="text"
+                class="auth-input"
+                placeholder="验证码"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                required
+              />
+            </div>
+            <button type="button" class="btn-code">发送验证码</button>
+          </div>
+
+          <div>
+            <label for="register-nickname" class="sr-only">昵称</label>
+            <input
+              id="register-nickname"
+              type="text"
+              class="auth-input"
+              placeholder="设置昵称"
+              autocomplete="nickname"
+              required
+            />
+          </div>
+
+          <label class="checkbox-wrap text-sm text-[var(--cognicard-muted-foreground)]">
+            <input type="checkbox" required />
+            <span>我已阅读并同意 <a href="#" class="text-link">用户协议</a> 与 <a href="#" class="text-link">隐私政策</a></span>
+          </label>
+
+          <button type="submit" class="btn-primary">创建账号</button>
+        </form>
+      </div>
+
+      <!-- Forgot password -->
+      <div class="mt-5 text-center">
+        <a href="#" class="helper-link">忘记密码？</a>
+      </div>
+
+      <!-- Divider -->
+      <div class="relative my-7">
+        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+          <div class="w-full border-t border-[var(--cognicard-border)]"></div>
+        </div>
+        <div class="relative flex justify-center">
+          <span class="px-3 text-xs text-[var(--cognicard-muted-foreground)] bg-[var(--cognicard-card)] rounded">其他方式登录</span>
+        </div>
+      </div>
+
+      <!-- Social login -->
+      <div class="flex justify-center gap-5" aria-label="第三方账号登录">
+        <button class="social-btn" aria-label="微信登录" title="微信登录">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.045c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+          </svg>
+        </button>
+        <button class="social-btn" aria-label="GitHub 登录" title="GitHub 登录">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </button>
+        <button class="social-btn" aria-label="Google 登录" title="Google 登录">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill-opacity="0.85"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill-opacity="0.7"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill-opacity="0.5"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function() {
+      const tabLogin = document.getElementById('tab-login');
+      const tabRegister = document.getElementById('tab-register');
+      const panelLogin = document.getElementById('panel-login');
+      const panelRegister = document.getElementById('panel-register');
+
+      function switchTab(tab) {
+        const isLogin = tab === 'login';
+        tabLogin.setAttribute('aria-selected', String(isLogin));
+        tabRegister.setAttribute('aria-selected', String(!isLogin));
+        tabLogin.tabIndex = isLogin ? 0 : -1;
+        tabRegister.tabIndex = isLogin ? -1 : 0;
+        panelLogin.classList.toggle('active', isLogin);
+        panelRegister.classList.toggle('active', !isLogin);
+        (isLogin ? tabLogin : tabRegister).focus();
+      }
+
+      tabLogin.addEventListener('click', () => switchTab('login'));
+      tabRegister.addEventListener('click', () => switchTab('register'));
+
+      // Keyboard navigation between tabs
+      [tabLogin, tabRegister].forEach((tab, index, tabs) => {
+        tab.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const next = tabs[(index + 1) % tabs.length];
+            switchTab(next.id === 'tab-login' ? 'login' : 'register');
+          }
+        });
+      });
+    })();
+  </script>
+
+    <style>
+    :root {
+      --bg: var(--cognicard-background);
+      --primary: var(--cognicard-primary);
+      --gold: var(--cognicard-gold);
+      --card: var(--cognicard-card);
+      --muted: #232D42;
+      --border: var(--cognicard-border);
+    }
+
+    *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: #E8EEF7;
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Star-field background */
+    .starfield {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(74, 158, 255, 0.12) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 50%, rgba(74, 158, 255, 0.05) 0%, transparent 55%),
+        var(--bg);
+    }
+
+    .starfield::before,
+    .starfield::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.9) 50%, transparent 55%),
+        radial-gradient(1.5px 1.5px at 25% 55%, rgba(255,255,255,0.7) 50%, transparent 55%),
+        radial-gradient(2px 2px at 45% 15%, rgba(255,255,255,0.85) 50%, transparent 55%),
+        radial-gradient(1px 1px at 60% 75%, rgba(255,255,255,0.6) 50%, transparent 55%),
+        radial-gradient(2px 2px at 75% 35%, rgba(255,255,255,0.8) 50%, transparent 55%),
+        radial-gradient(1.5px 1.5px at 90% 60%, rgba(255,255,255,0.7) 50%, transparent 55%),
+        radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.5) 50%, transparent 55%),
+        radial-gradient(2px 2px at 35% 40%, rgba(255,255,255,0.75) 50%, transparent 55%),
+        radial-gradient(1.5px 1.5px at 55% 90%, rgba(255,255,255,0.6) 50%, transparent 55%),
+        radial-gradient(1px 1px at 85% 10%, rgba(255,255,255,0.55) 50%, transparent 55%);
+      background-repeat: repeat;
+      background-size: 500px 500px;
+      opacity: 0.6;
+    }
+
+    .starfield::after {
+      background-size: 350px 350px;
+      opacity: 0.35;
+      transform: translateZ(0);
+      animation: drift 120s linear infinite;
+    }
+
+    @keyframes drift {
+      from { background-position: 0 0; }
+      to { background-position: 500px 500px; }
+    }
+
+    /* Shooting star */
+    .shooting-star {
+      position: absolute;
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.9), transparent);
+      top: 20%;
+      left: -120px;
+      transform: rotate(-35deg);
+      animation: shoot 8s ease-in-out infinite;
+      animation-delay: 2s;
+      opacity: 0;
+    }
+
+    @keyframes shoot {
+      0% { left: -120px; opacity: 0; }
+      10% { opacity: 1; }
+      20% { left: 110%; opacity: 0; }
+      100% { left: 110%; opacity: 0; }
+    }
+
+    /* Glass card */
+    .glass-card {
+      background: rgba(26, 34, 51, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(74, 158, 255, 0.18);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    /* Input styling */
+    .auth-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(35, 45, 66, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #E8EEF7;
+      font-size: 15px;
+      line-height: 1.4;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .auth-input::placeholder {
+      color: #7A8BA7;
+    }
+
+    .auth-input:hover {
+      border-color: rgba(74, 158, 255, 0.5);
+      background: rgba(35, 45, 66, 0.85);
+    }
+
+    .auth-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.18), 0 0 18px rgba(74, 158, 255, 0.15);
+      background: rgba(35, 45, 66, 0.95);
+    }
+
+    /* Primary button */
+    .btn-primary {
+      width: 100%;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--primary) 0%, #357DDB 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 18px rgba(74, 158, 255, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(74, 158, 255, 0.55), 0 0 24px rgba(74, 158, 255, 0.35);
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary:focus-visible {
+      outline: 2px solid #8FC4FF;
+      outline-offset: 2px;
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* Code button */
+    .btn-code {
+      padding: 10px 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .btn-code:hover {
+      border-color: var(--primary);
+      background: rgba(74, 158, 255, 0.1);
+    }
+
+    .btn-code:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Tabs */
+    .tab-btn {
+      flex: 1;
+      padding: 14px;
+      background: transparent;
+      border: none;
+      color: #7A8BA7;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .tab-btn[aria-selected="true"] {
+      color: var(--primary);
+    }
+
+    .tab-btn[aria-selected="true"]::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 20%;
+      right: 20%;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    .tab-btn:hover {
+      color: #A9BCE0;
+    }
+
+    .tab-btn:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: -4px;
+      border-radius: 8px;
+    }
+
+    /* Checkbox */
+    .checkbox-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-wrap input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Social icons */
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(35, 45, 66, 0.7);
+      border: 1px solid var(--border);
+      color: #A9BCE0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(74, 158, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .social-btn:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Link */
+    .text-link {
+      color: var(--primary);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .text-link:hover {
+      opacity: 0.85;
+      text-decoration: underline;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* Helper links */
+    .helper-link {
+      color: #7A8BA7;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .helper-link:hover {
+      color: var(--primary);
+    }
+
+    .helper-link:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* Panel visibility */
+    .auth-panel {
+      display: none;
+    }
+
+    .auth-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo glow */
+    .logo-mark {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary) 0%, #2563C8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 24px rgba(74, 158, 255, 0.45);
+      margin-bottom: 20px;
+    }
+  </style>
+</body>
+</html>
+

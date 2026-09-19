@@ -1,0 +1,50 @@
+{
+  "root": {
+    "nodeId": "gen-project-shell",
+    "kind": "project-shell",
+    "pageIds": [
+      "*"
+    ],
+    "output": "partials/project-shell.html",
+    "sharedRegions": [
+      "head",
+      "desktop-nav",
+      "page-background",
+      "safe-area-spacers"
+    ],
+    "privateRegions": [],
+    "mutableSlots": [
+      "activeNavItem"
+    ],
+    "status": "generated",
+    "children": [
+      {
+        "nodeId": "gen-pages",
+        "kind": "shared-branch",
+        "pageIds": [
+          "page-index",
+          "page-login",
+          "page-tool-dashboard",
+          "page-material-pool",
+          "page-import-flow",
+          "page-digest",
+          "page-atom-create",
+          "page-knowledge-base",
+          "page-public-profile",
+          "page-qa-board",
+          "page-notifications",
+          "page-settings",
+          "page-dashboard"
+        ],
+        "output": null,
+        "sharedRegions": [],
+        "privateRegions": [
+          "main"
+        ],
+        "mutableSlots": [],
+        "status": "generated",
+        "children": []
+      }
+    ]
+  }
+}

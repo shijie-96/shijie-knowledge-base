@@ -1,0 +1,37 @@
+{
+  "id": "default",
+  "name": "通用认知干预包",
+  "version": "1.1.0",
+  "description": "所有用户未购买专属包时自动生效的兜底包：历史矛盾引用 + 观点同质化提醒。",
+  "enabled": true,
+  "price": 0,
+  "rules": [
+    {
+      "id": "history_contradiction",
+      "name": "历史矛盾引用",
+      "description": "当前话题与用户近期沉淀的某条观点明显不同向时，引用旧观点制造认知张力，请他解释差异",
+      "action": "引用矛盾观点并请用户解释立场差异",
+      "ui_type": "contradiction_card",
+      "enabled": true,
+      "trigger": {
+        "type": "history_contradiction",
+        "lookbackMonths": 3,
+        "maxSimilarity": 0.35
+      }
+    },
+    {
+      "id": "homogeneous_repetition",
+      "name": "观点同质化提醒",
+      "description": "用户连续多条消息围绕同一说法打转（同质化），提示存在盲区并给出反方视角",
+      "action": "挑战单一视角，要求从反方立场自圆其说",
+      "ui_type": "suggestion_banner",
+      "enabled": true,
+      "trigger": {
+        "type": "homogeneous_repetition",
+        "window": 3,
+        "threshold": 0.45,
+        "minMessages": 3
+      }
+    }
+  ]
+}

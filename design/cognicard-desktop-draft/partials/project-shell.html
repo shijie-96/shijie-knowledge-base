@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- SLOT: pageTitle --></title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style id="critical-layout">
+    html, body { height: 100%; }
+    body {
+      background: var(--cognicard-background);
+      color: var(--cognicard-foreground);
+      font-family: var(--cognicard-font-sans);
+    }
+    #app-shell {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    #main-content {
+      flex: 1 1 auto;
+      width: 100%;
+      padding-top: 64px;
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="dark antialiased">
+  <div id="app-shell">
+    <!-- SLOT: desktop-nav -->
+    <header data-desktop-nav="global" class="fixed top-0 left-0 right-0 z-50 h-16 border-b border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/90 backdrop-blur">
+      <div class="w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+        <a href="pages/index.html" class="flex items-center gap-2 text-[var(--cognicard-foreground)] font-semibold">
+          <i data-lucide="sparkles" class="w-5 h-5 text-[var(--cognicard-primary)]"></i>
+          <span>CogniCard</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="pages/index.html" data-nav-key="starmap" data-active="true" class="flex items-center gap-2 text-sm font-medium text-[var(--cognicard-primary)] border-b-2 border-[var(--cognicard-primary)] pt-5 pb-5">
+            <i data-lucide="globe" class="w-4 h-4"></i>
+            <span>星图</span>
+          </a>
+          <a href="pages/tool-dashboard.html" data-nav-key="toolbox" class="flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5 transition-colors hover:text-[var(--cognicard-foreground)]">
+            <i data-lucide="briefcase" class="w-4 h-4"></i>
+            <span>工具台</span>
+          </a>
+          <a href="pages/notifications.html" data-nav-key="messages" class="flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5 transition-colors hover:text-[var(--cognicard-foreground)]">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span>消息</span>
+          </a>
+          <a href="pages/settings.html" data-nav-key="me" class="flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5 transition-colors hover:text-[var(--cognicard-foreground)]">
+            <i data-lucide="user" class="w-4 h-4"></i>
+            <span>我的</span>
+          </a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button class="p-2 rounded-lg text-[var(--cognicard-muted-foreground)] hover:bg-[var(--cognicard-muted)]">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </button>
+          <button class="w-8 h-8 rounded-full bg-[var(--cognicard-muted)] overflow-hidden" data-dom-id="nav-avatar">
+            <img src="https://i.pravatar.cc/150?u=self" alt="avatar" class="w-full h-full object-cover"/>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- SLOT: page-background -->
+    <main id="main-content">
+      <!-- SLOT: main -->
+    </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "首页认知星图",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 169,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": [
+          {
+            "domId": "nav-toolbox",
+            "targetPageId": "page-tool-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-工具台"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "goto-tool-dashboard",
+            "targetPageId": "page-tool-dashboard",
+            "transitionLabel": "进入个人工具台"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-login",
+      "title": "登录 / 注册",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/login.html",
+        "interactions": [
+          {
+            "domId": "btn-login",
+            "targetPageId": "page-index",
+            "transitionLabel": "登录成功"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-tool-dashboard",
+      "title": "个人工具台",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 338,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/tool-dashboard.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "entry-materials",
+            "targetPageId": "page-material-pool",
+            "transitionLabel": "进入素材池"
+          },
+          {
+            "domId": "entry-knowledge",
+            "targetPageId": "page-knowledge-base",
+            "transitionLabel": "进入知识库"
+          },
+          {
+            "domId": "entry-iterations",
+            "targetPageId": "page-digest",
+            "transitionLabel": "进入消化加工"
+          },
+          {
+            "domId": "entry-dashboard",
+            "targetPageId": "page-dashboard",
+            "transitionLabel": "进入数据看板"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-material-pool",
+      "title": "素材池",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 507,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/material-pool.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "fab-import",
+            "targetPageId": "page-import-flow",
+            "transitionLabel": "导入素材"
+          },
+          {
+            "domId": "card-digest-1",
+            "targetPageId": "page-digest",
+            "transitionLabel": "去消化"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-import-flow",
+      "title": "导入素材",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 372,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/import-flow.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "btn-save-material",
+            "targetPageId": "page-material-pool",
+            "transitionLabel": "保存到素材池"
+          },
+          {
+            "domId": "btn-digest-now",
+            "targetPageId": "page-digest",
+            "transitionLabel": "立即消化"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-digest",
+      "title": "消化加工",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 507,
+        "y": 432,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/digest.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "btn-save-atom",
+            "targetPageId": "page-atom-create",
+            "transitionLabel": "保存并沉淀"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-atom-create",
+      "title": "沉淀知识原子",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 676,
+        "y": 432,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/atom-create.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "btn-back",
+            "targetPageId": "page-knowledge-base",
+            "hideEdge": true,
+            "transitionLabel": "返回知识库"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-knowledge-base",
+      "title": "知识库",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 507,
+        "y": 875,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/knowledge-base.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "btn-new-atom",
+            "targetPageId": "page-atom-create",
+            "transitionLabel": "新建知识原子"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-public-profile",
+      "title": "认知名片主页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 1696,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/public-profile.html",
+        "interactions": [
+          {
+            "domId": "btn-back-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "返回星图"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-qa-board",
+      "title": "提问看板",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 169,
+        "y": 1696,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/qa-board.html",
+        "interactions": [
+          {
+            "domId": "btn-back-profile",
+            "targetPageId": "page-public-profile",
+            "hideEdge": true,
+            "transitionLabel": "返回名片"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-notifications",
+      "title": "消息中心",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 338,
+        "y": 1696,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/notifications.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-toolbox",
+            "targetPageId": "page-tool-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-工具台"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-settings",
+      "title": "设置",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 507,
+        "y": 1696,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/settings.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-toolbox",
+            "targetPageId": "page-tool-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-工具台"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "row-account",
+            "targetPageId": "page-login",
+            "hideEdge": true,
+            "transitionLabel": "账号管理"
+          },
+          {
+            "domId": "row-notifications",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "通知设置"
+          },
+          {
+            "domId": "row-export",
+            "targetPageId": "page-public-profile",
+            "hideEdge": true,
+            "transitionLabel": "导出名片"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dashboard",
+      "title": "数据看板",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 507,
+        "y": 1300,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dashboard.html",
+        "interactions": [
+          {
+            "domId": "nav-starmap",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-星图"
+          },
+          {
+            "domId": "nav-messages",
+            "targetPageId": "page-notifications",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-消息"
+          },
+          {
+            "domId": "nav-me",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "底部导航-我的"
+          },
+          {
+            "domId": "btn-back-toolbox",
+            "targetPageId": "page-tool-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "返回工具台"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "认知名片平台 - 移动端"
+  }
+}

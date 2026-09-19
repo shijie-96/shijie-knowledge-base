@@ -1,0 +1,21 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "overrides": [
+    {
+      "files": ["lib/api/**/*.{ts,tsx}"],
+      "rules": {
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "ReturnStatement[argument.callee.object.name='http'][argument.callee.property.name=/^(get|post|put|delete|patch)$/]",
+            "message": "lib/api 禁止直接 return http.xxx()（axios 实例不自动解包，返回的是 { data, status, ... } 包装对象）。必须手动解包：const { data } = await http.xxx(...); return data;"
+          },
+          {
+            "selector": "ReturnStatement[argument.type='Identifier'][argument.name=/^(res|response|result)$/]",
+            "message": "lib/api 禁止直接 return 响应包装对象（res/response/result），调用方读 res.xxx 会拿到 undefined。必须解包为 data 后返回；blob 下载等特殊场景请使用 response.data 访问真实内容。"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "builds": [
+    {
+      "date": "2026-09-03",
+      "project": "识界 zhishi2.0",
+      "register": "workbench: product + h5 A.1 双形态",
+      "soul": "引力场窗口 / 一抬头看见自己会长成的样子",
+      "surface": "工具台首页 /dashboard",
+      "technique": "canvas_starfield + css_dom",
+      "spectacle": 1,
+      "density": 4,
+      "cursor": 0
+    }
+  ],
+  "run": 0
+}

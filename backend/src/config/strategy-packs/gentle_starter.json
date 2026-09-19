@@ -1,0 +1,37 @@
+{
+  "id": "gentle_starter",
+  "name": "轻量破圈·免费体验包",
+  "version": "1.0.0",
+  "description": "给想先试试「认知陪练」的用户：更克制的干预频率，只在明显矛盾或真正绕圈时才开口。",
+  "enabled": true,
+  "price": 0,
+  "rules": [
+    {
+      "id": "starter_contradiction",
+      "name": "历史矛盾引用（克制版）",
+      "description": "半年内观点与当前话题明显相反时，引用旧观点请你解释差异；相似度阈值更低，减少误触。",
+      "action": "引用矛盾观点并请用户解释立场差异",
+      "ui_type": "contradiction_card",
+      "enabled": true,
+      "trigger": {
+        "type": "history_contradiction",
+        "lookbackMonths": 6,
+        "maxSimilarity": 0.28
+      }
+    },
+    {
+      "id": "starter_repetition",
+      "name": "同质化提醒（克制版）",
+      "description": "连续多条消息明显围着同一说法打转时才提醒，给反方视角。",
+      "action": "挑战单一视角，要求从反方立场自圆其说",
+      "ui_type": "suggestion_banner",
+      "enabled": true,
+      "trigger": {
+        "type": "homogeneous_repetition",
+        "window": 4,
+        "threshold": 0.5,
+        "minMessages": 4
+      }
+    }
+  ]
+}

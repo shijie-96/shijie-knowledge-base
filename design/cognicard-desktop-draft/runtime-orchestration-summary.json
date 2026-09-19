@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "2026.07.11.0",
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.08.06.19.15.08",
+    "version_source": "skill-release-manifest.json",
+    "read_status": "ok"
+  },
+  "project": {
+    "operation": "redesign-ui",
+    "resolvedLane": "redesign_duplicate_project",
+    "sourceProjectPath": "d:\\zhishi2.0\\design\\cognicard-desktop",
+    "draftProjectPath": "d:\\zhishi2.0\\design\\cognicard-desktop-draft",
+    "deviceType": "desktop",
+    "projectName": "识界 - 桌面端（redesign draft）",
+    "selectedIntentWorkflowRead": true,
+    "intentWorkflowPath": "intent-workflows/intent-project-mutation/redesign-project-ui.md",
+    "contextReadScope": [
+      "intent-workflows/intent-project-mutation/INTENT_WORKFLOW.md",
+      "intent-workflows/intent-project-mutation/redesign-project-ui.md",
+      "intent-workflows/intent-project-mutation/existing-edit-dispatch-contract.md",
+      "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+      "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+      "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+      "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+      "delivery-quality/page-rendering-quality-gate.md",
+      "delivery-quality/design-artifact-validation.md",
+      "delivery-quality/delivery-evidence-contract.md",
+      "visual-experience/visual-experience-guidelines.md"
+    ],
+    "contextRequirementsLoaded": [
+      {
+        "path": "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/page-rendering-quality-gate.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/design-artifact-validation.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/delivery-evidence-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "visual-experience/visual-experience-guidelines.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      }
+    ],
+    "validationRunDiscipline": {
+      "maxFullValidationRuns": 2,
+      "softWarningsTriggerRepair": false,
+      "blockingRepairMode": "targeted-once",
+      "forbiddenRepairTriggers": ["soft-warning-only", "provenance-warning-only", "style-warning-only"]
+    },
+    "lowValueCallWatchdog": {
+      "enabled": true,
+      "noProgressNextAction": "proceed-to-readiness-or-blocked-summary"
+    },
+    "redesignAudit": {
+      "primaryIssue": "weak brand identity and flat motion",
+      "fixPriority": ["motion", "color system", "visual hierarchy", "imagery"],
+      "preserve": ["core navigation", "page structure", "business copy", "data-dom-id interactions"],
+      "change": ["starmap hero atmosphere", "knowledge base graph motion", "color palette shift to indigo-gold deep space", "card hover language"],
+      "risk": "do not break existing nav-avatar interaction"
+    },
+    "styleDefinitionBrief": "识界 (ShiJie) — 认知无界，成长无限。 Deep-space indigo + gold accent knowledge network. Immersive starmap discovery, cinematic but restrained motion, high-density product surfaces.",
+    "designRead": "识界 / growth-oriented knowledge workers / trustworthy-tech with wonder / medium-high density / avoid generic SaaS card walls",
+    "designDials": {
+      "layoutVariance": 4,
+      "motionIntensity": 5,
+      "visualDensity": 4
+    },
+    "sharedProjectShellContract": {
+      "desktopNavigation": {
+        "applies": true,
+        "height": 64,
+        "style": "fixed top, blurred glass, border-bottom, global nav"
+      },
+      "mobileNavigation": {
+        "applies": false
+      },
+      "primaryColor": "indigo-blue",
+      "accentColor": "gold",
+      "surfaceModel": "dark tinted layers",
+      "radiusScale": "4/8/12/9999",
+      "typeStack": "Inter + Noto Sans SC"
+    },
+    "imagePlan": [
+      {
+        "filename": "starmap-nebula-bg.jpg",
+        "role": "supporting-content",
+        "page": "index",
+        "description": "深空星云背景纹理，用于星图首页 hero 区域，极淡、可循环，不抢夺 canvas 粒子动画焦点",
+        "status": "completed"
+      },
+      {
+        "filename": "knowledge-constellation-hero.jpg",
+        "role": "supporting-content",
+        "page": "knowledge-base",
+        "description": "知识网络抽象插画，用于知识库顶部横幅，表现原子、连接与聚类的视觉隐喻",
+        "status": "completed"
+      },
+      {
+        "filename": "empty-starmap.jpg",
+        "role": "supporting-content",
+        "page": "knowledge-base",
+        "description": "空状态插画：一颗等待被点亮的孤星，用于知识库空数据提示",
+        "status": "completed"
+      }
+    ],
+    "expectedDispatches": [
+      {
+        "nodeId": "page-index",
+        "packetType": "RedesignPagePacket",
+        "status": "completed",
+        "changedFiles": ["pages/index.html"],
+        "toolCallLedger": {"todoWriteCalls": 0, "previewCalls": 0, "validationScriptCalls": 0, "helperScriptWrites": 0}
+      },
+      {
+        "nodeId": "page-knowledge-base",
+        "packetType": "RedesignPagePacket",
+        "status": "completed",
+        "changedFiles": ["pages/knowledge-base.html"],
+        "toolCallLedger": {"todoWriteCalls": 0, "previewCalls": 0, "validationScriptCalls": 0, "helperScriptWrites": 0}
+      }
+    ],
+    "pages": [
+      {
+        "nodeId": "page-index",
+        "slug": "index",
+        "title": "星图首页",
+        "htmlSrc": "pages/index.html",
+        "pageType": "showcase",
+        "businessScenario": "brand discovery / social knowledge starmap",
+        "qualityRisks": ["canvas animation performance", "hero text readability over motion"]
+      },
+      {
+        "nodeId": "page-knowledge-base",
+        "slug": "knowledge-base",
+        "title": "知识库",
+        "htmlSrc": "pages/knowledge-base.html",
+        "pageType": "information-dense",
+        "businessScenario": "personal knowledge registry / atom management",
+        "qualityRisks": ["dense card grid", "SVG graph motion"]
+      }
+    ]
+  }
+}

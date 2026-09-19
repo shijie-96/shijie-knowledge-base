@@ -1,0 +1,436 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "首页认知星图",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 2488,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-87a38f0c",
+          "measuredAt": 1788403035193
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-login",
+      "title": "登录 / 注册",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 480,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-37dd2527",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/login.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-tool-dashboard",
+      "title": "个人工具台",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 960,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-10d2fa21",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/tool-dashboard.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-material-pool",
+      "title": "素材池",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 1440,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-c4454473",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/material-pool.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-import-flow",
+      "title": "导入素材",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 1920,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-96da699b",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/import-flow.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-digest",
+      "title": "消化加工",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 2400,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1135,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-5469f54e",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/digest.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-atom-create",
+      "title": "沉淀知识原子",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 2880,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1599,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-678158af",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/atom-create.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-knowledge-base",
+      "title": "知识库",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 3360,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 975,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-4702927e",
+          "measuredAt": 1788403035193
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/knowledge-base.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-public-profile",
+      "title": "认知名片主页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 3840,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1022,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-75b9bcf0",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/public-profile.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-qa-board",
+      "title": "提问看板",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 4320,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1244,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-57d76218",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/qa-board.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-notifications",
+      "title": "消息中心",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 4800,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1226,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-2ffd2077",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/notifications.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-settings",
+      "title": "设置",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 5280,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-23561c40",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/settings.html",
+        "interactions": [
+          {
+            "domId": "nav-avatar",
+            "targetPageId": "page-settings",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dashboard",
+      "title": "数据看板",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 5760,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-ad6fcef7",
+          "measuredAt": 1787286235721
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dashboard.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "image-001",
+      "title": "默认头像",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 373,
+        "naturalSize": {
+          "width": 64,
+          "height": 64
+        }
+      },
+      "devMetadata": {
+        "imageSrc": "assets/avatar-placeholder.svg"
+      }
+    },
+    {
+      "id": "image-002",
+      "title": "星图首页深空星云背景",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 373,
+        "naturalSize": {
+          "width": 2560,
+          "height": 1440
+        }
+      },
+      "devMetadata": {
+        "imageSrc": "assets/starmap-nebula-bg.jpg"
+      }
+    },
+    {
+      "id": "image-003",
+      "title": "知识库星座横幅",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 373,
+        "naturalSize": {
+          "width": 2560,
+          "height": 1440
+        }
+      },
+      "devMetadata": {
+        "imageSrc": "assets/knowledge-constellation-hero.jpg"
+      }
+    },
+    {
+      "id": "image-004",
+      "title": "空状态孤星插画",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1760041200000,
+      "canvasData": {
+        "x": 0,
+        "y": 373,
+        "naturalSize": {
+          "width": 1920,
+          "height": 1920
+        }
+      },
+      "devMetadata": {
+        "imageSrc": "assets/empty-starmap.jpg"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": false,
+    "deviceType": "desktop",
+    "projectName": "识界 - 桌面端（redesign draft）"
+  }
+}

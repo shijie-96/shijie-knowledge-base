@@ -1,0 +1,67 @@
+﻿  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+./app/profile/me/page.tsx
+84:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/authorization/AuthorizationRequestsCard.tsx
+131:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/profile/PublicProfileView.tsx
+144:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/question/QuestionBoard.tsx
+210:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+234:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/question/QuestionManager.tsx
+447:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+631:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/social/FollowList.tsx
+88:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/20) ...
+   Generating static pages (5/20) 
+   Generating static pages (10/20) 
+   Generating static pages (15/20) 
+ ✓ Generating static pages (20/20)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    2.85 kB         108 kB
+├ ○ /_not-found                          873 B          88.2 kB
+├ ○ /atoms                               12.9 kB         118 kB
+├ ƒ /atoms/[id]                          11.1 kB         117 kB
+├ ○ /atoms/iterate                       5.62 kB         111 kB
+├ ○ /dashboard                           8.36 kB         123 kB
+├ ○ /materials                           3.79 kB         119 kB
+├ ƒ /materials/[id]                      3.84 kB         119 kB
+├ ƒ /materials/[id]/digest               6.32 kB         112 kB
+├ ○ /materials/import                    4.83 kB         120 kB
+├ ○ /messages                            2.36 kB         117 kB
+├ ○ /profile/decoration                  6.08 kB         112 kB
+├ ○ /profile/favorites                   2.98 kB         109 kB
+├ ○ /profile/followers                   2.94 kB         109 kB
+├ ○ /profile/following                   2.94 kB         109 kB
+├ ○ /profile/me                          4.59 kB         120 kB
+├ ○ /profile/questions                   7.52 kB         113 kB
+├ ○ /profile/star-map                    4.42 kB         110 kB
+├ ○ /references                          3.12 kB         109 kB
+├ ○ /starmap                             5.9 kB          121 kB
+└ ƒ /u/[userId]                          10.1 kB         116 kB
++ First Load JS shared by all            87.3 kB
+  ├ chunks/117-48a2f1a945f634b1.js       31.7 kB
+  ├ chunks/fd9d1056-b9b281d6c2728617.js  53.6 kB
+  └ other shared chunks (total)          1.95 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

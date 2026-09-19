@@ -1,0 +1,541 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问答广场</title>
+    <style id="theme-vars">
+/* CogniCard Design Tokens — 认知名片平台 */
+
+:root {
+  /* Font system */
+  --cognicard-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cognicard-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius scale */
+  --cognicard-radius-sm: 4px;
+  --cognicard-radius-md: 8px;
+  --cognicard-radius-lg: 12px;
+  --cognicard-radius-full: 9999px;
+
+  /* Light mode (day / star-map daytime) */
+  --cognicard-background: #F6F7F9;
+  --cognicard-foreground: #0A0E1A;
+  --cognicard-card: #FFFFFF;
+  --cognicard-card-foreground: #0A0E1A;
+  --cognicard-popover: #FFFFFF;
+  --cognicard-popover-foreground: #0A0E1A;
+  --cognicard-primary: #1E3A5F;
+  --cognicard-primary-foreground: #FFFFFF;
+  --cognicard-muted: #E8EBF0;
+  --cognicard-muted-foreground: #5A6578;
+  --cognicard-border: #D8DCE5;
+  --cognicard-input: #FFFFFF;
+  --cognicard-ring: #4A9EFF;
+
+  /* Brand tints */
+  --cognicard-brand-50: #E8F4FF;
+  --cognicard-brand-100: #C7E6FF;
+  --cognicard-brand-200: #96D0FF;
+  --cognicard-brand-300: #5AB8FF;
+  --cognicard-brand-400: #4A9EFF;
+  --cognicard-brand-500: #2B8AFC;
+  --cognicard-brand-600: #1E6FD1;
+  --cognicard-brand-700: #1E3A5F;
+
+  /* Surface scale (dark mode overrides below) */
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  /* Member / state accents */
+  --cognicard-gold: #D4AF37;
+  --cognicard-gold-light: #F3E5AB;
+  --cognicard-silver: #A8B4C4;
+
+  /* State colors (semantic only) */
+  --cognicard-state-success: #22C55E;
+  --cognicard-state-warning: #F59E0B;
+  --cognicard-state-error: #EF4444;
+  --cognicard-state-info: #3B82F6;
+
+  /* Glow / shadow */
+  --cognicard-glow-primary: 0 0 24px rgba(74, 158, 255, 0.35);
+  --cognicard-glow-gold: 0 0 24px rgba(212, 175, 55, 0.35);
+  --cognicard-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(10, 14, 26, 0.18);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(10, 14, 26, 0.30);
+}
+
+.dark {
+  /* Dark mode (night / tool dashboard / immersive) */
+  --cognicard-background: #0A0E1A;
+  --cognicard-foreground: #E8ECF5;
+  --cognicard-card: #1A2233;
+  --cognicard-card-foreground: #E8ECF5;
+  --cognicard-popover: #1A2233;
+  --cognicard-popover-foreground: #E8ECF5;
+  --cognicard-primary: #4A9EFF;
+  --cognicard-primary-foreground: #0A0E1A;
+  --cognicard-muted: #232D42;
+  --cognicard-muted-foreground: #8A96AD;
+  --cognicard-border: #2A3A55;
+  --cognicard-input: #1A2233;
+  --cognicard-ring: #4A9EFF;
+
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  --cognicard-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.40);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Typography utilities */
+.cognicard-display {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cognicard-h1 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cognicard-h2 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cognicard-h3 {
+  font-family: var(--cognicard-font-sans);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cognicard-body {
+  font-family: var(--cognicard-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cognicard-body-lg {
+  font-family: var(--cognicard-font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cognicard-caption {
+  font-family: var(--cognicard-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.cognicard-mono {
+  font-family: var(--cognicard-font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cognicard-background);
+    --color-foreground: var(--cognicard-foreground);
+    --color-card: var(--cognicard-card);
+    --color-card-foreground: var(--cognicard-card-foreground);
+    --color-popover: var(--cognicard-popover);
+    --color-popover-foreground: var(--cognicard-popover-foreground);
+    --color-primary: var(--cognicard-primary);
+    --color-primary-foreground: var(--cognicard-primary-foreground);
+    --color-muted: var(--cognicard-muted);
+    --color-muted-foreground: var(--cognicard-muted-foreground);
+    --color-border: var(--cognicard-border);
+    --color-input: var(--cognicard-input);
+    --color-ring: var(--cognicard-ring);
+    --radius-sm: var(--cognicard-radius-sm);
+    --radius-md: var(--cognicard-radius-md);
+    --radius-lg: var(--cognicard-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cognicard-background); color: var(--cognicard-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cognicard-background); }
+      .text-background { color: var(--cognicard-background); }
+      .border-background { border-color: var(--cognicard-background); }
+      .ring-background { --tw-ring-color: var(--cognicard-background); }
+      .bg-foreground { background-color: var(--cognicard-foreground); }
+      .text-foreground { color: var(--cognicard-foreground); }
+      .border-foreground { border-color: var(--cognicard-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cognicard-foreground); }
+      .bg-card { background-color: var(--cognicard-card); }
+      .text-card { color: var(--cognicard-card); }
+      .border-card { border-color: var(--cognicard-card); }
+      .ring-card { --tw-ring-color: var(--cognicard-card); }
+      .bg-card-foreground { background-color: var(--cognicard-card-foreground); }
+      .text-card-foreground { color: var(--cognicard-card-foreground); }
+      .border-card-foreground { border-color: var(--cognicard-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cognicard-card-foreground); }
+      .bg-popover { background-color: var(--cognicard-popover); }
+      .text-popover { color: var(--cognicard-popover); }
+      .border-popover { border-color: var(--cognicard-popover); }
+      .ring-popover { --tw-ring-color: var(--cognicard-popover); }
+      .bg-popover-foreground { background-color: var(--cognicard-popover-foreground); }
+      .text-popover-foreground { color: var(--cognicard-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cognicard-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cognicard-popover-foreground); }
+      .bg-primary { background-color: var(--cognicard-primary); }
+      .text-primary { color: var(--cognicard-primary); }
+      .border-primary { border-color: var(--cognicard-primary); }
+      .ring-primary { --tw-ring-color: var(--cognicard-primary); }
+      .bg-primary-foreground { background-color: var(--cognicard-primary-foreground); }
+      .text-primary-foreground { color: var(--cognicard-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cognicard-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cognicard-primary-foreground); }
+      .bg-muted { background-color: var(--cognicard-muted); }
+      .text-muted { color: var(--cognicard-muted); }
+      .border-muted { border-color: var(--cognicard-muted); }
+      .ring-muted { --tw-ring-color: var(--cognicard-muted); }
+      .bg-muted-foreground { background-color: var(--cognicard-muted-foreground); }
+      .text-muted-foreground { color: var(--cognicard-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cognicard-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cognicard-muted-foreground); }
+      .bg-border { background-color: var(--cognicard-border); }
+      .text-border { color: var(--cognicard-border); }
+      .border-border { border-color: var(--cognicard-border); }
+      .ring-border { --tw-ring-color: var(--cognicard-border); }
+      .bg-input { background-color: var(--cognicard-input); }
+      .text-input { color: var(--cognicard-input); }
+      .border-input { border-color: var(--cognicard-input); }
+      .ring-input { --tw-ring-color: var(--cognicard-input); }
+      .bg-ring { background-color: var(--cognicard-ring); }
+      .text-ring { color: var(--cognicard-ring); }
+      .border-ring { border-color: var(--cognicard-ring); }
+      .ring-ring { --tw-ring-color: var(--cognicard-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+  <!-- Global fixed top header -->
+  <header class="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border bg-[var(--cognicard-background)]/90 backdrop-blur">
+    <div class="w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-foreground font-semibold">
+        <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+        <span>CogniCard</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="index.html" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          <span>星图</span>
+        </a>
+        <a href="tool-dashboard.html" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+          <i data-lucide="briefcase" class="w-4 h-4"></i>
+          <span>工具台</span>
+        </a>
+        <a href="notifications.html" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+          <span>消息</span>
+        </a>
+        <a href="settings.html" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+          <i data-lucide="user" class="w-4 h-4"></i>
+          <span>我的</span>
+        </a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="p-2 rounded-lg text-muted-foreground hover:bg-muted" aria-label="搜索">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </button>
+        <button class="w-8 h-8 rounded-full bg-muted overflow-hidden" aria-label="个人中心">
+          <img src="../assets/avatar-placeholder.svg" alt="avatar" class="w-full h-full object-cover"/>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Page header -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <h1 class="text-3xl font-semibold tracking-tight text-foreground">问答广场</h1>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+            <input type="text" placeholder="搜索问题、话题或用户" class="w-64 lg:w-80 bg-input border border-border rounded-lg pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"/>
+          </div>
+          <button class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>提问</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex items-center gap-2 mb-8">
+        <button class="px-4 py-1.5 rounded-full text-sm font-medium bg-primary text-primary-foreground">最新</button>
+        <button class="px-4 py-1.5 rounded-full text-sm font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">未回答</button>
+        <button class="px-4 py-1.5 rounded-full text-sm font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">已解决</button>
+        <button class="px-4 py-1.5 rounded-full text-sm font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">我关注的</button>
+      </div>
+
+      <div class="flex gap-8 items-start">
+        <!-- Left main column: question list -->
+        <div class="flex-1 min-w-0 space-y-4">
+          <!-- Question card 1 -->
+          <article class="group bg-card border border-border rounded-xl p-5 transition-all duration-200 hover:shadow-[var(--cognicard-glow-primary)] hover:border-primary/40">
+            <a href="#" class="block">
+              <h2 class="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">如何在 React 中优雅地处理复杂表单的异步校验？</h2>
+              <p class="text-muted-foreground text-sm line-clamp-2 mb-4">目前项目里有一个包含动态字段和嵌套规则的表单，想请教大家在 React 生态下如何兼顾性能与可维护性，是否有推荐的设计模式或库？</p>
+            </a>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">React</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">表单</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">前端工程化</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-6 h-6 rounded-full object-cover"/>
+                <span class="text-sm text-foreground">林晓晨</span>
+                <span class="text-xs text-muted-foreground">2 小时前</span>
+              </div>
+              <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                <span class="flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> 12 回答</span>
+                <span class="flex items-center gap-1"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 48 赞同</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Question card 2 -->
+          <article class="group bg-card border border-border rounded-xl p-5 transition-all duration-200 hover:shadow-[var(--cognicard-glow-primary)] hover:border-primary/40">
+            <a href="#" class="block">
+              <h2 class="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">认知名片的数据模型该怎样与知识图谱关联？</h2>
+              <p class="text-muted-foreground text-sm line-clamp-2 mb-4">我正在设计 CogniCard 的核心数据结构，希望把个人名片、技能标签和项目经历映射到知识图谱节点上，想听听大家的建模思路。</p>
+            </a>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">知识图谱</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">数据建模</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-6 h-6 rounded-full object-cover"/>
+                <span class="text-sm text-foreground">张维</span>
+                <span class="text-xs text-muted-foreground">5 小时前</span>
+              </div>
+              <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                <span class="flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> 8 回答</span>
+                <span class="flex items-center gap-1"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 35 赞同</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Question card 3 -->
+          <article class="group bg-card border border-border rounded-xl p-5 transition-all duration-200 hover:shadow-[var(--cognicard-glow-primary)] hover:border-primary/40">
+            <a href="#" class="block">
+              <h2 class="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">Go 微服务里的链路追踪，有没有轻量级的落地经验？</h2>
+              <p class="text-muted-foreground text-sm line-clamp-2 mb-4">团队规模不大，不想引入太重的可观测平台，主要想覆盖 HTTP/gRPC 请求的 trace id 传递和日志关联，求实战经验。</p>
+            </a>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">Go</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">微服务</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">可观测</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-6 h-6 rounded-full object-cover"/>
+                <span class="text-sm text-foreground">王浩然</span>
+                <span class="text-xs text-muted-foreground">昨天</span>
+              </div>
+              <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                <span class="flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> 21 回答</span>
+                <span class="flex items-center gap-1"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 92 赞同</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Question card 4 -->
+          <article class="group bg-card border border-border rounded-xl p-5 transition-all duration-200 hover:shadow-[var(--cognicard-glow-primary)] hover:border-primary/40">
+            <a href="#" class="block">
+              <h2 class="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">AI 辅助编程时代，还需要手写设计文档吗？</h2>
+              <p class="text-muted-foreground text-sm line-clamp-2 mb-4">随着 Copilot 等工具普及，代码生成速度变快，但系统架构和边界设计似乎更关键。大家现在是怎么平衡 prompt 工程与传统设计文档的？</p>
+            </a>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">AI</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">工程实践</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">团队协作</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-6 h-6 rounded-full object-cover"/>
+                <span class="text-sm text-foreground">陈思琪</span>
+                <span class="text-xs text-muted-foreground">2 天前</span>
+              </div>
+              <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                <span class="flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> 45 回答</span>
+                <span class="flex items-center gap-1"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 156 赞同</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Question card 5 -->
+          <article class="group bg-card border border-border rounded-xl p-5 transition-all duration-200 hover:shadow-[var(--cognicard-glow-primary)] hover:border-primary/40">
+            <a href="#" class="block">
+              <h2 class="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2">如何评价 Tailwind CSS v4 的 CSS-first 配置思路？</h2>
+              <p class="text-muted-foreground text-sm line-clamp-2 mb-4">v4 移除了 js 配置文件，改用 CSS 原生的 @theme 和 @layer，这对大型设计系统的维护是利好还是增加了学习成本？</p>
+            </a>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">CSS</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">Tailwind</span>
+              <span class="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs">设计系统</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-6 h-6 rounded-full object-cover"/>
+                <span class="text-sm text-foreground">刘子墨</span>
+                <span class="text-xs text-muted-foreground">3 天前</span>
+              </div>
+              <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                <span class="flex items-center gap-1"><i data-lucide="message-square" class="w-3.5 h-3.5"></i> 33 回答</span>
+                <span class="flex items-center gap-1"><i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i> 88 赞同</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Right sidebar -->
+        <aside class="hidden lg:block w-80 shrink-0 space-y-6">
+          <!-- Hot topics -->
+          <div class="bg-card border border-border rounded-xl p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="flame" class="w-4 h-4 text-primary"></i>
+              <h3 class="font-semibold text-foreground">热门话题</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors">React</a>
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">知识图谱</a>
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">AI 编程</a>
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors">Tailwind</a>
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">微服务</a>
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">TypeScript</a>
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">可观测</a>
+              <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:text-foreground transition-colors">设计系统</a>
+            </div>
+          </div>
+
+          <!-- Bounty questions -->
+          <div class="bg-card border border-border rounded-xl p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="coins" class="w-4 h-4 text-[var(--cognicard-gold)]"></i>
+              <h3 class="font-semibold text-[var(--cognicard-gold)]">悬赏问题</h3>
+            </div>
+            <div class="space-y-4">
+              <a href="#" class="group block">
+                <p class="text-sm text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-1">求一份适合初创团队的零信任架构最小可行方案</p>
+                <div class="flex items-center gap-2 text-xs text-[var(--cognicard-gold)]">
+                  <i data-lucide="circle-dollar-sign" class="w-3.5 h-3.5"></i>
+                  <span>悬赏 500 积分</span>
+                </div>
+              </a>
+              <div class="h-px bg-border"></div>
+              <a href="#" class="group block">
+                <p class="text-sm text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-1">如何设计支持千万级并发的实时通知系统？</p>
+                <div class="flex items-center gap-2 text-xs text-[var(--cognicard-gold)]">
+                  <i data-lucide="circle-dollar-sign" class="w-3.5 h-3.5"></i>
+                  <span>悬赏 800 积分</span>
+                </div>
+              </a>
+              <div class="h-px bg-border"></div>
+              <a href="#" class="group block">
+                <p class="text-sm text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-1">前端性能优化：首屏 1s 内的 checklist</p>
+                <div class="flex items-center gap-2 text-xs text-[var(--cognicard-gold)]">
+                  <i data-lucide="circle-dollar-sign" class="w-3.5 h-3.5"></i>
+                  <span>悬赏 300 积分</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Top answerers -->
+          <div class="bg-card border border-border rounded-xl p-5">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="award" class="w-4 h-4 text-primary"></i>
+              <h3 class="font-semibold text-foreground">优秀答主</h3>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-10 h-10 rounded-full object-cover"/>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-foreground truncate">赵一鸣</p>
+                  <p class="text-xs text-muted-foreground">架构 · 1.2k 获赞</p>
+                </div>
+                <button class="text-xs font-medium text-primary hover:text-primary/80">关注</button>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-10 h-10 rounded-full object-cover"/>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-foreground truncate">孙佳怡</p>
+                  <p class="text-xs text-muted-foreground">前端 · 980 获赞</p>
+                </div>
+                <button class="text-xs font-medium text-primary hover:text-primary/80">关注</button>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-10 h-10 rounded-full object-cover"/>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-foreground truncate">周牧云</p>
+                  <p class="text-xs text-muted-foreground">AI · 860 获赞</p>
+                </div>
+                <button class="text-xs font-medium text-primary hover:text-primary/80">关注</button>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="../assets/avatar-placeholder.svg" alt="" class="w-10 h-10 rounded-full object-cover"/>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-foreground truncate">吴思远</p>
+                  <p class="text-xs text-muted-foreground">后端 · 742 获赞</p>
+                </div>
+                <button class="text-xs font-medium text-primary hover:text-primary/80">关注</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
+

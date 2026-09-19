@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消化加工</title>
+    <style id="theme-vars">
+/* CogniCard Design Tokens — 认知名片平台 */
+
+:root {
+  /* Font system */
+  --cognicard-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cognicard-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius scale */
+  --cognicard-radius-sm: 4px;
+  --cognicard-radius-md: 8px;
+  --cognicard-radius-lg: 12px;
+  --cognicard-radius-full: 9999px;
+
+  /* Light mode (day / star-map daytime) */
+  --cognicard-background: #F6F7F9;
+  --cognicard-foreground: #0A0E1A;
+  --cognicard-card: #FFFFFF;
+  --cognicard-card-foreground: #0A0E1A;
+  --cognicard-popover: #FFFFFF;
+  --cognicard-popover-foreground: #0A0E1A;
+  --cognicard-primary: #1E3A5F;
+  --cognicard-primary-foreground: #FFFFFF;
+  --cognicard-muted: #E8EBF0;
+  --cognicard-muted-foreground: #5A6578;
+  --cognicard-border: #D8DCE5;
+  --cognicard-input: #FFFFFF;
+  --cognicard-ring: #4A9EFF;
+
+  /* Brand tints */
+  --cognicard-brand-50: #E8F4FF;
+  --cognicard-brand-100: #C7E6FF;
+  --cognicard-brand-200: #96D0FF;
+  --cognicard-brand-300: #5AB8FF;
+  --cognicard-brand-400: #4A9EFF;
+  --cognicard-brand-500: #2B8AFC;
+  --cognicard-brand-600: #1E6FD1;
+  --cognicard-brand-700: #1E3A5F;
+
+  /* Surface scale (dark mode overrides below) */
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  /* Member / state accents */
+  --cognicard-gold: #D4AF37;
+  --cognicard-gold-light: #F3E5AB;
+  --cognicard-silver: #A8B4C4;
+
+  /* State colors (semantic only) */
+  --cognicard-state-success: #22C55E;
+  --cognicard-state-warning: #F59E0B;
+  --cognicard-state-error: #EF4444;
+  --cognicard-state-info: #3B82F6;
+
+  /* Glow / shadow */
+  --cognicard-glow-primary: 0 0 24px rgba(74, 158, 255, 0.35);
+  --cognicard-glow-gold: 0 0 24px rgba(212, 175, 55, 0.35);
+  --cognicard-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(10, 14, 26, 0.18);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(10, 14, 26, 0.30);
+}
+
+.dark {
+  /* Dark mode (night / tool dashboard / immersive) */
+  --cognicard-background: #0A0E1A;
+  --cognicard-foreground: #E8ECF5;
+  --cognicard-card: #1A2233;
+  --cognicard-card-foreground: #E8ECF5;
+  --cognicard-popover: #1A2233;
+  --cognicard-popover-foreground: #E8ECF5;
+  --cognicard-primary: #4A9EFF;
+  --cognicard-primary-foreground: #0A0E1A;
+  --cognicard-muted: #232D42;
+  --cognicard-muted-foreground: #8A96AD;
+  --cognicard-border: #2A3A55;
+  --cognicard-input: #1A2233;
+  --cognicard-ring: #4A9EFF;
+
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  --cognicard-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.40);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Typography utilities */
+.cognicard-display {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cognicard-h1 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cognicard-h2 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cognicard-h3 {
+  font-family: var(--cognicard-font-sans);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cognicard-body {
+  font-family: var(--cognicard-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cognicard-body-lg {
+  font-family: var(--cognicard-font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cognicard-caption {
+  font-family: var(--cognicard-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.cognicard-mono {
+  font-family: var(--cognicard-font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cognicard-background);
+    --color-foreground: var(--cognicard-foreground);
+    --color-card: var(--cognicard-card);
+    --color-card-foreground: var(--cognicard-card-foreground);
+    --color-popover: var(--cognicard-popover);
+    --color-popover-foreground: var(--cognicard-popover-foreground);
+    --color-primary: var(--cognicard-primary);
+    --color-primary-foreground: var(--cognicard-primary-foreground);
+    --color-muted: var(--cognicard-muted);
+    --color-muted-foreground: var(--cognicard-muted-foreground);
+    --color-border: var(--cognicard-border);
+    --color-input: var(--cognicard-input);
+    --color-ring: var(--cognicard-ring);
+    --radius-sm: var(--cognicard-radius-sm);
+    --radius-md: var(--cognicard-radius-md);
+    --radius-lg: var(--cognicard-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cognicard-background); color: var(--cognicard-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cognicard-background); }
+      .text-background { color: var(--cognicard-background); }
+      .border-background { border-color: var(--cognicard-background); }
+      .ring-background { --tw-ring-color: var(--cognicard-background); }
+      .bg-foreground { background-color: var(--cognicard-foreground); }
+      .text-foreground { color: var(--cognicard-foreground); }
+      .border-foreground { border-color: var(--cognicard-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cognicard-foreground); }
+      .bg-card { background-color: var(--cognicard-card); }
+      .text-card { color: var(--cognicard-card); }
+      .border-card { border-color: var(--cognicard-card); }
+      .ring-card { --tw-ring-color: var(--cognicard-card); }
+      .bg-card-foreground { background-color: var(--cognicard-card-foreground); }
+      .text-card-foreground { color: var(--cognicard-card-foreground); }
+      .border-card-foreground { border-color: var(--cognicard-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cognicard-card-foreground); }
+      .bg-popover { background-color: var(--cognicard-popover); }
+      .text-popover { color: var(--cognicard-popover); }
+      .border-popover { border-color: var(--cognicard-popover); }
+      .ring-popover { --tw-ring-color: var(--cognicard-popover); }
+      .bg-popover-foreground { background-color: var(--cognicard-popover-foreground); }
+      .text-popover-foreground { color: var(--cognicard-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cognicard-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cognicard-popover-foreground); }
+      .bg-primary { background-color: var(--cognicard-primary); }
+      .text-primary { color: var(--cognicard-primary); }
+      .border-primary { border-color: var(--cognicard-primary); }
+      .ring-primary { --tw-ring-color: var(--cognicard-primary); }
+      .bg-primary-foreground { background-color: var(--cognicard-primary-foreground); }
+      .text-primary-foreground { color: var(--cognicard-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cognicard-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cognicard-primary-foreground); }
+      .bg-muted { background-color: var(--cognicard-muted); }
+      .text-muted { color: var(--cognicard-muted); }
+      .border-muted { border-color: var(--cognicard-muted); }
+      .ring-muted { --tw-ring-color: var(--cognicard-muted); }
+      .bg-muted-foreground { background-color: var(--cognicard-muted-foreground); }
+      .text-muted-foreground { color: var(--cognicard-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cognicard-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cognicard-muted-foreground); }
+      .bg-border { background-color: var(--cognicard-border); }
+      .text-border { color: var(--cognicard-border); }
+      .border-border { border-color: var(--cognicard-border); }
+      .ring-border { --tw-ring-color: var(--cognicard-border); }
+      .bg-input { background-color: var(--cognicard-input); }
+      .text-input { color: var(--cognicard-input); }
+      .border-input { border-color: var(--cognicard-input); }
+      .ring-input { --tw-ring-color: var(--cognicard-input); }
+      .bg-ring { background-color: var(--cognicard-ring); }
+      .text-ring { color: var(--cognicard-ring); }
+      .border-ring { border-color: var(--cognicard-ring); }
+      .ring-ring { --tw-ring-color: var(--cognicard-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased dark">
+  <style>
+    details#collapse-source > summary::-webkit-details-marker { display: none; }
+    details#collapse-source > summary::marker { display: none; }
+    details#collapse-source:not([open]) .icon-up { display: none; }
+    details#collapse-source[open] .icon-down { display: none; }
+  </style>
+  <div id="app-shell" class="flex min-h-screen flex-col max-w-md mx-auto">
+    <!-- Header -->
+    <header class="sticky top-0 z-30 border-b border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/95 backdrop-blur">
+      <div class="flex items-center gap-3 px-4 py-3">
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--cognicard-muted-foreground)] transition-colors hover:bg-[var(--cognicard-muted)]">
+          <i data-lucide="chevron-left" class="h-5 w-5"></i>
+        </a>
+        <h1 class="text-lg font-semibold text-[var(--cognicard-foreground)]">消化加工</h1>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main id="main-content" class="flex-1 px-4 pb-36 pt-4 overflow-y-auto no-scrollbar">
+      <!-- Source preview collapsible -->
+      <section class="rounded-xl border border-[var(--cognicard-border)] bg-card overflow-hidden">
+        <details id="collapse-source" data-dom-id="collapse-source" class="group" open>
+          <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 select-none">
+            <div class="flex items-center gap-2">
+              <i data-lucide="file-text" class="h-4 w-4 text-[var(--cognicard-primary)]"></i>
+              <span class="text-sm font-medium text-[var(--cognicard-card-foreground)]">素材原文</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-xs text-[var(--cognicard-muted-foreground)]">
+              <span class="collapse-label">收起</span>
+              <i data-lucide="chevron-down" class="h-4 w-4 icon-down"></i>
+              <i data-lucide="chevron-up" class="h-4 w-4 icon-up"></i>
+            </div>
+          </summary>
+          <div class="px-4 pb-4 pt-1 text-sm leading-relaxed text-[var(--cognicard-card-foreground)]">
+            <p class="text-[var(--cognicard-muted-foreground)]">本文探讨了 AI 时代产品思维的转变：从功能交付到认知交付。设计师需要把复杂留给自己，简单留给用户，让用户在使用产品时完成一次认知升级。</p>
+            <button type="button" class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[var(--cognicard-primary)]">
+              <i data-lucide="quote" class="h-3 w-3"></i>
+              选中文字引用到思考
+            </button>
+          </div>
+        </details>
+      </section>
+
+      <!-- AI template -->
+      <section class="relative mt-5 rounded-xl border-2 border-dashed border-[var(--cognicard-border)] bg-card p-4">
+        <div class="absolute -top-2 left-3 inline-flex items-center gap-1 rounded-full bg-card px-2 py-0.5 text-xs font-medium text-[var(--cognicard-primary)] border border-[var(--cognicard-border)]">
+          <i data-lucide="sparkles" class="h-3 w-3"></i>
+          AI辅助
+        </div>
+        <div class="mb-3 flex items-center justify-between">
+          <h2 class="text-sm font-semibold text-[var(--cognicard-card-foreground)]">AI 提炼模板</h2>
+          <button type="button" id="btn-ai-suggest" data-dom-id="btn-ai-suggest" class="inline-flex items-center gap-1 rounded-lg bg-[var(--cognicard-primary)]/10 px-2.5 py-1.5 text-xs font-medium text-[var(--cognicard-primary)]">
+            <i data-lucide="wand-2" class="h-3 w-3"></i>
+            生成建议
+          </button>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <label class="mb-1 block text-xs text-[var(--cognicard-muted-foreground)]">核心问题</label>
+            <input type="text" placeholder="这段内容在解决什么问题？" class="w-full rounded-lg border border-[var(--cognicard-border)] bg-[var(--cognicard-input)] px-3 py-2 text-sm text-[var(--cognicard-foreground)] placeholder:text-[var(--cognicard-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--cognicard-ring)]" />
+          </div>
+          <div>
+            <label class="mb-1 block text-xs text-[var(--cognicard-muted-foreground)]">适用场景</label>
+            <input type="text" placeholder="在什么情况下会用到？" class="w-full rounded-lg border border-[var(--cognicard-border)] bg-[var(--cognicard-input)] px-3 py-2 text-sm text-[var(--cognicard-foreground)] placeholder:text-[var(--cognicard-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--cognicard-ring)]" />
+          </div>
+          <div>
+            <label class="mb-1 block text-xs text-[var(--cognicard-muted-foreground)]">我的思考</label>
+            <textarea rows="3" placeholder="用自己的话提炼关键洞察..." class="w-full rounded-lg border border-[var(--cognicard-border)] bg-[var(--cognicard-input)] px-3 py-2 text-sm text-[var(--cognicard-foreground)] placeholder:text-[var(--cognicard-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--cognicard-ring)] resize-none"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subjective output -->
+      <section class="mt-5 rounded-xl border border-[var(--cognicard-border)] bg-card p-4">
+        <h2 class="text-sm font-semibold text-[var(--cognicard-card-foreground)]">强制主观输出（二选一）</h2>
+        <p class="mt-1 text-xs text-[var(--cognicard-muted-foreground)]">必须完成至少一项真实思考，才能进入沉淀。</p>
+        <div class="mt-3 space-y-3">
+          <label class="flex items-start gap-3 rounded-lg border border-[var(--cognicard-border)] bg-[var(--cognicard-input)] p-3 cursor-pointer has-[:checked]:border-[var(--cognicard-primary)] transition-colors">
+            <input type="radio" name="subjective-choice" id="subjective-choice-1" data-dom-id="subjective-choice-1" class="mt-1 h-4 w-4 accent-[var(--cognicard-primary)]" />
+            <div class="flex-1 min-w-0">
+              <span class="text-sm font-medium text-[var(--cognicard-card-foreground)]">这段内容对我的核心启发是什么？</span>
+              <textarea id="input-inspiration" rows="2" placeholder="写出至少一条具体启发..." class="mt-2 w-full rounded-md border border-[var(--cognicard-border)] bg-[var(--cognicard-input)] px-2.5 py-2 text-sm text-[var(--cognicard-foreground)] placeholder:text-[var(--cognicard-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--cognicard-ring)] resize-none"></textarea>
+            </div>
+          </label>
+          <label class="flex items-start gap-3 rounded-lg border border-[var(--cognicard-border)] bg-[var(--cognicard-input)] p-3 cursor-pointer has-[:checked]:border-[var(--cognicard-primary)] transition-colors">
+            <input type="radio" name="subjective-choice" id="subjective-choice-2" data-dom-id="subjective-choice-2" class="mt-1 h-4 w-4 accent-[var(--cognicard-primary)]" />
+            <div class="flex-1 min-w-0">
+              <span class="text-sm font-medium text-[var(--cognicard-card-foreground)]">我同意还是反对？为什么？</span>
+              <textarea id="input-opinion" rows="2" placeholder="说明立场及理由..." class="mt-2 w-full rounded-md border border-[var(--cognicard-border)] bg-[var(--cognicard-input)] px-2.5 py-2 text-sm text-[var(--cognicard-foreground)] placeholder:text-[var(--cognicard-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--cognicard-ring)] resize-none"></textarea>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- Warning chip -->
+      <div id="warning-perfunctory" data-dom-id="warning-perfunctory" class="mt-4 hidden rounded-lg border border-[var(--cognicard-state-warning)]/30 bg-[var(--cognicard-state-warning)]/10 px-3 py-2.5">
+        <div class="flex items-start gap-2 text-xs text-[var(--cognicard-state-warning)]">
+          <i data-lucide="alert-triangle" class="mt-0.5 h-4 w-4 shrink-0"></i>
+          <span>内容看起来有些敷衍，建议补充具体场景或个人观点，否则无法公开沉淀。</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom action bar -->
+    <div class="fixed bottom-[56px] left-0 right-0 z-40 border-t border-[var(--cognicard-border)] bg-[var(--cognicard-card)]/95 backdrop-blur">
+      <div class="mx-auto flex max-w-md items-center gap-3 px-4 py-3">
+        <button type="button" id="btn-pause-digest" data-dom-id="btn-pause-digest" class="flex-1 rounded-lg border border-[var(--cognicard-border)] bg-[var(--cognicard-background)] px-4 py-3 text-sm font-medium text-[var(--cognicard-foreground)] transition-colors hover:bg-[var(--cognicard-muted)]">暂不消化</button>
+        <button type="button" id="btn-save-atom" data-dom-id="btn-save-atom" class="flex-[2] rounded-lg bg-[var(--cognicard-primary)] px-4 py-3 text-sm font-medium text-[var(--cognicard-primary-foreground)] shadow-sm transition-opacity active:opacity-80">保存并进入沉淀</button>
+      </div>
+    </div>
+
+    <!-- Bottom global tab navigation (activeKey = toolbox, must be included verbatim) -->
+    <nav data-mobile-nav="global" class="w-full h-[56px] border-t border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/95 backdrop-blur"><div class="w-full max-w-md mx-auto grid grid-cols-4 h-full"><a href="#" data-nav-key="starmap" data-dom-id="nav-starmap" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="globe" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">星图</span></a><a href="#" data-nav-key="toolbox" data-active="true" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-primary)] font-medium"><i data-lucide="briefcase" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">工具台</span></a><a href="#" data-nav-key="messages" data-dom-id="nav-messages" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="bell" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">消息</span></a><a href="#" data-nav-key="me" data-dom-id="nav-me" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="user" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">我的</span></a></div></nav>
+  </div>
+  <script>
+    lucide.createIcons();
+    (function() {
+      const inputs = document.querySelectorAll('#input-inspiration, #input-opinion');
+      const warning = document.getElementById('warning-perfunctory');
+      function check() {
+        let emptyOrShort = false;
+        inputs.forEach(el => {
+          const val = el.value.trim();
+          if (val.length > 0 && val.length < 10) emptyOrShort = true;
+        });
+        warning.classList.toggle('hidden', !emptyOrShort);
+      }
+      inputs.forEach(el => el.addEventListener('input', check));
+    })();
+  </script>
+</body>
+</html>

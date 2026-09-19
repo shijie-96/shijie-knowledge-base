@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "repairedPages": [
+    {
+      "htmlSrc": "pages/index.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "starmap"
+    },
+    {
+      "htmlSrc": "pages/tool-dashboard.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "toolbox"
+    },
+    {
+      "htmlSrc": "pages/material-pool.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "toolbox"
+    },
+    {
+      "htmlSrc": "pages/import-flow.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "toolbox"
+    },
+    {
+      "htmlSrc": "pages/digest.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "toolbox"
+    },
+    {
+      "htmlSrc": "pages/atom-create.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "toolbox"
+    },
+    {
+      "htmlSrc": "pages/knowledge-base.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "toolbox"
+    },
+    {
+      "htmlSrc": "pages/notifications.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "messages"
+    },
+    {
+      "htmlSrc": "pages/settings.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "me"
+    },
+    {
+      "htmlSrc": "pages/dashboard.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "toolbox"
+    }
+  ],
+  "skippedPages": [
+    {
+      "htmlSrc": "pages/login.html",
+      "reason": "登录前页面不展示底部导航"
+    },
+    {
+      "htmlSrc": "pages/public-profile.html",
+      "reason": "公开名片页通过分享进入，不展示底部导航"
+    },
+    {
+      "htmlSrc": "pages/qa-board.html",
+      "reason": "提问看板为独立页面，不展示底部导航"
+    }
+  ],
+  "failedPages": [],
+  "repairCount": 10,
+  "previousFailedReportDetected": false,
+  "checkedAt": "2026-08-21T04:07:18.437Z"
+}

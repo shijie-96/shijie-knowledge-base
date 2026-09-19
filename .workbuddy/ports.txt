@@ -1,0 +1,3 @@
+﻿port 3000 -> pid 19880
+port 3001 -> pid 15044
+port 3002 -> free

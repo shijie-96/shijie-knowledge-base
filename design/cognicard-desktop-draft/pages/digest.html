@@ -1,0 +1,458 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>素材消化</title>
+    <style id="theme-vars">
+/* CogniCard Design Tokens — 认知名片平台 */
+
+:root {
+  /* Font system */
+  --cognicard-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cognicard-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius scale */
+  --cognicard-radius-sm: 4px;
+  --cognicard-radius-md: 8px;
+  --cognicard-radius-lg: 12px;
+  --cognicard-radius-full: 9999px;
+
+  /* Light mode (day / star-map daytime) */
+  --cognicard-background: #F6F7F9;
+  --cognicard-foreground: #0A0E1A;
+  --cognicard-card: #FFFFFF;
+  --cognicard-card-foreground: #0A0E1A;
+  --cognicard-popover: #FFFFFF;
+  --cognicard-popover-foreground: #0A0E1A;
+  --cognicard-primary: #1E3A5F;
+  --cognicard-primary-foreground: #FFFFFF;
+  --cognicard-muted: #E8EBF0;
+  --cognicard-muted-foreground: #5A6578;
+  --cognicard-border: #D8DCE5;
+  --cognicard-input: #FFFFFF;
+  --cognicard-ring: #4A9EFF;
+
+  /* Brand tints */
+  --cognicard-brand-50: #E8F4FF;
+  --cognicard-brand-100: #C7E6FF;
+  --cognicard-brand-200: #96D0FF;
+  --cognicard-brand-300: #5AB8FF;
+  --cognicard-brand-400: #4A9EFF;
+  --cognicard-brand-500: #2B8AFC;
+  --cognicard-brand-600: #1E6FD1;
+  --cognicard-brand-700: #1E3A5F;
+
+  /* Surface scale (dark mode overrides below) */
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  /* Member / state accents */
+  --cognicard-gold: #D4AF37;
+  --cognicard-gold-light: #F3E5AB;
+  --cognicard-silver: #A8B4C4;
+
+  /* State colors (semantic only) */
+  --cognicard-state-success: #22C55E;
+  --cognicard-state-warning: #F59E0B;
+  --cognicard-state-error: #EF4444;
+  --cognicard-state-info: #3B82F6;
+
+  /* Glow / shadow */
+  --cognicard-glow-primary: 0 0 24px rgba(74, 158, 255, 0.35);
+  --cognicard-glow-gold: 0 0 24px rgba(212, 175, 55, 0.35);
+  --cognicard-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(10, 14, 26, 0.18);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(10, 14, 26, 0.30);
+}
+
+.dark {
+  /* Dark mode (night / tool dashboard / immersive) */
+  --cognicard-background: #0A0E1A;
+  --cognicard-foreground: #E8ECF5;
+  --cognicard-card: #1A2233;
+  --cognicard-card-foreground: #E8ECF5;
+  --cognicard-popover: #1A2233;
+  --cognicard-popover-foreground: #E8ECF5;
+  --cognicard-primary: #4A9EFF;
+  --cognicard-primary-foreground: #0A0E1A;
+  --cognicard-muted: #232D42;
+  --cognicard-muted-foreground: #8A96AD;
+  --cognicard-border: #2A3A55;
+  --cognicard-input: #1A2233;
+  --cognicard-ring: #4A9EFF;
+
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  --cognicard-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.40);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Typography utilities */
+.cognicard-display {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cognicard-h1 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cognicard-h2 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cognicard-h3 {
+  font-family: var(--cognicard-font-sans);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cognicard-body {
+  font-family: var(--cognicard-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cognicard-body-lg {
+  font-family: var(--cognicard-font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cognicard-caption {
+  font-family: var(--cognicard-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.cognicard-mono {
+  font-family: var(--cognicard-font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cognicard-background);
+    --color-foreground: var(--cognicard-foreground);
+    --color-card: var(--cognicard-card);
+    --color-card-foreground: var(--cognicard-card-foreground);
+    --color-popover: var(--cognicard-popover);
+    --color-popover-foreground: var(--cognicard-popover-foreground);
+    --color-primary: var(--cognicard-primary);
+    --color-primary-foreground: var(--cognicard-primary-foreground);
+    --color-muted: var(--cognicard-muted);
+    --color-muted-foreground: var(--cognicard-muted-foreground);
+    --color-border: var(--cognicard-border);
+    --color-input: var(--cognicard-input);
+    --color-ring: var(--cognicard-ring);
+    --radius-sm: var(--cognicard-radius-sm);
+    --radius-md: var(--cognicard-radius-md);
+    --radius-lg: var(--cognicard-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cognicard-background); color: var(--cognicard-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cognicard-background); }
+      .text-background { color: var(--cognicard-background); }
+      .border-background { border-color: var(--cognicard-background); }
+      .ring-background { --tw-ring-color: var(--cognicard-background); }
+      .bg-foreground { background-color: var(--cognicard-foreground); }
+      .text-foreground { color: var(--cognicard-foreground); }
+      .border-foreground { border-color: var(--cognicard-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cognicard-foreground); }
+      .bg-card { background-color: var(--cognicard-card); }
+      .text-card { color: var(--cognicard-card); }
+      .border-card { border-color: var(--cognicard-card); }
+      .ring-card { --tw-ring-color: var(--cognicard-card); }
+      .bg-card-foreground { background-color: var(--cognicard-card-foreground); }
+      .text-card-foreground { color: var(--cognicard-card-foreground); }
+      .border-card-foreground { border-color: var(--cognicard-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cognicard-card-foreground); }
+      .bg-popover { background-color: var(--cognicard-popover); }
+      .text-popover { color: var(--cognicard-popover); }
+      .border-popover { border-color: var(--cognicard-popover); }
+      .ring-popover { --tw-ring-color: var(--cognicard-popover); }
+      .bg-popover-foreground { background-color: var(--cognicard-popover-foreground); }
+      .text-popover-foreground { color: var(--cognicard-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cognicard-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cognicard-popover-foreground); }
+      .bg-primary { background-color: var(--cognicard-primary); }
+      .text-primary { color: var(--cognicard-primary); }
+      .border-primary { border-color: var(--cognicard-primary); }
+      .ring-primary { --tw-ring-color: var(--cognicard-primary); }
+      .bg-primary-foreground { background-color: var(--cognicard-primary-foreground); }
+      .text-primary-foreground { color: var(--cognicard-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cognicard-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cognicard-primary-foreground); }
+      .bg-muted { background-color: var(--cognicard-muted); }
+      .text-muted { color: var(--cognicard-muted); }
+      .border-muted { border-color: var(--cognicard-muted); }
+      .ring-muted { --tw-ring-color: var(--cognicard-muted); }
+      .bg-muted-foreground { background-color: var(--cognicard-muted-foreground); }
+      .text-muted-foreground { color: var(--cognicard-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cognicard-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cognicard-muted-foreground); }
+      .bg-border { background-color: var(--cognicard-border); }
+      .text-border { color: var(--cognicard-border); }
+      .border-border { border-color: var(--cognicard-border); }
+      .ring-border { --tw-ring-color: var(--cognicard-border); }
+      .bg-input { background-color: var(--cognicard-input); }
+      .text-input { color: var(--cognicard-input); }
+      .border-input { border-color: var(--cognicard-input); }
+      .ring-input { --tw-ring-color: var(--cognicard-input); }
+      .bg-ring { background-color: var(--cognicard-ring); }
+      .text-ring { color: var(--cognicard-ring); }
+      .border-ring { border-color: var(--cognicard-ring); }
+      .ring-ring { --tw-ring-color: var(--cognicard-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased bg-background text-foreground">
+    <header data-desktop-nav="global" class="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border bg-background/90 backdrop-blur">
+        <div class="w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-foreground font-semibold">
+                <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+                <span>CogniCard</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="index.html" data-nav-key="starmap" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span>星图</span>
+                </a>
+                <a href="tool-dashboard.html" data-nav-key="toolbox" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+                    <i data-lucide="briefcase" class="w-4 h-4"></i>
+                    <span>工具台</span>
+                </a>
+                <a href="notifications.html" data-nav-key="messages" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+                    <i data-lucide="bell" class="w-4 h-4"></i>
+                    <span>消息</span>
+                </a>
+                <a href="settings.html" data-nav-key="me" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+                    <i data-lucide="user" class="w-4 h-4"></i>
+                    <span>我的</span>
+                </a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button class="p-2 rounded-lg text-muted-foreground hover:bg-muted">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </button>
+                <button class="w-8 h-8 rounded-full bg-muted overflow-hidden" data-dom-id="nav-avatar">
+                    <img src="../assets/avatar-placeholder.svg" alt="avatar" class="w-full h-full object-cover"/>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-6" style="min-height: calc(100vh - 176px);">
+                <!-- Source material reader -->
+                <section class="lg:w-[55%] flex flex-col gap-4">
+                    <div class="flex items-center justify-between">
+                        <h1 class="cognicard-h2 text-foreground">素材消化</h1>
+                        <div class="flex items-center gap-2" title="消化进度 68%">
+                            <svg class="w-8 h-8" style="transform: rotate(-90deg);" viewBox="0 0 36 36" fill="none">
+                                <circle cx="18" cy="18" r="14" stroke="var(--cognicard-border)" stroke-width="4"/>
+                                <circle cx="18" cy="18" r="14" stroke="var(--cognicard-primary)" stroke-width="4" stroke-linecap="round" stroke-dasharray="59.8 28.1"/>
+                            </svg>
+                            <span class="text-sm font-medium text-[var(--cognicard-gold)]">68%</span>
+                        </div>
+                    </div>
+                    <article id="reader-card" class="relative flex-1 bg-card rounded-xl border border-border p-6 shadow-md overflow-y-auto">
+                        <header class="mb-4 pb-4 border-b border-border">
+                            <div class="text-muted-foreground cognicard-caption mb-1">来源</div>
+                            <a href="https://example.com/design-system-guide" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1.5 text-primary hover:underline cognicard-body-lg">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                设计系统构建完全指南
+                            </a>
+                            <h2 class="cognicard-h3 mt-3 text-card-foreground">如何构建可扩展的设计系统</h2>
+                        </header>
+                        <div id="reader-body" class="cognicard-body text-card-foreground leading-relaxed select-text space-y-4">
+                            <p>设计系统不是一蹴而就的组件仓库，而是一套围绕产品语言、技术实现与协作流程共同演进的有机体系。它的核心目标在于降低设计与开发之间的认知摩擦，让不同角色的成员能够以一致的语义描述界面。</p>
+                            <p>在构建初期，团队需要首先确立 <mark class="bg-[var(--cognicard-gold)]/20 text-[var(--cognicard-gold-light)] px-1 rounded">设计令牌（Design Tokens）</mark>。这些令牌是颜色、字体、间距、圆角等视觉属性的唯一真相源。通过将视觉决策抽象为可命名的变量，产品可以在多平台、多主题之间保持一致性。</p>
+                            <p>接下来是组件库的沉淀。组件不仅需要考虑视觉还原，还应明确其状态、变体、可访问性与使用边界。一个好的组件库会提供清晰的文档、代码示例以及对应的 Figma 资产，确保设计与实现双向同步。</p>
+                            <p>最后，模式库（Pattern Library）将多个组件组合成解决特定用户问题的可复用方案。模式强调场景与流程，而非单个控件。通过记录常见的交互路径，团队可以避免重复发明轮子，并持续提升用户体验的连贯性。</p>
+                            <p>当素材被充分拆解后，每一个独立的观点都可以转化为可检索、可连接的知识原子，成为个人或团队认知网络中的节点。</p>
+                        </div>
+                        <div id="selection-toolbar" class="hidden absolute z-20 bg-popover border border-border rounded-lg shadow-lg p-1.5 flex items-center gap-1">
+                            <button class="p-1.5 rounded-md text-card-foreground hover:bg-muted" title="高亮">
+                                <i data-lucide="highlighter" class="w-4 h-4"></i>
+                            </button>
+                            <button class="p-1.5 rounded-md text-card-foreground hover:bg-muted" title="引用">
+                                <i data-lucide="quote" class="w-4 h-4"></i>
+                            </button>
+                            <button class="p-1.5 rounded-md text-primary hover:bg-primary/10" title="AI 提取">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Extraction panel -->
+                <section class="lg:w-[45%] flex flex-col gap-4">
+                    <div class="bg-card border border-border rounded-xl p-5 shadow-md">
+                        <div class="flex items-center gap-2 mb-3 text-primary">
+                            <i data-lucide="bot" class="w-5 h-5"></i>
+                            <h2 class="cognicard-h3">AI 摘要</h2>
+                        </div>
+                        <p class="cognicard-body bg-primary/10 border border-primary/20 rounded-lg p-4 text-card-foreground">
+                            本文从设计令牌、组件库、模式库三个维度，系统性地梳理了可扩展设计系统的构建路径，并强调将素材拆解为知识原子以形成可检索认知网络的重要性。
+                        </p>
+                    </div>
+
+                    <div class="bg-card border border-border rounded-xl p-5 shadow-md flex-1 flex flex-col">
+                        <h2 class="cognicard-h3 mb-4 flex items-center gap-2 text-card-foreground">
+                            <i data-lucide="atom" class="w-5 h-5 text-primary"></i>
+                            生成知识原子
+                        </h2>
+                        <form class="space-y-3">
+                            <div>
+                                <label class="block text-xs text-muted-foreground mb-1">原子标题</label>
+                                <input type="text" class="w-full bg-input border border-border rounded-md px-3 py-2 text-sm text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" placeholder="例如：设计令牌是系统的唯一真相源"/>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-muted-foreground mb-1">核心摘要</label>
+                                <textarea rows="3" class="w-full bg-input border border-border rounded-md px-3 py-2 text-sm text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none" placeholder="用一句话概括这个知识原子"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-muted-foreground mb-1">标签</label>
+                                <input type="text" class="w-full bg-input border border-border rounded-md px-3 py-2 text-sm text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" placeholder="设计系统, 令牌, 组件库"/>
+                            </div>
+                            <button type="button" class="w-full bg-primary text-primary-foreground rounded-md py-2 text-sm font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                生成知识原子
+                            </button>
+                        </form>
+
+                        <div class="mt-5 pt-5 border-t border-border flex-1 overflow-y-auto">
+                            <h3 class="cognicard-caption text-muted-foreground mb-3">已提取原子（3）</h3>
+                            <div class="space-y-3">
+                                <div class="bg-muted rounded-lg p-3 border border-border">
+                                    <div class="font-medium text-card-foreground text-sm">设计令牌是系统的唯一真相源</div>
+                                    <p class="text-muted-foreground text-xs mt-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">颜色、字体、间距、圆角等视觉属性抽象为可命名变量，保证多平台一致性。</p>
+                                    <div class="flex flex-wrap gap-1.5 mt-2">
+                                        <span class="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-xs">设计系统</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-xs">令牌</span>
+                                    </div>
+                                </div>
+                                <div class="bg-muted rounded-lg p-3 border border-border">
+                                    <div class="font-medium text-card-foreground text-sm">组件库需要文档与代码双向同步</div>
+                                    <p class="text-muted-foreground text-xs mt-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">组件应明确状态、变体、可访问性与使用边界，并提供代码示例和 Figma 资产。</p>
+                                    <div class="flex flex-wrap gap-1.5 mt-2">
+                                        <span class="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-xs">组件库</span>
+                                        <span class="px-2 py-0.5 rounded-full border border-[var(--cognicard-gold)]/30 bg-[var(--cognicard-gold)]/10 text-[var(--cognicard-gold)] text-xs">高价值</span>
+                                    </div>
+                                </div>
+                                <div class="bg-muted rounded-lg p-3 border border-border">
+                                    <div class="font-medium text-card-foreground text-sm">模式库聚焦场景与流程</div>
+                                    <p class="text-muted-foreground text-xs mt-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">将多个组件组合成解决特定用户问题的可复用方案，避免重复设计。</p>
+                                    <div class="flex flex-wrap gap-1.5 mt-2">
+                                        <span class="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-xs">模式库</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-xs">交互</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-card/95 backdrop-blur border-t border-border px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-end gap-3">
+            <button class="px-4 py-2 rounded-md border border-border text-card-foreground text-sm hover:bg-muted transition-colors flex items-center gap-1.5">
+                <i data-lucide="archive" class="w-4 h-4"></i>
+                归档
+            </button>
+            <button class="px-4 py-2 rounded-md border border-border text-card-foreground text-sm hover:bg-muted transition-colors">
+                稍后继续
+            </button>
+            <button class="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                完成消化
+            </button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var readerBody = document.getElementById('reader-body');
+            var readerCard = document.getElementById('reader-card');
+            var toolbar = document.getElementById('selection-toolbar');
+
+            if (readerBody && toolbar) {
+                readerBody.addEventListener('mouseup', function () {
+                    var selection = window.getSelection();
+                    if (!selection || selection.isCollapsed) {
+                        toolbar.classList.add('hidden');
+                        return;
+                    }
+                    var range = selection.getRangeAt(0);
+                    var rect = range.getBoundingClientRect();
+                    var cardRect = readerCard.getBoundingClientRect();
+                    var toolbarRect = toolbar.getBoundingClientRect();
+                    var top = rect.top - cardRect.top - toolbarRect.height - 8;
+                    var left = rect.left - cardRect.left + (rect.width / 2) - (toolbarRect.width / 2);
+                    toolbar.style.top = Math.max(8, top) + 'px';
+                    toolbar.style.left = Math.max(8, Math.min(left, cardRect.width - toolbarRect.width - 8)) + 'px';
+                    toolbar.classList.remove('hidden');
+                });
+
+                readerBody.addEventListener('mousedown', function () {
+                    toolbar.classList.add('hidden');
+                });
+            }
+
+            if (window.lucide) lucide.createIcons();
+        })();
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,37 @@
+{
+  "id": "debate_pro",
+  "name": "深度交锋·进阶陪练包",
+  "version": "1.0.0",
+  "description": "面向进阶用户：回看一整年沉淀、更高干预灵敏度。适合愿意被高频挑战、想把思考逼到极限的人。",
+  "enabled": true,
+  "price": 29,
+  "rules": [
+    {
+      "id": "pro_contradiction",
+      "name": "历史矛盾引用（深度版）",
+      "description": "回看最近 12 个月的观点原子，相似度上限放宽到 0.55——只要话题与旧观点存在张力就会触发挑战。",
+      "action": "引用矛盾观点并请用户解释立场差异",
+      "ui_type": "contradiction_card",
+      "enabled": true,
+      "trigger": {
+        "type": "history_contradiction",
+        "lookbackMonths": 12,
+        "maxSimilarity": 0.55
+      }
+    },
+    {
+      "id": "pro_repetition",
+      "name": "同质化提醒（高频版）",
+      "description": "3 条消息里就开始检测是否绕圈，阈值 0.4，更早介入重复思维。",
+      "action": "挑战单一视角，要求从反方立场自圆其说",
+      "ui_type": "suggestion_banner",
+      "enabled": true,
+      "trigger": {
+        "type": "homogeneous_repetition",
+        "window": 3,
+        "threshold": 0.4,
+        "minMessages": 3
+      }
+    }
+  ]
+}

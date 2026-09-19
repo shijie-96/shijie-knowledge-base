@@ -1,0 +1,384 @@
+@tailwind base;
+
+@tailwind components;
+@tailwind utilities;
+
+/* 明/暗主题由 <html> 上的 .light / .dark class 显式驱动
+   （layout.tsx 启动脚本在首帧前按系统 prefers-color-scheme 写入，
+    始终跟随系统，不再提供手动切换） */
+:root,
+:root.light {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+:root.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "HarmonyOS Sans SC", "MiSans", "Noto Sans SC", "Source Han Sans SC",
+    "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== 识界·星海手书体（来自桌面「诗云」项目同款 Zhi Mang Xing，SIL OFL 1.1） ===== */
+@font-face {
+  font-family: "ZhiMangXing";
+  src: url("/fonts/ZhiMangXing-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== 全站换肤层 · 换风格只改这里 =====
+   页面代码全部使用 accent-*（品牌主强调）、cta-*（主行动按钮）、
+   warn-*（警示/待处理）。这三套指向下面的 CSS 变量。
+   想给整个工作台换一套风格时，只需要覆写这一组变量，
+   所有页面、按钮、链接、选中态会一次性更换，不需要改任何组件。
+   变量值是「R G B」三段空格分隔形式，供 tailwind 的 /透明度 语法使用。 */
+:root {
+  /* 主强调 · Teal 蓝绿系（识界主品牌色 · 2026-09 换肤里程碑）
+     视觉：清新且有分量；与橙 CTA 形成「行动 → 确认」的颜色对话 */
+  --accent-50:  240 253 250;   /* 极淡青 · 卡片底色、tag 底 */
+  --accent-100: 204 251 241;   /* 浅薄荷 · hover 次级底 */
+  --accent-200: 153 246 228;
+  --accent-300: 94 234 212;
+  --accent-400: 45 212 191;
+  --accent-500: 20 184 166;    /* Secondary · #14B8A6 */
+  --accent-600: 13 148 136;    /* PRIMARY  · #0D9488 */
+  --accent-700: 15 118 110;
+  --accent-800: 17 94 89;
+  --accent-900: 19 78 74;      /* 文本色  · #134E4A */
+  --accent-950: 4 47 46;
+
+  /* CTA · Orange 橙系（新增：专门用于「行动召唤」按钮 + 强调品牌）
+     铁律：单屏最多 1 个 CTA 元素；只在主操作（创建 / 保存 / 升级 / 确认）使用 */
+  --cta-50:   255 247 237;
+  --cta-100:  255 237 213;
+  --cta-200:  254 215 170;
+  --cta-300:  253 186 116;
+  --cta-400:  251 146 60;
+  --cta-500:  249 115 22;      /* 主 CTA · #F97316 */
+  --cta-600:  234 88 12;
+  --cta-700:  194 65 12;
+  --cta-800:  154 52 18;
+  --cta-900:  124 45 18;
+  --cta-950:  67 20 7;
+
+  /* 警示 · 琥珀 amber 系（语义保留不变：警告/待处理） */
+  --warn-50:  255 251 235;
+  --warn-100: 254 243 199;
+  --warn-200: 253 230 138;
+  --warn-300: 252 211 77;
+  --warn-400: 251 191 36;
+  --warn-500: 245 158 11;
+  --warn-600: 217 119 6;
+  --warn-700: 180 83 9;
+  --warn-800: 146 64 14;
+  --warn-900: 120 53 15;
+  --warn-950: 69 26 3;
+}
+/* 深色模式下可单独覆写（目前与浅色共用，未来做「深色专属皮肤」时在此展开） */
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+}
+
+/* 尊重系统"减弱动态"偏好：任何装饰性动效整体降级 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ===== 任务12：名片装扮（仅视觉外观，不影响知识原子内容结构） ===== */
+/* 通过 --profile-color 等 CSS 变量应用装扮，装饰容器 */
+.profile-decoration-root {
+  --profile-color: #6366f1;
+  --profile-bg: transparent;
+  --profile-avatar-frame: none;
+  --profile-layout: standard;
+}
+
+/* 主题色：用于强调色、标题下划线、光点等 */
+.profile-accent-color {
+  color: var(--profile-color);
+}
+.profile-accent-bg {
+  background-color: var(--profile-color);
+}
+
+/* 背景：优先级 自定义上传 > 默认图库 */
+.profile-decoration-bg {
+  background: var(--profile-bg);
+}
+
+/* 头像框样式映射 */
+.avatar-frame-ring {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--profile-color);
+}
+.avatar-frame-rounded {
+  border-radius: 1rem;
+  border: 3px solid var(--profile-color);
+}
+.avatar-frame-diamond {
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.avatar-frame-halo {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--profile-color),
+    0 0 20px 6px var(--profile-color);
+}
+.avatar-frame-glow {
+  box-shadow: 0 0 0 2px var(--profile-color), 0 0 30px 8px var(--profile-color);
+  filter: drop-shadow(0 0 10px var(--profile-color));
+}
+.avatar-frame-crown {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--profile-color),
+    0 0 0 10px rgba(255, 255, 255, 0.35);
+}
+
+/* 布局样式映射（仅调整主页排布，不改原子内部格式） */
+.profile-layout-standard {
+  /* 默认布局 */
+}
+.profile-layout-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.profile-layout-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+/* 星图专属光效（仅本人光点启用） */
+.star-map-glow {
+  box-shadow: 0 0 12px 4px var(--profile-color, #6366f1);
+}
+
+
+/* ===== 全局统一侧栏布局规范（唯一一处）=====
+   设计要点：
+   1. --sidebar-w 是侧栏宽度的唯一真相（展开 15rem、收起 4rem）
+   2. GlobalNav 渲染 BottomNav 时给 <body> 加 .app-has-sidebar
+   3. body 让位后所有 children 自然从侧栏右侧开始 —— 无需任何页面再硬写 md:pl-60
+   4. fixed 定位元素改用 md:left-[var(--sidebar-w)] 自行定位
+   5. 移动端（< md）body 不让位，由各页面用 pb-24 让出底部 nav
+*/
+:root {
+  --sidebar-w: 15rem;
+}
+html.sidebar-collapsed {
+  --sidebar-w: 4rem;
+}
+@media (min-width: 768px) {
+  body.app-has-sidebar {
+    padding-left: var(--sidebar-w);
+  }
+}
+
+/* =====================================================================
+   「网页视觉自定义」主题令牌层（唯一样式入口）
+   约定：所有能被用户实时定制的视觉样式，一律由这里声明的 CSS 变量驱动。
+   页面/组件里只需要三类取值方式：
+     1. Tailwind utility 自动联动（本文件把 rounded / border / shadow
+        映射到变量）→ 全站按钮、卡片、弹窗、输入框的圆角/边框/阴影统一可调；
+     2. .ui-surface 语义类 → 通用「外层容器」的边框色、底色/渐变、透明度；
+     3. body 多背景 → 全站页面底层背景图（cover）+ 半透明颜色遮罩。
+   用户配置存于 localStorage，刷新由 layout 的启动脚本在首帧前写回，
+   全程不触碰组件代码。
+   ===================================================================== */
+:root {
+  /* -- 缩放因子（设置面板只改这三个，其它值用 calc 联动） */
+  --ui-radius-scale: 1; /* 圆角：0.5x ~ 2.5x */
+  --ui-border-scale: 1; /* 边框粗细：0 = 无边框 */
+  --ui-shadow-scale: 1; /* 阴影强度：0 = 无阴影 */
+
+  /* -- 圆角（默认 = Tailwind 原值 × 缩放） */
+  --ui-r-sm: calc(0.125rem * var(--ui-radius-scale));
+  --ui-r-d: calc(0.25rem * var(--ui-radius-scale));
+  --ui-r-md: calc(0.375rem * var(--ui-radius-scale));
+  --ui-r-lg: calc(0.5rem * var(--ui-radius-scale));
+  --ui-r-xl: calc(0.75rem * var(--ui-radius-scale));
+  --ui-r-2xl: calc(1rem * var(--ui-radius-scale));
+  --ui-r-3xl: calc(1.5rem * var(--ui-radius-scale));
+  --ui-r-card: calc(0.75rem * var(--ui-radius-scale));
+  --ui-r-panel: calc(1rem * var(--ui-radius-scale));
+
+  /* -- 边框粗细（默认 = Tailwind 原值 × 缩放） */
+  --ui-bw: calc(1px * var(--ui-border-scale));
+  --ui-bw2: calc(2px * var(--ui-border-scale));
+  --ui-bw4: calc(4px * var(--ui-border-scale));
+  --ui-bw8: calc(8px * var(--ui-border-scale));
+
+  /* -- 阴影（scale = 1 时与 Tailwind 默认值完全一致；运行期由 JS 按比例重算） */
+  --ui-sh-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ui-sh-d: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --ui-sh-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --ui-sh-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --ui-sh-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --ui-sh-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --ui-sh-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* -- 页面底层背景：背景图(cover) + 遮罩色(RGB 空格形式) + 遮罩透明度 */
+  --ui-body-img: none;
+  --ui-body-cover: 2 6 23;
+  --ui-body-cover-opacity: 0;
+
+  /* -- 通用外层容器（.ui-surface）外观 */
+  --ui-bd-color: #e2e8f0;
+  --ui-surface-bg: #ffffff;
+}
+.dark {
+  --ui-bd-color: #334155;
+  --ui-surface-bg: #1e293b;
+}
+
+/* 页面底层背景：颜色遮罩叠加在背景图上，cover 居中不重复 */
+body {
+  background-color: var(--background);
+  background-image: linear-gradient(
+      rgba(var(--ui-body-cover), var(--ui-body-cover-opacity)),
+      rgba(var(--ui-body-cover), var(--ui-body-cover-opacity))
+    ),
+    var(--ui-body-img);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+}
+
+/* 通用「外层容器」语义类：边框粗细跟随全局 --ui-border-scale，
+   边框颜色 / 底色（支持渐变）/ 透明度由设置面板写入的变量决定。
+   需要让某个组件容器随用户定制时，给它加上 .ui-surface 即可。 */
+.ui-surface {
+  background: var(--ui-surface-bg);
+  border-width: var(--ui-bw);
+  border-style: solid;
+  border-color: var(--ui-bd-color);
+  border-radius: var(--ui-r-panel);
+  box-shadow: var(--ui-sh-lg);
+}
+
+/* ===== 视觉自定义 · 全站背景透出开关 =====
+   当用户设置了 body 背景图（html[data-body-img="true"]）时，
+   把各页面「整页底色」容器调成半透明，让背景图全站可见；
+   未设置背景图时不加该属性，保持原有视觉不变。
+   说明：页面根的深色写为 dark:bg-space-950 / dark:bg-slate-950
+   （Tailwind 类名含冒号，选择器需转义 .dark\:bg-… 才能命中）；
+   只锚定 min-h-screen / h-[100dvh] 的整页容器，避免误伤输入框、
+   抽屉等局部使用同色系底色的组件。 */
+html[data-body-img="true"] .min-h-screen.bg-mist-50,
+html[data-body-img="true"] .min-h-screen.bg-slate-50,
+html[data-body-img="true"] .min-h-screen.bg-white {
+  background-color: rgb(248 250 252 / 0.5);
+}
+html[data-body-img="true"] .dark .min-h-screen.dark\:bg-space-950 {
+  background-color: rgb(4 6 13 / 0.65);
+}
+html[data-body-img="true"] .dark .min-h-screen.dark\:bg-slate-950 {
+  background-color: rgb(2 6 23 / 0.65);
+}
+html[data-body-img="true"] .min-h-screen.bg-space-950,
+html[data-body-img="true"] .min-h-screen.bg-slate-950 {
+  background-color: rgb(2 6 23 / 0.65);
+}
+/* 星图（h-[100dvh] 沉浸页）：整页底色 + 深空渐变层随背景透出 */
+html[data-body-img="true"] .h-\[100dvh\].bg-slate-950,
+html[data-body-img="true"] .h-\[100dvh\].bg-space-950 {
+  background-color: rgb(2 6 23 / 0.45);
+}
+.starmap-sky {
+  background-image: radial-gradient(
+    ellipse at center,
+    #20264f 0%,
+    #10143a 45%,
+    #020617 100%
+  );
+}
+html[data-body-img="true"] .starmap-sky {
+  background-image: radial-gradient(
+    ellipse at center,
+    rgb(32 38 79 / 0.5) 0%,
+    rgb(16 20 58 / 0.45) 45%,
+    rgb(2 6 23 / 0.6) 100%
+  );
+}
+
+/* 全高工作台页（assistant / chat）：根容器 h-[calc(100dvh-56px)] / md:h-screen */
+html[data-body-img="true"] .h-\[calc\(100dvh-56px\)\].bg-mist-50 {
+  background-color: rgb(245 247 251 / 0.5);
+}
+html[data-body-img="true"] .dark .h-\[calc\(100dvh-56px\)\].dark\:bg-space-950 {
+  background-color: rgb(4 6 13 / 0.65);
+}
+
+/* 知识库（atoms 平铺视图，h-dvh 根） */
+html[data-body-img="true"] .h-dvh.bg-mist-50 {
+  background-color: rgb(245 247 251 / 0.5);
+}
+
+/* 有意例外（内容专注页保持不透明，避免背景图干扰）：
+   · 登录 / 认证页（AuthForm 渐变根）—— 登录前无个人主题语境
+   · 沉浸阅读器 /materials/[id]/read（bg-[#f7f6f2] 纸感）—— 阅读不被背景打扰 */
+
+/* ===== 识界·首页动效 keyframes（tailwind 用 animate-[cs-...] 引用） ===== */
+@keyframes cs-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cs-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes cs-soft-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+@keyframes cs-breathe-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.02); }
+}
+@keyframes cs-shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ===== 首页着陆登录页（Landing）滚动揭示 =====
+   LandingPage 通过 IntersectionObserver 给元素加 .zh-in 触发 */
+.zh-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zh-reveal.zh-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .zh-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

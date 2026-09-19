@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页认知星图</title>
+    <style id="theme-vars">
+/* CogniCard Design Tokens — 认知名片平台 */
+
+:root {
+  /* Font system */
+  --cognicard-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cognicard-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius scale */
+  --cognicard-radius-sm: 4px;
+  --cognicard-radius-md: 8px;
+  --cognicard-radius-lg: 12px;
+  --cognicard-radius-full: 9999px;
+
+  /* Light mode (day / star-map daytime) */
+  --cognicard-background: #F6F7F9;
+  --cognicard-foreground: #0A0E1A;
+  --cognicard-card: #FFFFFF;
+  --cognicard-card-foreground: #0A0E1A;
+  --cognicard-popover: #FFFFFF;
+  --cognicard-popover-foreground: #0A0E1A;
+  --cognicard-primary: #1E3A5F;
+  --cognicard-primary-foreground: #FFFFFF;
+  --cognicard-muted: #E8EBF0;
+  --cognicard-muted-foreground: #5A6578;
+  --cognicard-border: #D8DCE5;
+  --cognicard-input: #FFFFFF;
+  --cognicard-ring: #4A9EFF;
+
+  /* Brand tints */
+  --cognicard-brand-50: #E8F4FF;
+  --cognicard-brand-100: #C7E6FF;
+  --cognicard-brand-200: #96D0FF;
+  --cognicard-brand-300: #5AB8FF;
+  --cognicard-brand-400: #4A9EFF;
+  --cognicard-brand-500: #2B8AFC;
+  --cognicard-brand-600: #1E6FD1;
+  --cognicard-brand-700: #1E3A5F;
+
+  /* Surface scale (dark mode overrides below) */
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  /* Member / state accents */
+  --cognicard-gold: #D4AF37;
+  --cognicard-gold-light: #F3E5AB;
+  --cognicard-silver: #A8B4C4;
+
+  /* State colors (semantic only) */
+  --cognicard-state-success: #22C55E;
+  --cognicard-state-warning: #F59E0B;
+  --cognicard-state-error: #EF4444;
+  --cognicard-state-info: #3B82F6;
+
+  /* Glow / shadow */
+  --cognicard-glow-primary: 0 0 24px rgba(74, 158, 255, 0.35);
+  --cognicard-glow-gold: 0 0 24px rgba(212, 175, 55, 0.35);
+  --cognicard-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(10, 14, 26, 0.18);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(10, 14, 26, 0.30);
+}
+
+.dark {
+  /* Dark mode (night / tool dashboard / immersive) */
+  --cognicard-background: #0A0E1A;
+  --cognicard-foreground: #E8ECF5;
+  --cognicard-card: #121929;
+  --cognicard-card-foreground: #E8ECF5;
+  --cognicard-popover: #121929;
+  --cognicard-popover-foreground: #E8ECF5;
+  --cognicard-primary: #4A9EFF;
+  --cognicard-primary-foreground: #0A0E1A;
+  --cognicard-muted: #1A2233;
+  --cognicard-muted-foreground: #8A96AD;
+  --cognicard-border: #2A3A55;
+  --cognicard-input: #121929;
+  --cognicard-ring: #4A9EFF;
+
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  --cognicard-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.40);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Typography utilities */
+.cognicard-display {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cognicard-h1 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cognicard-h2 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cognicard-h3 {
+  font-family: var(--cognicard-font-sans);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cognicard-body {
+  font-family: var(--cognicard-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cognicard-body-lg {
+  font-family: var(--cognicard-font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cognicard-caption {
+  font-family: var(--cognicard-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.cognicard-mono {
+  font-family: var(--cognicard-font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cognicard-background);
+    --color-foreground: var(--cognicard-foreground);
+    --color-card: var(--cognicard-card);
+    --color-card-foreground: var(--cognicard-card-foreground);
+    --color-popover: var(--cognicard-popover);
+    --color-popover-foreground: var(--cognicard-popover-foreground);
+    --color-primary: var(--cognicard-primary);
+    --color-primary-foreground: var(--cognicard-primary-foreground);
+    --color-muted: var(--cognicard-muted);
+    --color-muted-foreground: var(--cognicard-muted-foreground);
+    --color-border: var(--cognicard-border);
+    --color-input: var(--cognicard-input);
+    --color-ring: var(--cognicard-ring);
+    --color-gold: var(--cognicard-gold);
+    --radius-sm: var(--cognicard-radius-sm);
+    --radius-md: var(--cognicard-radius-md);
+    --radius-lg: var(--cognicard-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cognicard-background); color: var(--cognicard-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cognicard-background); }
+      .text-background { color: var(--cognicard-background); }
+      .border-background { border-color: var(--cognicard-background); }
+      .ring-background { --tw-ring-color: var(--cognicard-background); }
+      .bg-foreground { background-color: var(--cognicard-foreground); }
+      .text-foreground { color: var(--cognicard-foreground); }
+      .border-foreground { border-color: var(--cognicard-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cognicard-foreground); }
+      .bg-card { background-color: var(--cognicard-card); }
+      .text-card { color: var(--cognicard-card); }
+      .border-card { border-color: var(--cognicard-card); }
+      .ring-card { --tw-ring-color: var(--cognicard-card); }
+      .bg-card-foreground { background-color: var(--cognicard-card-foreground); }
+      .text-card-foreground { color: var(--cognicard-card-foreground); }
+      .border-card-foreground { border-color: var(--cognicard-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cognicard-card-foreground); }
+      .bg-popover { background-color: var(--cognicard-popover); }
+      .text-popover { color: var(--cognicard-popover); }
+      .border-popover { border-color: var(--cognicard-popover); }
+      .ring-popover { --tw-ring-color: var(--cognicard-popover); }
+      .bg-popover-foreground { background-color: var(--cognicard-popover-foreground); }
+      .text-popover-foreground { color: var(--cognicard-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cognicard-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cognicard-popover-foreground); }
+      .bg-primary { background-color: var(--cognicard-primary); }
+      .text-primary { color: var(--cognicard-primary); }
+      .border-primary { border-color: var(--cognicard-primary); }
+      .ring-primary { --tw-ring-color: var(--cognicard-primary); }
+      .bg-primary-foreground { background-color: var(--cognicard-primary-foreground); }
+      .text-primary-foreground { color: var(--cognicard-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cognicard-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cognicard-primary-foreground); }
+      .bg-muted { background-color: var(--cognicard-muted); }
+      .text-muted { color: var(--cognicard-muted); }
+      .border-muted { border-color: var(--cognicard-muted); }
+      .ring-muted { --tw-ring-color: var(--cognicard-muted); }
+      .bg-muted-foreground { background-color: var(--cognicard-muted-foreground); }
+      .text-muted-foreground { color: var(--cognicard-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cognicard-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cognicard-muted-foreground); }
+      .bg-border { background-color: var(--cognicard-border); }
+      .text-border { color: var(--cognicard-border); }
+      .border-border { border-color: var(--cognicard-border); }
+      .ring-border { --tw-ring-color: var(--cognicard-border); }
+      .bg-input { background-color: var(--cognicard-input); }
+      .text-input { color: var(--cognicard-input); }
+      .border-input { border-color: var(--cognicard-input); }
+      .ring-input { --tw-ring-color: var(--cognicard-input); }
+      .bg-ring { background-color: var(--cognicard-ring); }
+      .text-ring { color: var(--cognicard-ring); }
+      .border-ring { border-color: var(--cognicard-ring); }
+      .ring-ring { --tw-ring-color: var(--cognicard-ring); }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased bg-background text-foreground overflow-x-hidden">
+    <header data-desktop-nav="global" class="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/40 bg-background/60 backdrop-blur-xl">
+      <div class="w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 text-foreground font-semibold">
+          <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+          <span>CogniCard</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="index.html" data-nav-key="starmap" data-active="true" class="flex items-center gap-2 text-sm font-medium text-primary border-b-2 border-primary pt-5 pb-5">
+            <i data-lucide="globe" class="w-4 h-4"></i>
+            <span>星图</span>
+          </a>
+          <a href="tool-dashboard.html" data-nav-key="toolbox" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+            <i data-lucide="briefcase" class="w-4 h-4"></i>
+            <span>工具台</span>
+          </a>
+          <a href="notifications.html" data-nav-key="messages" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span>消息</span>
+          </a>
+          <a href="settings.html" data-nav-key="me" class="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-5 pb-5 transition-colors hover:text-foreground">
+            <i data-lucide="user" class="w-4 h-4"></i>
+            <span>我的</span>
+          </a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button class="p-2 rounded-lg text-muted-foreground hover:bg-muted transition">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </button>
+          <button class="w-8 h-8 rounded-full bg-muted overflow-hidden ring-2 ring-transparent hover:ring-primary/40 transition" data-dom-id="nav-avatar">
+            <img src="../assets/avatar-placeholder.svg" alt="avatar" class="w-full h-full object-cover"/>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-16">
+      <!-- Hero / 认知星图 -->
+      <section class="relative min-h-[calc(100vh-64px)] w-full overflow-hidden flex items-center justify-center">
+        <!-- Deep-space nebula background -->
+        <img src="../assets/starmap-nebula-bg.jpg" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden="true" />
+        <!-- Rich gradient overlay for text legibility -->
+        <div class="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(74,158,255,0.10),transparent_55%)] pointer-events-none"></div>
+
+        <canvas id="starmap-canvas" class="absolute inset-0 w-full h-full"></canvas>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background pointer-events-none"></div>
+
+        <div class="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
+          <div class="hero-animate inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-medium mb-6 backdrop-blur-sm">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>识界 · 认知无界，成长无限</span>
+          </div>
+          <h1 class="hero-animate cognicard-display text-foreground mb-5">认知星图</h1>
+          <p class="hero-animate cognicard-body-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+            在知识宇宙中探索、连接与涌现。搜索知识原子、用户与标签，发现属于你的认知星系。
+          </p>
+
+          <form class="hero-animate search-glow relative max-w-2xl mx-auto flex items-center gap-2 rounded-full border border-border bg-input/80 backdrop-blur-md px-2 py-2 shadow-lg transition-all duration-300" onsubmit="event.preventDefault();">
+            <i data-lucide="search" class="w-5 h-5 text-muted-foreground ml-3"></i>
+            <input type="text" placeholder="搜索知识原子、用户、标签…" class="flex-1 bg-transparent border-0 outline-none text-foreground placeholder-muted-foreground px-2 cognicard-body" />
+            <button type="submit" class="flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium transition duration-300 hover:brightness-110 hover:scale-[1.03] shadow-[var(--cognicard-glow-primary)]">
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <span>探索</span>
+            </button>
+          </form>
+
+          <div class="hero-animate mt-8 flex flex-wrap justify-center gap-3 text-xs text-muted-foreground cognicard-caption">
+            <span>热门：</span>
+            <a href="#" class="hover:text-primary transition hover:underline underline-offset-4">#机器学习</a>
+            <a href="#" class="hover:text-primary transition hover:underline underline-offset-4">#认知科学</a>
+            <a href="#" class="hover:text-primary transition hover:underline underline-offset-4">#产品思维</a>
+            <a href="#" class="hover:text-primary transition hover:underline underline-offset-4">#第二大脑</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 热门认知星群 -->
+      <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+          <div class="reveal flex items-center justify-between mb-10">
+            <div class="flex items-center gap-3">
+              <div class="p-2 rounded-lg bg-primary/10 text-primary">
+                <i data-lucide="flame" class="w-5 h-5"></i>
+              </div>
+              <h2 class="cognicard-h2 text-foreground">热门认知星群</h2>
+            </div>
+            <a href="knowledge-base.html" class="text-sm text-primary hover:underline flex items-center gap-1">
+              查看全部 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <article class="reveal star-card group relative rounded-xl border border-border bg-card/80 p-5">
+              <div class="flex items-start justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary transition group-hover:scale-110 group-hover:bg-primary/20">
+                  <i data-lucide="brain-circuit" class="w-5 h-5"></i>
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-[var(--cognicard-gold)]">
+                  <i data-lucide="crown" class="w-3 h-3"></i> premium
+                </span>
+              </div>
+              <h3 class="star-card-title cognicard-h3 text-foreground mb-1 transition-colors duration-300">人工智能前沿</h3>
+              <p class="cognicard-caption text-muted-foreground mb-4">大模型、Agent 与认知架构的交汇星系。</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground cognicard-caption">
+                <span>1,248 原子</span>
+                <span class="text-primary">+12% 本周</span>
+              </div>
+            </article>
+
+            <article class="reveal star-card group relative rounded-xl border border-border bg-card/80 p-5">
+              <div class="flex items-start justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary transition group-hover:scale-110 group-hover:bg-primary/20">
+                  <i data-lucide="layers" class="w-5 h-5"></i>
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                  <i data-lucide="users" class="w-3 h-3"></i> 开放
+                </span>
+              </div>
+              <h3 class="star-card-title cognicard-h3 text-foreground mb-1 transition-colors duration-300">产品增长图谱</h3>
+              <p class="cognicard-caption text-muted-foreground mb-4">从获客到留存的系统性知识网络。</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground cognicard-caption">
+                <span>856 原子</span>
+                <span class="text-primary">+8% 本周</span>
+              </div>
+            </article>
+
+            <article class="reveal star-card group relative rounded-xl border border-border bg-card/80 p-5">
+              <div class="flex items-start justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary transition group-hover:scale-110 group-hover:bg-primary/20">
+                  <i data-lucide="atom" class="w-5 h-5"></i>
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-[var(--cognicard-gold)]">
+                  <i data-lucide="crown" class="w-3 h-3"></i> premium
+                </span>
+              </div>
+              <h3 class="star-card-title cognicard-h3 text-foreground mb-1 transition-colors duration-300">量子计算入门</h3>
+              <p class="cognicard-caption text-muted-foreground mb-4">从量子比特到算法演化的学习路径。</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground cognicard-caption">
+                <span>624 原子</span>
+                <span class="text-primary">+24% 本周</span>
+              </div>
+            </article>
+
+            <article class="reveal star-card group relative rounded-xl border border-border bg-card/80 p-5">
+              <div class="flex items-start justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary transition group-hover:scale-110 group-hover:bg-primary/20">
+                  <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                  <i data-lucide="users" class="w-3 h-3"></i> 开放
+                </span>
+              </div>
+              <h3 class="star-card-title cognicard-h3 text-foreground mb-1 transition-colors duration-300">创作者经济</h3>
+              <p class="cognicard-caption text-muted-foreground mb-4">内容、社群与变现的认知组件库。</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground cognicard-caption">
+                <span>432 原子</span>
+                <span class="text-primary">+5% 本周</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 最近活跃 -->
+      <section class="py-20 px-6 bg-muted/30">
+        <div class="max-w-7xl mx-auto">
+          <div class="reveal flex items-center justify-between mb-10">
+            <div class="flex items-center gap-3">
+              <div class="p-2 rounded-lg bg-primary/10 text-primary">
+                <i data-lucide="activity" class="w-5 h-5"></i>
+              </div>
+              <h2 class="cognicard-h2 text-foreground">最近活跃</h2>
+            </div>
+            <a href="dashboard.html" class="text-sm text-primary hover:underline flex items-center gap-1">
+              进入工作台 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <article class="reveal activity-card flex gap-4 rounded-xl border border-border bg-card/80 p-5">
+              <div class="shrink-0 w-12 h-12 rounded-full bg-muted overflow-hidden ring-2 ring-transparent hover:ring-gold/30 transition">
+                <img src="../assets/avatar-placeholder.svg" alt="avatar" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-sm font-medium text-foreground">林若辰</span>
+                  <span class="inline-flex items-center gap-0.5 text-[10px] font-medium text-[var(--cognicard-gold)] bg-[var(--cognicard-gold)]/10 px-1.5 py-0.5 rounded">
+                    <i data-lucide="gem" class="w-3 h-3"></i> PRO
+                  </span>
+                  <span class="text-xs text-muted-foreground cognicard-caption ml-auto">12 分钟前</span>
+                </div>
+                <h3 class="activity-card-title cognicard-h3 text-foreground truncate transition-colors duration-300">LLM 记忆机制：从 RAG 到长期记忆</h3>
+                <p class="cognicard-caption text-muted-foreground mt-1 line-clamp-2">探索大语言模型如何构建、更新与检索上下文记忆，并设计适合认知星图的知识组织方式。</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#LLM</span>
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#记忆</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="reveal activity-card flex gap-4 rounded-xl border border-border bg-card/80 p-5">
+              <div class="shrink-0 w-12 h-12 rounded-full bg-muted overflow-hidden ring-2 ring-transparent hover:ring-gold/30 transition">
+                <img src="../assets/avatar-placeholder.svg" alt="avatar" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-sm font-medium text-foreground">张远航</span>
+                  <span class="text-xs text-muted-foreground cognicard-caption ml-auto">1 小时前</span>
+                </div>
+                <h3 class="activity-card-title cognicard-h3 text-foreground truncate transition-colors duration-300">用 Figma 变量系统搭建设计 Token 工作流</h3>
+                <p class="cognicard-caption text-muted-foreground mt-1 line-clamp-2">一套可扩展的设计系统落地方法，从变量命名到开发交付的完整链路。</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#设计系统</span>
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#Figma</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="reveal activity-card flex gap-4 rounded-xl border border-border bg-card/80 p-5">
+              <div class="shrink-0 w-12 h-12 rounded-full bg-muted overflow-hidden ring-2 ring-transparent hover:ring-gold/30 transition">
+                <img src="../assets/avatar-placeholder.svg" alt="avatar" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-sm font-medium text-foreground">苏晚晴</span>
+                  <span class="inline-flex items-center gap-0.5 text-[10px] font-medium text-[var(--cognicard-gold)] bg-[var(--cognicard-gold)]/10 px-1.5 py-0.5 rounded">
+                    <i data-lucide="gem" class="w-3 h-3"></i> PRO
+                  </span>
+                  <span class="text-xs text-muted-foreground cognicard-caption ml-auto">3 小时前</span>
+                </div>
+                <h3 class="activity-card-title cognicard-h3 text-foreground truncate transition-colors duration-300">认知负荷理论在界面设计中的应用</h3>
+                <p class="cognicard-caption text-muted-foreground mt-1 line-clamp-2">减少外在认知负荷、优化内在负荷与促进相关负荷的实战原则。</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#UX</span>
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#心理学</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="reveal activity-card flex gap-4 rounded-xl border border-border bg-card/80 p-5">
+              <div class="shrink-0 w-12 h-12 rounded-full bg-muted overflow-hidden ring-2 ring-transparent hover:ring-gold/30 transition">
+                <img src="../assets/avatar-placeholder.svg" alt="avatar" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-sm font-medium text-foreground">王启明</span>
+                  <span class="text-xs text-muted-foreground cognicard-caption ml-auto">5 小时前</span>
+                </div>
+                <h3 class="activity-card-title cognicard-h3 text-foreground truncate transition-colors duration-300">Obsidian 与 CogniCard 的双向链接实践</h3>
+                <p class="cognicard-caption text-muted-foreground mt-1 line-clamp-2">将本地笔记与认知名片平台打通，实现知识原子的持续演化与社交化。</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#效率工具</span>
+                  <span class="px-2 py-0.5 rounded-full border border-border text-xs text-muted-foreground hover:border-primary/40 hover:text-primary transition cursor-pointer">#知识管理</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Create atom CTA -->
+      <section class="py-24 px-6">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="reveal w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary/10 flex items-center justify-center text-primary pulse-glow">
+            <i data-lucide="rocket" class="w-8 h-8"></i>
+          </div>
+          <h2 class="reveal cognicard-h1 text-foreground mb-4">准备好发布你的第一颗知识原子了吗？</h2>
+          <p class="reveal cognicard-body-lg text-muted-foreground mb-8">立即创建原子，加入认知星图，让你的想法在星系中闪耀。</p>
+          <a href="atom-create.html" class="reveal inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-8 py-3.5 text-base font-semibold transition duration-300 hover:brightness-110 hover:scale-[1.03] shadow-[var(--cognicard-glow-primary)]">
+            <i data-lucide="plus-circle" class="w-5 h-5"></i>
+            创建认知原子
+          </a>
+        </div>
+      </section>
+
+      <footer class="border-t border-border py-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <div class="flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-primary"></i>
+            <span class="font-medium text-foreground">CogniCard</span>
+            <span class="hidden md:inline">· 认知名片平台</span>
+          </div>
+          <div class="flex items-center gap-6">
+            <a href="#" class="hover:text-foreground transition">关于我们</a>
+            <a href="#" class="hover:text-foreground transition">帮助中心</a>
+            <a href="#" class="hover:text-foreground transition">隐私政策</a>
+          </div>
+          <p class="cognicard-caption">© 2026 CogniCard. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        const canvas = document.getElementById('starmap-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width, height, dpr;
+        const nodes = [];
+        const links = [];
+        const shootingStars = [];
+        const mouse = { x: 0, y: 0 };
+        const parallax = { x: 0, y: 0 };
+        let nextShootingStar = 0;
+
+        function resize() {
+          dpr = window.devicePixelRatio || 1;
+          const rect = canvas.getBoundingClientRect();
+          width = rect.width;
+          height = rect.height;
+          canvas.width = Math.floor(width * dpr);
+          canvas.height = Math.floor(height * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          initNodes();
+          buildLinks();
+        }
+
+        function initNodes() {
+          nodes.length = 0;
+          const area = width * height;
+          // Richer, layered starfield
+          const count = Math.max(70, Math.floor(area / 12000));
+          for (let i = 0; i < count; i++) {
+            const isGold = Math.random() < 0.08;
+            nodes.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              baseR: isGold ? 1.4 + Math.random() * 1.6 : 0.8 + Math.random() * 2.2,
+              r: 0.8 + Math.random() * 2.2,
+              phase: Math.random() * Math.PI * 2,
+              speed: 0.004 + Math.random() * 0.012,
+              alpha: 0.35 + Math.random() * 0.65,
+              depth: 0.15 + Math.random() * 0.85,
+              isGold: isGold,
+              color: isGold ? '212, 175, 55' : '74, 158, 255'
+            });
+          }
+        }
+
+        function buildLinks() {
+          links.length = 0;
+          const maxDist = Math.min(width, height) * 0.24;
+          for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+              const a = nodes[i];
+              const b = nodes[j];
+              const dx = a.x - b.x;
+              const dy = a.y - b.y;
+              const d = Math.hypot(dx, dy);
+              if (d < maxDist && Math.random() > 0.72) {
+                links.push({ a, b, d });
+              }
+            }
+          }
+        }
+
+        function spawnShootingStar() {
+          const startSide = Math.random() < 0.5 ? 'top' : 'left';
+          let x, y, vx, vy;
+          const speed = 4 + Math.random() * 5;
+          const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.4;
+          if (startSide === 'top') {
+            x = Math.random() * width * 0.6;
+            y = -20;
+            vx = Math.cos(angle) * speed;
+            vy = Math.sin(angle) * speed;
+          } else {
+            x = -20;
+            y = Math.random() * height * 0.5;
+            vx = Math.cos(angle) * speed;
+            vy = Math.sin(angle) * speed;
+          }
+          shootingStars.push({ x, y, vx, vy, life: 1, maxLife: 40 + Math.random() * 30 });
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, width, height);
+
+          // subtle radial glow behind stars
+          const gradient = ctx.createRadialGradient(width * 0.5, height * 0.45, 0, width * 0.5, height * 0.45, width * 0.75);
+          gradient.addColorStop(0, 'rgba(74, 158, 255, 0.12)');
+          gradient.addColorStop(0.5, 'rgba(74, 158, 255, 0.04)');
+          gradient.addColorStop(1, 'rgba(10, 14, 26, 0)');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, width, height);
+
+          const time = performance.now() * 0.001;
+          const maxLinkDist = Math.min(width, height) * 0.24;
+
+          // links with distance-based opacity
+          ctx.lineWidth = 0.5;
+          for (const link of links) {
+            const ax = link.a.x - parallax.x * link.a.depth;
+            const ay = link.a.y - parallax.y * link.a.depth;
+            const bx = link.b.x - parallax.x * link.b.depth;
+            const by = link.b.y - parallax.y * link.b.depth;
+            const dist = Math.hypot(ax - bx, ay - by);
+            const t = Math.max(0, 1 - dist / maxLinkDist);
+            const opacity = t * t * 0.22;
+            ctx.strokeStyle = `rgba(74, 158, 255, ${opacity})`;
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
+            ctx.stroke();
+          }
+
+          // nodes
+          for (const node of nodes) {
+            node.phase += node.speed;
+            const pulse = Math.sin(node.phase) * 0.25 + 1;
+            const r = node.baseR * pulse;
+            const alpha = node.alpha * (0.65 + 0.35 * Math.sin(node.phase * 1.2));
+            const x = node.x - parallax.x * node.depth;
+            const y = node.y - parallax.y * node.depth;
+
+            ctx.shadowBlur = node.isGold ? 14 * pulse : 10 * pulse;
+            ctx.shadowColor = `rgba(${node.color}, ${node.isGold ? 0.55 : 0.45})`;
+            ctx.fillStyle = `rgba(${node.color}, ${alpha})`;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // core
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.9})`;
+            ctx.beginPath();
+            ctx.arc(x, y, r * 0.38, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // shooting stars
+          if (performance.now() > nextShootingStar && shootingStars.length < 2) {
+            spawnShootingStar();
+            nextShootingStar = performance.now() + 2500 + Math.random() * 5000;
+          }
+          for (let i = shootingStars.length - 1; i >= 0; i--) {
+            const s = shootingStars[i];
+            s.x += s.vx;
+            s.y += s.vy;
+            s.life += 1;
+            const lifeRatio = Math.max(0, 1 - s.life / s.maxLife);
+            const headOpacity = lifeRatio;
+            const tailOpacity = lifeRatio * 0.4;
+
+            const tailLen = 40 + s.vx * 6;
+            const grad = ctx.createLinearGradient(s.x, s.y, s.x - s.vx * tailLen / Math.hypot(s.vx, s.vy), s.y - s.vy * tailLen / Math.hypot(s.vx, s.vy));
+            grad.addColorStop(0, `rgba(255, 255, 255, ${headOpacity})`);
+            grad.addColorStop(0.4, `rgba(212, 175, 55, ${tailOpacity})`);
+            grad.addColorStop(1, 'rgba(212, 175, 55, 0)');
+
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 1.5;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(s.x - s.vx * 8, s.y - s.vy * 8);
+            ctx.stroke();
+
+            ctx.fillStyle = `rgba(255, 255, 255, ${headOpacity})`;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, 1.4, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (s.life >= s.maxLife || s.x > width + 60 || s.y > height + 60) {
+              shootingStars.splice(i, 1);
+            }
+          }
+
+          // softer parallax toward mouse
+          parallax.x += (mouse.x - parallax.x) * 0.025;
+          parallax.y += (mouse.y - parallax.y) * 0.025;
+
+          requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', resize);
+        canvas.addEventListener('mousemove', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mouse.x = (e.clientX - rect.left - width / 2) * 0.05;
+          mouse.y = (e.clientY - rect.top - height / 2) * 0.05;
+        });
+        canvas.addEventListener('mouseleave', () => {
+          mouse.x = 0;
+          mouse.y = 0;
+        });
+
+        resize();
+        draw();
+      })();
+
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) lucide.createIcons();
+
+        // Scroll reveal with stagger
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, idx) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const siblings = Array.from(el.parentElement ? el.parentElement.querySelectorAll('.reveal') : []);
+              const localIndex = siblings.indexOf(el);
+              const delay = Math.min(localIndex * 90, 400);
+              setTimeout(() => el.classList.add('visible'), delay);
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+      });
+    </script>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+
+      /* Hero entrance animations */
+      .hero-animate {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .hero-animate:nth-child(1) { animation-delay: 0.1s; }
+      .hero-animate:nth-child(2) { animation-delay: 0.22s; }
+      .hero-animate:nth-child(3) { animation-delay: 0.34s; }
+      .hero-animate:nth-child(4) { animation-delay: 0.46s; }
+      .hero-animate:nth-child(5) { animation-delay: 0.56s; }
+
+      @keyframes hero-rise {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Reveal on scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Search glow on focus */
+      .search-glow:focus-within {
+        box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.25), 0 0 28px rgba(74, 158, 255, 0.25);
+        border-color: rgba(74, 158, 255, 0.6);
+      }
+
+      /* Card hover language */
+      .star-card {
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                    border-color 0.35s ease,
+                    box-shadow 0.35s ease,
+                    background-color 0.35s ease;
+      }
+      .star-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(74, 158, 255, 0.55);
+        box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.45), 0 0 28px rgba(74, 158, 255, 0.18);
+      }
+      .star-card:hover .star-card-title {
+        color: var(--cognicard-primary);
+      }
+
+      .activity-card {
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                    border-color 0.35s ease,
+                    box-shadow 0.35s ease;
+      }
+      .activity-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(212, 175, 55, 0.45);
+        box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.45), 0 0 28px rgba(212, 175, 55, 0.12);
+      }
+      .activity-card:hover .activity-card-title {
+        color: var(--cognicard-gold);
+      }
+
+      /* Pulse glow for CTA icon */
+      .pulse-glow {
+        animation: pulse-glow 2.8s ease-in-out infinite;
+      }
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 16px rgba(74, 158, 255, 0.28); }
+        50% { box-shadow: 0 0 32px rgba(74, 158, 255, 0.55), 0 0 12px rgba(212, 175, 55, 0.25); }
+      }
+
+      /* Shooting star keyframes (canvas draws these, but reserve name) */
+    </style>
+</body>
+</html>

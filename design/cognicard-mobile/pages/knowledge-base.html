@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识库</title>
+    <style id="theme-vars">
+/* CogniCard Design Tokens — 认知名片平台 */
+
+:root {
+  /* Font system */
+  --cognicard-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cognicard-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius scale */
+  --cognicard-radius-sm: 4px;
+  --cognicard-radius-md: 8px;
+  --cognicard-radius-lg: 12px;
+  --cognicard-radius-full: 9999px;
+
+  /* Light mode (day / star-map daytime) */
+  --cognicard-background: #F6F7F9;
+  --cognicard-foreground: #0A0E1A;
+  --cognicard-card: #FFFFFF;
+  --cognicard-card-foreground: #0A0E1A;
+  --cognicard-popover: #FFFFFF;
+  --cognicard-popover-foreground: #0A0E1A;
+  --cognicard-primary: #1E3A5F;
+  --cognicard-primary-foreground: #FFFFFF;
+  --cognicard-muted: #E8EBF0;
+  --cognicard-muted-foreground: #5A6578;
+  --cognicard-border: #D8DCE5;
+  --cognicard-input: #FFFFFF;
+  --cognicard-ring: #4A9EFF;
+
+  /* Brand tints */
+  --cognicard-brand-50: #E8F4FF;
+  --cognicard-brand-100: #C7E6FF;
+  --cognicard-brand-200: #96D0FF;
+  --cognicard-brand-300: #5AB8FF;
+  --cognicard-brand-400: #4A9EFF;
+  --cognicard-brand-500: #2B8AFC;
+  --cognicard-brand-600: #1E6FD1;
+  --cognicard-brand-700: #1E3A5F;
+
+  /* Surface scale (dark mode overrides below) */
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  /* Member / state accents */
+  --cognicard-gold: #D4AF37;
+  --cognicard-gold-light: #F3E5AB;
+  --cognicard-silver: #A8B4C4;
+
+  /* State colors (semantic only) */
+  --cognicard-state-success: #22C55E;
+  --cognicard-state-warning: #F59E0B;
+  --cognicard-state-error: #EF4444;
+  --cognicard-state-info: #3B82F6;
+
+  /* Glow / shadow */
+  --cognicard-glow-primary: 0 0 24px rgba(74, 158, 255, 0.35);
+  --cognicard-glow-gold: 0 0 24px rgba(212, 175, 55, 0.35);
+  --cognicard-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(10, 14, 26, 0.18);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(10, 14, 26, 0.30);
+}
+
+.dark {
+  /* Dark mode (night / tool dashboard / immersive) */
+  --cognicard-background: #0A0E1A;
+  --cognicard-foreground: #E8ECF5;
+  --cognicard-card: #1A2233;
+  --cognicard-card-foreground: #E8ECF5;
+  --cognicard-popover: #1A2233;
+  --cognicard-popover-foreground: #E8ECF5;
+  --cognicard-primary: #4A9EFF;
+  --cognicard-primary-foreground: #0A0E1A;
+  --cognicard-muted: #232D42;
+  --cognicard-muted-foreground: #8A96AD;
+  --cognicard-border: #2A3A55;
+  --cognicard-input: #1A2233;
+  --cognicard-ring: #4A9EFF;
+
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  --cognicard-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.40);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Typography utilities */
+.cognicard-display {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cognicard-h1 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cognicard-h2 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cognicard-h3 {
+  font-family: var(--cognicard-font-sans);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cognicard-body {
+  font-family: var(--cognicard-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cognicard-body-lg {
+  font-family: var(--cognicard-font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cognicard-caption {
+  font-family: var(--cognicard-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.cognicard-mono {
+  font-family: var(--cognicard-font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cognicard-background);
+    --color-foreground: var(--cognicard-foreground);
+    --color-card: var(--cognicard-card);
+    --color-card-foreground: var(--cognicard-card-foreground);
+    --color-popover: var(--cognicard-popover);
+    --color-popover-foreground: var(--cognicard-popover-foreground);
+    --color-primary: var(--cognicard-primary);
+    --color-primary-foreground: var(--cognicard-primary-foreground);
+    --color-muted: var(--cognicard-muted);
+    --color-muted-foreground: var(--cognicard-muted-foreground);
+    --color-border: var(--cognicard-border);
+    --color-input: var(--cognicard-input);
+    --color-ring: var(--cognicard-ring);
+    --radius-sm: var(--cognicard-radius-sm);
+    --radius-md: var(--cognicard-radius-md);
+    --radius-lg: var(--cognicard-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cognicard-background); color: var(--cognicard-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cognicard-background); }
+      .text-background { color: var(--cognicard-background); }
+      .border-background { border-color: var(--cognicard-background); }
+      .ring-background { --tw-ring-color: var(--cognicard-background); }
+      .bg-foreground { background-color: var(--cognicard-foreground); }
+      .text-foreground { color: var(--cognicard-foreground); }
+      .border-foreground { border-color: var(--cognicard-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cognicard-foreground); }
+      .bg-card { background-color: var(--cognicard-card); }
+      .text-card { color: var(--cognicard-card); }
+      .border-card { border-color: var(--cognicard-card); }
+      .ring-card { --tw-ring-color: var(--cognicard-card); }
+      .bg-card-foreground { background-color: var(--cognicard-card-foreground); }
+      .text-card-foreground { color: var(--cognicard-card-foreground); }
+      .border-card-foreground { border-color: var(--cognicard-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cognicard-card-foreground); }
+      .bg-popover { background-color: var(--cognicard-popover); }
+      .text-popover { color: var(--cognicard-popover); }
+      .border-popover { border-color: var(--cognicard-popover); }
+      .ring-popover { --tw-ring-color: var(--cognicard-popover); }
+      .bg-popover-foreground { background-color: var(--cognicard-popover-foreground); }
+      .text-popover-foreground { color: var(--cognicard-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cognicard-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cognicard-popover-foreground); }
+      .bg-primary { background-color: var(--cognicard-primary); }
+      .text-primary { color: var(--cognicard-primary); }
+      .border-primary { border-color: var(--cognicard-primary); }
+      .ring-primary { --tw-ring-color: var(--cognicard-primary); }
+      .bg-primary-foreground { background-color: var(--cognicard-primary-foreground); }
+      .text-primary-foreground { color: var(--cognicard-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cognicard-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cognicard-primary-foreground); }
+      .bg-muted { background-color: var(--cognicard-muted); }
+      .text-muted { color: var(--cognicard-muted); }
+      .border-muted { border-color: var(--cognicard-muted); }
+      .ring-muted { --tw-ring-color: var(--cognicard-muted); }
+      .bg-muted-foreground { background-color: var(--cognicard-muted-foreground); }
+      .text-muted-foreground { color: var(--cognicard-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cognicard-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cognicard-muted-foreground); }
+      .bg-border { background-color: var(--cognicard-border); }
+      .text-border { color: var(--cognicard-border); }
+      .border-border { border-color: var(--cognicard-border); }
+      .ring-border { --tw-ring-color: var(--cognicard-border); }
+      .bg-input { background-color: var(--cognicard-input); }
+      .text-input { color: var(--cognicard-input); }
+      .border-input { border-color: var(--cognicard-input); }
+      .ring-input { --tw-ring-color: var(--cognicard-input); }
+      .bg-ring { background-color: var(--cognicard-ring); }
+      .text-ring { color: var(--cognicard-ring); }
+      .border-ring { border-color: var(--cognicard-ring); }
+      .ring-ring { --tw-ring-color: var(--cognicard-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main class="min-h-screen bg-background pb-[72px]">
+      <!-- Header -->
+      <header class="sticky top-0 z-20 bg-background/95 backdrop-blur border-b border-border">
+        <div class="max-w-md mx-auto flex items-center justify-between px-4 h-14">
+          <h1 class="text-lg font-semibold text-foreground tracking-tight">知识库</h1>
+          <button id="btn-new-atom" data-dom-id="btn-new-atom" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-sm font-medium shadow-sm active:scale-95 transition-transform">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>新建原子</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Search + Filter + Sort -->
+      <section class="max-w-md mx-auto px-4 pt-3 pb-2 space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none"></i>
+            <input id="input-search" type="text" placeholder="搜索核心问题、观点、标签…" class="w-full h-10 pl-9 pr-3 rounded-lg border border-border bg-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" />
+          </div>
+          <div class="relative shrink-0">
+            <select id="select-sort" class="h-10 pl-3 pr-8 rounded-lg border border-border bg-input text-foreground text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-ring">
+              <option value="latest">最新</option>
+              <option value="reuse">复用最多</option>
+              <option value="cited">被引用最多</option>
+            </select>
+            <i data-lucide="chevron-down" class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- PARA chips -->
+        <div id="filter-para" class="flex gap-2 overflow-x-auto no-scrollbar py-0.5" role="tablist" aria-label="PARA 分类筛选">
+          <button type="button" data-para="all" data-active="true" class="para-chip shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors bg-primary text-primary-foreground border-primary" role="tab" aria-selected="true">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>全部</span>
+            <span class="ml-0.5 opacity-80">32</span>
+          </button>
+          <button type="button" data-para="projects" class="para-chip shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-card text-foreground transition-colors hover:bg-muted" role="tab" aria-selected="false">
+            <i data-lucide="target" class="w-3.5 h-3.5"></i>
+            <span>Projects</span>
+            <span class="ml-0.5 text-muted-foreground">8</span>
+          </button>
+          <button type="button" data-para="areas" class="para-chip shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-card text-foreground transition-colors hover:bg-muted" role="tab" aria-selected="false">
+            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+            <span>Areas</span>
+            <span class="ml-0.5 text-muted-foreground">12</span>
+          </button>
+          <button type="button" data-para="resources" class="para-chip shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-card text-foreground transition-colors hover:bg-muted" role="tab" aria-selected="false">
+            <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+            <span>Resources</span>
+            <span class="ml-0.5 text-muted-foreground">9</span>
+          </button>
+          <button type="button" data-para="archive" class="para-chip shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-card text-foreground transition-colors hover:bg-muted" role="tab" aria-selected="false">
+            <i data-lucide="archive" class="w-3.5 h-3.5"></i>
+            <span>Archive</span>
+            <span class="ml-0.5 text-muted-foreground">3</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Atom grid -->
+      <section id="atom-list" class="max-w-md mx-auto px-4 pt-2 pb-4 space-y-3">
+        <!-- Atom card 1 -->
+        <article class="atom-card group relative rounded-xl border border-border bg-card p-4 shadow-sm active:scale-[0.99] transition-transform cursor-pointer" data-para="areas" tabindex="0" aria-label="查看原子详情">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--cognicard-brand-50)] text-[var(--cognicard-brand-700)] border border-[var(--cognicard-brand-100)]">
+                  <i data-lucide="compass" class="w-3 h-3"></i>
+                  Areas
+                </span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--cognicard-state-success)]/10 text-[var(--cognicard-state-success)] border border-[var(--cognicard-state-success)]/20">
+                  公开
+                </span>
+              </div>
+              <h2 class="text-[15px] font-semibold text-foreground leading-snug mb-1.5 line-clamp-2">如何建立客户信任？</h2>
+              <p class="text-[13px] text-muted-foreground leading-relaxed line-clamp-3">先给小承诺并快速兑现，再逐步扩大承诺范围。信任不是一次性说服，而是通过可验证的小胜利积累而成。</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-border">
+            <div class="flex items-center gap-3 text-[11px] text-muted-foreground">
+              <span class="inline-flex items-center gap-1" title="复用 23 次"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>23</span>
+              <span class="inline-flex items-center gap-1" title="被引用 5 次"><i data-lucide="link" class="w-3.5 h-3.5"></i>5</span>
+              <span class="inline-flex items-center gap-1" title="迭代 2 次"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i>2</span>
+            </div>
+            <button id="btn-edit-atom-1" type="button" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-primary bg-primary/5 border border-primary/10 active:bg-primary/10 transition-colors" onclick="event.stopPropagation();">
+              <i data-lucide="pencil" class="w-3 h-3"></i>
+              编辑
+            </button>
+          </div>
+        </article>
+
+        <!-- Atom card 2 -->
+        <article class="atom-card group relative rounded-xl border border-border bg-card p-4 shadow-sm active:scale-[0.99] transition-transform cursor-pointer" data-para="projects" tabindex="0" aria-label="查看原子详情">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-purple-50 text-purple-700 border border-purple-100">
+                  <i data-lucide="target" class="w-3 h-3"></i>
+                  Projects
+                </span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--cognicard-state-warning)]/10 text-[var(--cognicard-state-warning)] border border-[var(--cognicard-state-warning)]/20">
+                  授权
+                </span>
+              </div>
+              <h2 class="text-[15px] font-semibold text-foreground leading-snug mb-1.5 line-clamp-2">产品复盘：新用户引导页改版</h2>
+              <p class="text-[13px] text-muted-foreground leading-relaxed line-clamp-3">通过减少引导页数量、强化「看到自己」的星图锚点，次日留存提升 18%。核心经验：首次体验必须先建立情感连接，再讲功能。</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-border">
+            <div class="flex items-center gap-3 text-[11px] text-muted-foreground">
+              <span class="inline-flex items-center gap-1"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>7</span>
+              <span class="inline-flex items-center gap-1"><i data-lucide="link" class="w-3.5 h-3.5"></i>1</span>
+              <span class="inline-flex items-center gap-1"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i>4</span>
+            </div>
+            <span class="text-[11px] text-muted-foreground inline-flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i>2天前</span>
+          </div>
+        </article>
+
+        <!-- Atom card 3 -->
+        <article class="atom-card group relative rounded-xl border border-border bg-card p-4 shadow-sm active:scale-[0.99] transition-transform cursor-pointer" data-para="resources" tabindex="0" aria-label="查看原子详情">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-100">
+                  <i data-lucide="bookmark" class="w-3 h-3"></i>
+                  Resources
+                </span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--cognicard-muted)] text-muted-foreground border border-border">
+                  私有
+                </span>
+              </div>
+              <h2 class="text-[15px] font-semibold text-foreground leading-snug mb-1.5 line-clamp-2">费曼学习法在团队培训中的应用清单</h2>
+              <p class="text-[13px] text-muted-foreground leading-relaxed line-clamp-3">将复杂概念拆分为「一句话版本」「类比版本」「反例版本」三步，要求受训者在 5 分钟内复述给非专业人士听。</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-border">
+            <div class="flex items-center gap-3 text-[11px] text-muted-foreground">
+              <span class="inline-flex items-center gap-1"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>15</span>
+              <span class="inline-flex items-center gap-1"><i data-lucide="link" class="w-3.5 h-3.5"></i>0</span>
+              <span class="inline-flex items-center gap-1"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i>1</span>
+            </div>
+            <span class="text-[11px] text-muted-foreground inline-flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i>1周前</span>
+          </div>
+        </article>
+
+        <!-- Atom card 4 -->
+        <article class="atom-card group relative rounded-xl border border-border bg-card p-4 shadow-sm active:scale-[0.99] transition-transform cursor-pointer" data-para="archive" tabindex="0" aria-label="查看原子详情">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-2 flex-wrap">
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-600 border border-gray-200">
+                  <i data-lucide="archive" class="w-3 h-3"></i>
+                  Archive
+                </span>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--cognicard-state-success)]/10 text-[var(--cognicard-state-success)] border border-[var(--cognicard-state-success)]/20">
+                  公开
+                </span>
+              </div>
+              <h2 class="text-[15px] font-semibold text-foreground leading-snug mb-1.5 line-clamp-2">早期关于「打卡激励」的判断（已过时）</h2>
+              <p class="text-[13px] text-muted-foreground leading-relaxed line-clamp-3">最初认为连续打卡天数能提升留存。后续数据证明打卡天数与认知沉淀质量无关，反而诱导假性认知，已停止该激励。</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-border">
+            <div class="flex items-center gap-3 text-[11px] text-muted-foreground">
+              <span class="inline-flex items-center gap-1"><i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>3</span>
+              <span class="inline-flex items-center gap-1"><i data-lucide="link" class="w-3.5 h-3.5"></i>2</span>
+              <span class="inline-flex items-center gap-1"><i data-lucide="git-commit" class="w-3.5 h-3.5"></i>3</span>
+            </div>
+            <span class="text-[11px] text-muted-foreground inline-flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i>3个月前</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Empty state (hidden by default) -->
+      <section id="empty-state" class="hidden max-w-md mx-auto px-4 py-12 text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
+          <i data-lucide="inbox" class="w-7 h-7 text-muted-foreground"></i>
+        </div>
+        <h3 class="text-base font-semibold text-foreground mb-1">还没有符合条件的原子</h3>
+        <p class="text-sm text-muted-foreground">换个关键词或分类试试吧</p>
+      </section>
+    </main>
+
+    <!-- Detail drawer -->
+    <div id="drawer-detail" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <div class="drawer-backdrop absolute inset-0 bg-black/40" data-drawer-close></div>
+      <aside class="drawer-panel absolute right-0 top-0 bottom-0 w-[88vw] max-w-[360px] bg-card shadow-lg transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
+        <!-- Drawer header -->
+        <div class="flex items-center justify-between px-4 h-14 border-b border-border shrink-0">
+          <h2 id="drawer-title" class="text-base font-semibold text-foreground">原子详情</h2>
+          <button type="button" data-drawer-close class="inline-flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-colors" aria-label="关闭">
+            <i data-lucide="x" class="w-5 h-5 text-muted-foreground"></i>
+          </button>
+        </div>
+
+        <!-- Drawer body -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
+          <div>
+            <div class="flex items-center gap-2 mb-3 flex-wrap">
+              <span id="drawer-category" class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--cognicard-brand-50)] text-[var(--cognicard-brand-700)] border border-[var(--cognicard-brand-100)]">Areas</span>
+              <span id="drawer-visibility" class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-[var(--cognicard-state-success)]/10 text-[var(--cognicard-state-success)] border border-[var(--cognicard-state-success)]/20">公开</span>
+            </div>
+            <h3 id="drawer-question" class="text-lg font-semibold text-foreground leading-snug mb-2">如何建立客户信任？</h3>
+            <p id="drawer-summary" class="text-[14px] text-muted-foreground leading-relaxed">先给小承诺并快速兑现，再逐步扩大承诺范围。信任不是一次性说服，而是通过可验证的小胜利积累而成。</p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <div class="rounded-lg border border-border bg-muted/30 p-2 text-center">
+              <div class="text-base font-semibold text-foreground">23</div>
+              <div class="text-[10px] text-muted-foreground">复用</div>
+            </div>
+            <div class="rounded-lg border border-border bg-muted/30 p-2 text-center">
+              <div class="text-base font-semibold text-foreground">5</div>
+              <div class="text-[10px] text-muted-foreground">被引用</div>
+            </div>
+            <div class="rounded-lg border border-border bg-muted/30 p-2 text-center">
+              <div class="text-base font-semibold text-foreground">2</div>
+              <div class="text-[10px] text-muted-foreground">迭代</div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="rounded-lg border border-border p-3">
+              <h4 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">我的观点 / 方案</h4>
+              <p class="text-[13px] text-foreground leading-relaxed">客户信任的建立应该遵循「小承诺→快兑现→再承诺」的循环。第一次合作不要追求大订单，而是找到对方最痛的点，用一个低风险的小交付证明能力。</p>
+            </div>
+            <div class="rounded-lg border border-border p-3">
+              <h4 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">证据 / 出处</h4>
+              <p class="text-[13px] text-foreground leading-relaxed">原创 · 源自 2024 年 Q2 三个 B 端客户的签约复盘，其中两单从小 POC 扩展为年度框架。</p>
+            </div>
+            <div class="rounded-lg border border-border p-3">
+              <h4 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">实践案例</h4>
+              <p class="text-[13px] text-foreground leading-relaxed">给客户做方案时，先提供一页纸诊断报告而非完整方案书；48 小时内给出可执行的 3 个改进点，客户主动推进下一轮。</p>
+            </div>
+            <div class="rounded-lg border border-border p-3">
+              <h4 class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">迭代记录</h4>
+              <ul class="text-[13px] text-foreground leading-relaxed space-y-1.5">
+                <li class="flex gap-2"><span class="text-muted-foreground shrink-0">V2</span><span>补充大客户场景，强调多决策者下的信任路径</span></li>
+                <li class="flex gap-2"><span class="text-muted-foreground shrink-0">V1</span><span>初稿：从小订单切入</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drawer footer -->
+        <div class="shrink-0 p-4 border-t border-border bg-card">
+          <button type="button" class="w-full h-11 rounded-lg bg-primary text-primary-foreground text-sm font-medium shadow-sm active:scale-[0.99] transition-transform inline-flex items-center justify-center gap-2">
+            <i data-lucide="pencil" class="w-4 h-4"></i>
+            编辑原子
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Global mobile navigation -->
+    <nav data-mobile-nav="global" class="w-full h-[56px] border-t border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/95 backdrop-blur"><div class="w-full max-w-md mx-auto grid grid-cols-4 h-full"><a href="#" data-nav-key="starmap" data-dom-id="nav-starmap" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="globe" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">星图</span></a><a href="#" data-nav-key="toolbox" data-active="true" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-primary)] font-medium"><i data-lucide="briefcase" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">工具台</span></a><a href="#" data-nav-key="messages" data-dom-id="nav-messages" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="bell" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">消息</span></a><a href="#" data-nav-key="me" data-dom-id="nav-me" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="user" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">我的</span></a></div></nav>
+
+    <script>
+      (function () {
+        'use strict';
+
+        // Drawer behavior
+        var drawer = document.getElementById('drawer-detail');
+        var drawerPanel = drawer.querySelector('.drawer-panel');
+        var drawerBackdrop = drawer.querySelector('.drawer-backdrop');
+        var drawerTitle = document.getElementById('drawer-title');
+        var drawerQuestion = document.getElementById('drawer-question');
+        var drawerSummary = document.getElementById('drawer-summary');
+        var drawerCategory = document.getElementById('drawer-category');
+        var drawerVisibility = document.getElementById('drawer-visibility');
+
+        function openDrawer(card) {
+          var title = card.querySelector('h2').textContent;
+          var summary = card.querySelector('p').textContent;
+          var chips = card.querySelectorAll('.inline-flex');
+          var categoryChip = chips[0];
+          var visibilityChip = chips[1];
+
+          drawerQuestion.textContent = title;
+          drawerSummary.textContent = summary;
+          drawerCategory.textContent = categoryChip.textContent.trim();
+          drawerVisibility.textContent = visibilityChip.textContent.trim();
+
+          drawer.classList.remove('pointer-events-none', 'opacity-0');
+          drawer.classList.add('pointer-events-auto', 'opacity-100');
+          drawerPanel.classList.remove('translate-x-full');
+          drawerPanel.classList.add('translate-x-0');
+          drawer.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+          drawer.classList.add('pointer-events-none', 'opacity-0');
+          drawer.classList.remove('pointer-events-auto', 'opacity-100');
+          drawerPanel.classList.add('translate-x-full');
+          drawerPanel.classList.remove('translate-x-0');
+          drawer.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.atom-card').forEach(function (card) {
+          card.addEventListener('click', function () { openDrawer(card); });
+          card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openDrawer(card);
+            }
+          });
+        });
+
+        drawer.querySelectorAll('[data-drawer-close]').forEach(function (el) {
+          el.addEventListener('click', closeDrawer);
+        });
+
+        // PARA filter chips
+        var paraContainer = document.getElementById('filter-para');
+        paraContainer.addEventListener('click', function (e) {
+          var chip = e.target.closest('.para-chip');
+          if (!chip) return;
+          paraContainer.querySelectorAll('.para-chip').forEach(function (c) {
+            c.setAttribute('data-active', 'false');
+            c.setAttribute('aria-selected', 'false');
+            c.classList.remove('bg-primary', 'text-primary-foreground', 'border-primary');
+            c.classList.add('bg-card', 'text-foreground', 'border-border');
+          });
+          chip.setAttribute('data-active', 'true');
+          chip.setAttribute('aria-selected', 'true');
+          chip.classList.remove('bg-card', 'text-foreground', 'border-border');
+          chip.classList.add('bg-primary', 'text-primary-foreground', 'border-primary');
+
+          var selected = chip.getAttribute('data-para');
+          document.querySelectorAll('.atom-card').forEach(function (card) {
+            if (selected === 'all' || card.getAttribute('data-para') === selected) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+
+          var visible = document.querySelectorAll('.atom-card:not(.hidden)');
+          var emptyState = document.getElementById('empty-state');
+          if (visible.length === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+          }
+        });
+
+        // Search filter
+        var searchInput = document.getElementById('input-search');
+        searchInput.addEventListener('input', function () {
+          var keyword = searchInput.value.toLowerCase();
+          document.querySelectorAll('.atom-card').forEach(function (card) {
+            var text = card.textContent.toLowerCase();
+            if (text.indexOf(keyword) !== -1) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+          var visible = document.querySelectorAll('.atom-card:not(.hidden)');
+          var emptyState = document.getElementById('empty-state');
+          if (visible.length === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+          }
+        });
+
+        // Sort select (demo behavior: reorder cards)
+        var sortSelect = document.getElementById('select-sort');
+        var atomList = document.getElementById('atom-list');
+        sortSelect.addEventListener('change', function () {
+          var cards = Array.from(atomList.querySelectorAll('.atom-card'));
+          cards.sort(function (a, b) {
+            var aReuse = parseInt(a.querySelector('[title^="复用"]').textContent.replace(/\D/g, ''), 10) || 0;
+            var bReuse = parseInt(b.querySelector('[title^="复用"]').textContent.replace(/\D/g, ''), 10) || 0;
+            var aCited = parseInt(a.querySelector('[title^="被引用"]').textContent.replace(/\D/g, ''), 10) || 0;
+            var bCited = parseInt(b.querySelector('[title^="被引用"]').textContent.replace(/\D/g, ''), 10) || 0;
+            var value = sortSelect.value;
+            if (value === 'reuse') return bReuse - aReuse;
+            if (value === 'cited') return bCited - aCited;
+            return 0;
+          });
+          cards.forEach(function (card) { atomList.appendChild(card); });
+        });
+      })();
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "spaceKey": "e11f043d983d48b1a26e04364d1afaf7",
+      "projectPath": "d:\\zhishi2.0\\frontend\\public",
+      "desc": "public",
+      "createdAt": 0
+    },
+    {
+      "spaceKey": "4398922437b74b838d0214553fff0560",
+      "projectPath": "d:\\zhishi2.0\\.deploy-stage",
+      "desc": ".deploy-stage",
+      "createdAt": 0
+    },
+    {
+      "spaceKey": "f2b7dc6d13014d4fb6c6d01b0e9a54a1",
+      "projectPath": "d:\\zhishi2.0\\frontend\\public\\icons",
+      "desc": "icons",
+      "createdAt": 0
+    }
+  ]
+}

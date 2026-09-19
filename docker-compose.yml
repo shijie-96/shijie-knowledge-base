@@ -1,0 +1,170 @@
+# =========================================================
+# 认知闭环系统 · 生产编排
+#
+# 使用：cp backend/.env.production.example backend/.env（按需修改）
+#       docker compose up -d --build
+# 访问：http://<host>/（Nginx 托管前端 + 反代 /api/ 到后端）
+#
+# DOCKER_MIRROR：Docker Hub 镜像加速源前缀。
+#   国内服务器直连 registry-1.docker.io 基本必超时，必须走加速源。
+#   默认 docker.1ms.run；若该源失效，在项目根 .env 里改成别的即可，例如：
+#     DOCKER_MIRROR=docker.m.daocloud.io
+#     DOCKER_MIRROR=docker.ketches.cn
+#   海外服务器可设为空值走官方源：DOCKER_MIRROR=
+#   注意：改完需重新 build（docker compose up -d --build）
+# =========================================================
+
+services:
+  # PostgreSQL + pgvector（语义检索必需）
+  postgres:
+    image: ${DOCKER_MIRROR:-docker.1ms.run}/pgvector/pgvector:pg16
+    restart: unless-stopped
+    # 4G 内存机器：给每个容器设上限，避免互相抢内存导致 OOM。
+    # 数据库最容易被系统杀掉，所以给它最多的配额。
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-zhishi}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_NAME:-zhishi}"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  # Redis：验证码 / Token 黑名单 / 热点接口缓存
+  redis:
+    image: ${DOCKER_MIRROR:-docker.1ms.run}/library/redis:7-alpine
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 192M
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD:-redispass}"]
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-redispass}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  # 后端 API
+  backend:
+    build:
+      context: ./backend
+      args:
+        # 构建用基础镜像，国内服务器走加速源（见文件头 DOCKER_MIRROR 说明）
+        NODE_IMAGE: ${DOCKER_MIRROR:-docker.1ms.run}/library/node:20-alpine
+    restart: unless-stopped
+    # 后端构建期内存占用高（nest build），容器运行时给 640M 足够
+    deploy:
+      resources:
+        limits:
+          memory: 640M
+    env_file:
+      - ./backend/.env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      DB_SYNC: "false"          # 生产禁用自动同步，使用 migration
+      LOG_FORMAT: json          # 结构化日志
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    # 用户上传文件持久化：后端写入，Nginx 容器只读共享
+    volumes:
+      - uploads:/app/uploads
+    expose:
+      - "3001"
+    # 调试用（生产请移除或仅本机绑定）
+    # ports:
+    #   - "127.0.0.1:3001:3001"
+    healthcheck:
+      # /health 为公开健康检查端点（见 app.controller.ts）
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s   # 启动含数据库 migration，预留足够预热期
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # 前端（Next.js standalone）
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NODE_IMAGE: ${DOCKER_MIRROR:-docker.1ms.run}/library/node:20-alpine
+    restart: unless-stopped
+    # Next.js standalone 运行时约 150-300M，给 512M 留余量
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    environment:
+      NODE_ENV: production
+      HOSTNAME: "0.0.0.0"
+      PORT: "3000"
+    depends_on:
+      - backend
+    expose:
+      - "3000"
+    healthcheck:
+      # Next.js standalone 自检：能返回首页即视为就绪（200）
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Nginx：静态托管前端 + /api/ 反代后端 + TLS 终结
+  nginx:
+    image: ${DOCKER_MIRROR:-docker.1ms.run}/library/nginx:1.27-alpine
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # SSL 证书挂载目录：放置 fullchain.pem + privkey.pem 后启用 HTTPS 配置
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      # 用户上传文件只读共享（后端容器写入）
+      - uploads:/srv/uploads:ro
+    depends_on:
+      # 前后端探活通过后再挂载，避免容器重启窗口内 Nginx 向前端返回 502
+      frontend:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  pgdata:
+  redisdata:
+  uploads:

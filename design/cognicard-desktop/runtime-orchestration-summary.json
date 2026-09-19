@@ -1,0 +1,2322 @@
+{
+  "schemaVersion": "2026.07.11.0",
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": null,
+    "version_source": "unknown",
+    "read_status": "missing"
+  },
+  "project": {
+    "operation": "create",
+    "resolvedLane": "complex_html_page",
+    "deviceType": "desktop",
+    "projectName": "认知名片平台 - 桌面端",
+    "projectPath": "d:\\zhishi2.0\\design\\cognicard-desktop",
+    "selectedIntentWorkflowRead": true,
+    "contextReadScope": [
+      "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+      "intent-workflows/intent-project-complex-build/start-complex-project-build.md",
+      "intent-workflows/intent-project-complex-build/00-requirement-and-style-intake.md",
+      "intent-workflows/intent-project-complex-build/02-page-composition.md",
+      "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+      "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md",
+      "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+      "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+      "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+      "shared-runtime/html-rendering-primitives/shared-html-rendering-primitives.md",
+      "shared-runtime/html-rendering-primitives/web-html-rendering-primitives.md",
+      "shared-runtime/design-artifact-formats/design-project-file-format.md",
+      "shared-runtime/orchestration-summary-contract/orchestration-summary-contract.md",
+      "visual-experience/visual-experience-guidelines.md"
+    ],
+    "contextRequirementsLoaded": [
+      {
+        "path": "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/page-rendering-quality-gate.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/design-artifact-validation.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/delivery-evidence-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "visual-experience/visual-experience-guidelines.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "visual-experience/visual-checkpoint-protocol.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      }
+    ],
+    "validationRunDiscipline": "main-agent-runs-validation-after-dispatch",
+    "lowValueCallWatchdog": {
+      "enabled": true,
+      "noProgressNextAction": "proceed-to-readiness-or-blocked-summary"
+    },
+    "styleDefinitionBrief": "Personal knowledge identity platform with deep-space tech aesthetic, star-map discovery layer, immersive dark tool dashboard, restrained blue glow, gold member accents.",
+    "designRead": "CogniCard / growth-oriented knowledge workers / trustworthy-tech / medium-high density / avoid generic SaaS card walls",
+    "designDials": {
+      "layoutVariance": 3,
+      "motionIntensity": 4,
+      "visualDensity": 4
+    },
+    "cssPreflightEvidence": {
+      "cssFilePath": "colors_and_type.css",
+      "preflightHtmlPath": ".preflight/preflight.html",
+      "commandExitCode": 0,
+      "success": true,
+      "themeVarsIdPresent": true,
+      "semanticTokenFallbackPresent": true,
+      "tailwindCdnPresent": true,
+      "themeInlinePresent": true
+    },
+    "sharedProjectShellContract": {
+      "mobileNavigation": {
+        "applies": false
+      },
+      "desktopNavigation": {
+        "applies": true,
+        "type": "top-bar",
+        "items": [
+          {
+            "key": "starmap",
+            "label": "星图",
+            "icon": "globe",
+            "href": "pages/index.html"
+          },
+          {
+            "key": "toolbox",
+            "label": "工具台",
+            "icon": "briefcase",
+            "href": "pages/tool-dashboard.html"
+          },
+          {
+            "key": "messages",
+            "label": "消息",
+            "icon": "bell",
+            "href": "pages/notifications.html"
+          },
+          {
+            "key": "me",
+            "label": "我的",
+            "icon": "user",
+            "href": "pages/settings.html"
+          }
+        ],
+        "heightPx": 64,
+        "position": "fixed-top",
+        "activeState": "primary underline + label color; geometry stays identical",
+        "structure": {
+          "navTag": "header",
+          "navClass": "w-full h-16 border-b border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/90 backdrop-blur",
+          "innerClass": "w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between",
+          "brandClass": "flex items-center gap-2 text-[var(--cognicard-foreground)] font-semibold",
+          "linksClass": "hidden md:flex items-center gap-6",
+          "itemTag": "a",
+          "itemClass": "flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] transition-colors hover:text-[var(--cognicard-foreground)]",
+          "iconClass": "w-4 h-4",
+          "labelClass": "leading-none",
+          "activeRule": "only color/border-bottom/data-active may change; no layout-changing class changes",
+          "markerAttr": "data-desktop-nav=\"global\"",
+          "canonicalHtmlByKey": {
+            "starmap": "<header data-desktop-nav=\"global\" class=\"w-full h-16 border-b border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/90 backdrop-blur\"><div class=\"w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between\"><a href=\"pages/index.html\" class=\"flex items-center gap-2 text-[var(--cognicard-foreground)] font-semibold\"><i data-lucide=\"sparkles\" class=\"w-5 h-5 text-[var(--cognicard-primary)]\"></i><span>CogniCard</span></a><nav class=\"hidden md:flex items-center gap-6\"><a href=\"pages/index.html\" data-nav-key=\"starmap\" data-active=\"true\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-primary)] border-b-2 border-[var(--cognicard-primary)] pt-5 pb-5\"><i data-lucide=\"globe\" class=\"w-4 h-4\"></i><span>星图</span></a><a href=\"pages/tool-dashboard.html\" data-nav-key=\"toolbox\" data-dom-id=\"nav-toolbox\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"briefcase\" class=\"w-4 h-4\"></i><span>工具台</span></a><a href=\"pages/notifications.html\" data-nav-key=\"messages\" data-dom-id=\"nav-messages\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"bell\" class=\"w-4 h-4\"></i><span>消息</span></a><a href=\"pages/settings.html\" data-nav-key=\"me\" data-dom-id=\"nav-me\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"user\" class=\"w-4 h-4\"></i><span>我的</span></a></nav><div class=\"flex items-center gap-3\"><button class=\"p-2 rounded-lg text-[var(--cognicard-muted-foreground)] hover:bg-[var(--cognicard-muted)]\"><i data-lucide=\"search\" class=\"w-4 h-4\"></i></button><button class=\"w-8 h-8 rounded-full bg-[var(--cognicard-muted)] overflow-hidden\" data-dom-id=\"nav-avatar\"><img src=\"https://i.pravatar.cc/150?u=self\" alt=\"avatar\" class=\"w-full h-full object-cover\"/></button></div></div></header>",
+            "toolbox": "<header data-desktop-nav=\"global\" class=\"w-full h-16 border-b border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/90 backdrop-blur\"><div class=\"w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between\"><a href=\"pages/index.html\" class=\"flex items-center gap-2 text-[var(--cognicard-foreground)] font-semibold\"><i data-lucide=\"sparkles\" class=\"w-5 h-5 text-[var(--cognicard-primary)]\"></i><span>CogniCard</span></a><nav class=\"hidden md:flex items-center gap-6\"><a href=\"pages/index.html\" data-nav-key=\"starmap\" data-dom-id=\"nav-starmap\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"globe\" class=\"w-4 h-4\"></i><span>星图</span></a><a href=\"pages/tool-dashboard.html\" data-nav-key=\"toolbox\" data-active=\"true\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-primary)] border-b-2 border-[var(--cognicard-primary)] pt-5 pb-5\"><i data-lucide=\"briefcase\" class=\"w-4 h-4\"></i><span>工具台</span></a><a href=\"pages/notifications.html\" data-nav-key=\"messages\" data-dom-id=\"nav-messages\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"bell\" class=\"w-4 h-4\"></i><span>消息</span></a><a href=\"pages/settings.html\" data-nav-key=\"me\" data-dom-id=\"nav-me\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"user\" class=\"w-4 h-4\"></i><span>我的</span></a></nav><div class=\"flex items-center gap-3\"><button class=\"p-2 rounded-lg text-[var(--cognicard-muted-foreground)] hover:bg-[var(--cognicard-muted)]\"><i data-lucide=\"search\" class=\"w-4 h-4\"></i></button><button class=\"w-8 h-8 rounded-full bg-[var(--cognicard-muted)] overflow-hidden\" data-dom-id=\"nav-avatar\"><img src=\"https://i.pravatar.cc/150?u=self\" alt=\"avatar\" class=\"w-full h-full object-cover\"/></button></div></div></header>",
+            "messages": "<header data-desktop-nav=\"global\" class=\"w-full h-16 border-b border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/90 backdrop-blur\"><div class=\"w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between\"><a href=\"pages/index.html\" class=\"flex items-center gap-2 text-[var(--cognicard-foreground)] font-semibold\"><i data-lucide=\"sparkles\" class=\"w-5 h-5 text-[var(--cognicard-primary)]\"></i><span>CogniCard</span></a><nav class=\"hidden md:flex items-center gap-6\"><a href=\"pages/index.html\" data-nav-key=\"starmap\" data-dom-id=\"nav-starmap\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"globe\" class=\"w-4 h-4\"></i><span>星图</span></a><a href=\"pages/tool-dashboard.html\" data-nav-key=\"toolbox\" data-dom-id=\"nav-toolbox\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"briefcase\" class=\"w-4 h-4\"></i><span>工具台</span></a><a href=\"pages/notifications.html\" data-nav-key=\"messages\" data-active=\"true\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-primary)] border-b-2 border-[var(--cognicard-primary)] pt-5 pb-5\"><i data-lucide=\"bell\" class=\"w-4 h-4\"></i><span>消息</span></a><a href=\"pages/settings.html\" data-nav-key=\"me\" data-dom-id=\"nav-me\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"user\" class=\"w-4 h-4\"></i><span>我的</span></a></nav><div class=\"flex items-center gap-3\"><button class=\"p-2 rounded-lg text-[var(--cognicard-muted-foreground)] hover:bg-[var(--cognicard-muted)]\"><i data-lucide=\"search\" class=\"w-4 h-4\"></i></button><button class=\"w-8 h-8 rounded-full bg-[var(--cognicard-muted)] overflow-hidden\" data-dom-id=\"nav-avatar\"><img src=\"https://i.pravatar.cc/150?u=self\" alt=\"avatar\" class=\"w-full h-full object-cover\"/></button></div></div></header>",
+            "me": "<header data-desktop-nav=\"global\" class=\"w-full h-16 border-b border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/90 backdrop-blur\"><div class=\"w-full max-w-7xl mx-auto px-6 h-full flex items-center justify-between\"><a href=\"pages/index.html\" class=\"flex items-center gap-2 text-[var(--cognicard-foreground)] font-semibold\"><i data-lucide=\"sparkles\" class=\"w-5 h-5 text-[var(--cognicard-primary)]\"></i><span>CogniCard</span></a><nav class=\"hidden md:flex items-center gap-6\"><a href=\"pages/index.html\" data-nav-key=\"starmap\" data-dom-id=\"nav-starmap\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"globe\" class=\"w-4 h-4\"></i><span>星图</span></a><a href=\"pages/tool-dashboard.html\" data-nav-key=\"toolbox\" data-dom-id=\"nav-toolbox\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"briefcase\" class=\"w-4 h-4\"></i><span>工具台</span></a><a href=\"pages/notifications.html\" data-nav-key=\"messages\" data-dom-id=\"nav-messages\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-muted-foreground)] pt-5 pb-5\"><i data-lucide=\"bell\" class=\"w-4 h-4\"></i><span>消息</span></a><a href=\"pages/settings.html\" data-nav-key=\"me\" data-active=\"true\" class=\"flex items-center gap-2 text-sm font-medium text-[var(--cognicard-primary)] border-b-2 border-[var(--cognicard-primary)] pt-5 pb-5\"><i data-lucide=\"user\" class=\"w-4 h-4\"></i><span>我的</span></a></nav><div class=\"flex items-center gap-3\"><button class=\"p-2 rounded-lg text-[var(--cognicard-muted-foreground)] hover:bg-[var(--cognicard-muted)]\"><i data-lucide=\"search\" class=\"w-4 h-4\"></i></button><button class=\"w-8 h-8 rounded-full bg-[var(--cognicard-muted)] overflow-hidden\" data-dom-id=\"nav-avatar\"><img src=\"https://i.pravatar.cc/150?u=self\" alt=\"avatar\" class=\"w-full h-full object-cover\"/></button></div></div></header>"
+          }
+        }
+      }
+    },
+    "generationTree": {
+      "root": {
+        "nodeId": "gen-project-shell",
+        "kind": "project-shell",
+        "pageIds": [
+          "*"
+        ],
+        "output": "partials/project-shell.html",
+        "sharedRegions": [
+          "head",
+          "desktop-nav",
+          "page-background",
+          "safe-area-spacers"
+        ],
+        "privateRegions": [],
+        "mutableSlots": [
+          "activeNavItem"
+        ],
+        "status": "generated",
+        "children": [
+          {
+            "nodeId": "gen-pages",
+            "kind": "shared-branch",
+            "pageIds": [
+              "page-index",
+              "page-login",
+              "page-tool-dashboard",
+              "page-material-pool",
+              "page-import-flow",
+              "page-digest",
+              "page-atom-create",
+              "page-knowledge-base",
+              "page-public-profile",
+              "page-qa-board",
+              "page-notifications",
+              "page-settings",
+              "page-dashboard"
+            ],
+            "output": null,
+            "sharedRegions": [],
+            "privateRegions": [
+              "main"
+            ],
+            "mutableSlots": [],
+            "status": "planned",
+            "children": []
+          }
+        ]
+      }
+    },
+    "dispatchPreflightManifest": [
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-index",
+        "htmlSrc": "pages/index.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/index.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/index.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-index\" --html-src=\"pages/index.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\index.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\index.html\" --title=\"首页认知星图\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-login",
+        "htmlSrc": "pages/login.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/login.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/login.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-login\" --html-src=\"pages/login.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\login.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\login.html\" --title=\"登录 / 注册\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-tool-dashboard",
+        "htmlSrc": "pages/tool-dashboard.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/tool-dashboard.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/tool-dashboard.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-tool-dashboard\" --html-src=\"pages/tool-dashboard.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\tool-dashboard.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\tool-dashboard.html\" --title=\"个人工具台\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-material-pool",
+        "htmlSrc": "pages/material-pool.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/material-pool.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/material-pool.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-material-pool\" --html-src=\"pages/material-pool.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\material-pool.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\material-pool.html\" --title=\"素材池\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-import-flow",
+        "htmlSrc": "pages/import-flow.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/import-flow.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/import-flow.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-import-flow\" --html-src=\"pages/import-flow.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\import-flow.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\import-flow.html\" --title=\"导入素材\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-digest",
+        "htmlSrc": "pages/digest.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/digest.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/digest.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-digest\" --html-src=\"pages/digest.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\digest.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\digest.html\" --title=\"消化加工\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-atom-create",
+        "htmlSrc": "pages/atom-create.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/atom-create.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/atom-create.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-atom-create\" --html-src=\"pages/atom-create.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\atom-create.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\atom-create.html\" --title=\"沉淀知识原子\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-knowledge-base",
+        "htmlSrc": "pages/knowledge-base.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/knowledge-base.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/knowledge-base.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-knowledge-base\" --html-src=\"pages/knowledge-base.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\knowledge-base.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\knowledge-base.html\" --title=\"知识库\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-public-profile",
+        "htmlSrc": "pages/public-profile.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/public-profile.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/public-profile.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-public-profile\" --html-src=\"pages/public-profile.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\public-profile.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\public-profile.html\" --title=\"认知名片主页\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-qa-board",
+        "htmlSrc": "pages/qa-board.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/qa-board.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/qa-board.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-qa-board\" --html-src=\"pages/qa-board.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\qa-board.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\qa-board.html\" --title=\"提问看板\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-notifications",
+        "htmlSrc": "pages/notifications.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/notifications.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/notifications.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-notifications\" --html-src=\"pages/notifications.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\notifications.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\notifications.html\" --title=\"消息中心\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-settings",
+        "htmlSrc": "pages/settings.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/settings.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/settings.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-settings\" --html-src=\"pages/settings.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\settings.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\settings.html\" --title=\"设置\" --lang=\"zh-CN\" --prefix=\"cognicard\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-21T02:33:49.855Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "ComplexPagePacket",
+        "laneContract": {
+          "resolvedLane": "complex_html_page",
+          "packetType": "ComplexPagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "nodeId": "page-dashboard",
+        "htmlSrc": "pages/dashboard.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/dashboard.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/dashboard.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\" --node-id=\"page-dashboard\" --html-src=\"pages/dashboard.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css",
+        "htmlFilePath": "d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\dashboard.html",
+        "brandPrefix": "cognicard",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\colors_and_type.css\" \"d:\\zhishi2.0\\design\\cognicard-desktop\\pages\\dashboard.html\" --title=\"数据看板\" --lang=\"zh-CN\" --prefix=\"cognicard\" --charts",
+        "headFillMode": "skeleton-first",
+        "viewportMode": "document-scroll",
+        "completionSchemaExpected": "full",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cognicard-desktop.design": "06ad8662d4b8efdd9bd9701f32262f490b8215a36299d67d3a61eb54facf7261"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-project-complex-build/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md",
+            "visual-experience/visual-checkpoint-protocol.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      }
+    ],
+    "validationHistory": [],
+    "validationRepairLedger": [],
+    "validationSnapshot": {},
+    "artifactReadinessEvidence": {},
+    "readScopeLedger": [
+      {
+        "actor": "page-sub-agent",
+        "lane": "complex_html_page",
+        "path": "intent-workflows/intent-project-complex-build/complex-page-runtime.md",
+        "reason": "page runtime guide",
+        "scopeClass": "page-runtime",
+        "declaredBeforeRead": true,
+        "recordedAt": "2026-08-21T02:33:49.855Z",
+        "nodeId": "page-index",
+        "htmlSrc": "pages/index.html"
+      },
+      {
+        "actor": "page-sub-agent",
+        "lane": "complex_html_page",
+        "path": "intent-workflows/intent-project-complex-build/complex-page-dispatch-contract.md",
+        "reason": "dispatch contract",
+        "scopeClass": "dispatch-contract",
+        "declaredBeforeRead": true,
+        "recordedAt": "2026-08-21T02:33:49.855Z",
+        "nodeId": "page-index",
+        "htmlSrc": "pages/index.html"
+      }
+    ],
+    "expectedDispatches": [
+      {
+        "nodeId": "page-notifications",
+        "pageId": "page-notifications",
+        "targetPageId": "page-notifications",
+        "htmlSrc": "pages/notifications.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/notifications.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:33:25.818Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-digest",
+        "pageId": "page-digest",
+        "targetPageId": "page-digest",
+        "htmlSrc": "pages/digest.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/digest.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:33:55.635Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-login",
+        "pageId": "page-login",
+        "targetPageId": "page-login",
+        "htmlSrc": "pages/login.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/login.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:34:47.092Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-dashboard",
+        "pageId": "page-dashboard",
+        "targetPageId": "page-dashboard",
+        "htmlSrc": "pages/dashboard.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/dashboard.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:36:34.920Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-tool-dashboard",
+        "pageId": "page-tool-dashboard",
+        "targetPageId": "page-tool-dashboard",
+        "htmlSrc": "pages/tool-dashboard.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/tool-dashboard.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:38:25.689Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-public-profile",
+        "pageId": "page-public-profile",
+        "targetPageId": "page-public-profile",
+        "htmlSrc": "pages/public-profile.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/public-profile.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:38:29.777Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-index",
+        "pageId": "page-index",
+        "targetPageId": "page-index",
+        "htmlSrc": "pages/index.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/index.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:57:54.432Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-import-flow",
+        "pageId": "page-import-flow",
+        "targetPageId": "page-import-flow",
+        "htmlSrc": "pages/import-flow.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/import-flow.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:38:45.631Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-material-pool",
+        "pageId": "page-material-pool",
+        "targetPageId": "page-material-pool",
+        "htmlSrc": "pages/material-pool.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/material-pool.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:38:45.963Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-knowledge-base",
+        "pageId": "page-knowledge-base",
+        "targetPageId": "page-knowledge-base",
+        "htmlSrc": "pages/knowledge-base.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/knowledge-base.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:48:24.372Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-settings",
+        "pageId": "page-settings",
+        "targetPageId": "page-settings",
+        "htmlSrc": "pages/settings.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/settings.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:50:57.488Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-atom-create",
+        "pageId": "page-atom-create",
+        "targetPageId": "page-atom-create",
+        "htmlSrc": "pages/atom-create.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/atom-create.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:53:10.156Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-qa-board",
+        "pageId": "page-qa-board",
+        "targetPageId": "page-qa-board",
+        "htmlSrc": "pages/qa-board.html",
+        "packetType": "ComplexPagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/qa-board.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "desktop-batch",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-08-21T03:56:14.267Z",
+        "source": "record-dispatch-completion.mjs"
+      }
+    ],
+    "mainAgentPostDispatchMutations": [
+      {
+        "path": "cognicard-desktop.design",
+        "reason": "registered-avatar-image-asset",
+        "owner": "main-agent",
+        "recordedAt": "2026-08-21T03:57:54.432Z",
+        "source": "record-dispatch-completion.mjs"
+      }
+    ]
+  },
+  "designSource": {
+    "operatingMode": "free-explore",
+    "cssFilePath": "colors_and_type.css",
+    "brandPrefix": "cognicard",
+    "designLibrary": null
+  },
+  "pages": [
+    {
+      "nodeId": "page-index",
+      "title": "首页认知星图",
+      "htmlSrc": "pages/index.html",
+      "pageIndex": 1,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "starmap",
+      "pageType": "showcase",
+      "visualNorthStar": "Full-screen star-map canvas: self-avatar glows center-top, other users as scattered light points, subtle constellation lines, weather particle layer, top info strip, global top navigation bar.",
+      "compositionPattern": "P-5 Desktop Stage: immersive canvas stage with floating chrome, self as primary focal glow, secondary points in depth, top header fixed.",
+      "continuityAnchors": [
+        "Deep-space dark background #0A0E1A with subtle nebula gradient",
+        "Brand blue glow (#4A9EFF) for primary focal point and active states"
+      ],
+      "componentPlan": [
+        "canvas starfield",
+        "self avatar glow",
+        "scattered user dots",
+        "top navigation bar",
+        "top weather/info strip"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "nav-toolbox",
+        "nav-messages",
+        "nav-me"
+      ],
+      "qualityRisks": [
+        "canvas performance",
+        "first-screen focal clarity"
+      ]
+    },
+    {
+      "nodeId": "page-login",
+      "title": "登录 / 注册",
+      "htmlSrc": "pages/login.html",
+      "pageIndex": 2,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": null,
+      "pageType": "task-driven",
+      "visualNorthStar": "Clean dark login surface with brand wordmark, phone+code form, subtle star-field backdrop that hints at the star-map without competing.",
+      "compositionPattern": "Centered single-column form card over immersive dark background.",
+      "continuityAnchors": [
+        "Dark immersive background",
+        "Brand blue primary CTA"
+      ],
+      "componentPlan": [
+        "brand wordmark",
+        "phone input",
+        "code input",
+        "primary CTA",
+        "switch to register"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [],
+      "qualityRisks": [
+        "form readability on dark"
+      ]
+    },
+    {
+      "nodeId": "page-tool-dashboard",
+      "title": "个人工具台",
+      "htmlSrc": "pages/tool-dashboard.html",
+      "pageIndex": 3,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "toolbox",
+      "pageType": "task-driven",
+      "visualNorthStar": "Dashboard hub with pending-digest alert banner, four quick-entry tiles (素材池/知识库/迭代提醒/数据看板), recent activity feed, dark card surfaces, left sidebar optional.",
+      "compositionPattern": "Top alert + 2x4 quick-access grid + list feed, max-w-7xl centered.",
+      "continuityAnchors": [
+        "Dark card surfaces with subtle borders",
+        "Blue accent for actionable alerts"
+      ],
+      "componentPlan": [
+        "alert banner",
+        "quick-entry tiles",
+        "activity feed",
+        "top nav"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "nav-starmap",
+        "nav-messages",
+        "nav-me",
+        "entry-materials",
+        "entry-knowledge",
+        "entry-iterations",
+        "entry-dashboard"
+      ],
+      "qualityRisks": [
+        "tile label readability"
+      ]
+    },
+    {
+      "nodeId": "page-material-pool",
+      "title": "素材池",
+      "htmlSrc": "pages/material-pool.html",
+      "pageIndex": 4,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "toolbox",
+      "pageType": "information-dense",
+      "visualNorthStar": "Search/filter bar + material table/cards with status badges (pending/digesting/digested), '仅素材' watermark, floating import FAB.",
+      "compositionPattern": "Filter strip + data table/card grid + floating action button.",
+      "continuityAnchors": [
+        "Card surface #1A2233",
+        "Status badge colors: yellow pending / blue digesting / green digested"
+      ],
+      "componentPlan": [
+        "search bar",
+        "status filter chips",
+        "material cards/table",
+        "FAB"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "fab-import",
+        "card-digest-1"
+      ],
+      "qualityRisks": [
+        "card density on desktop"
+      ]
+    },
+    {
+      "nodeId": "page-import-flow",
+      "title": "导入素材",
+      "htmlSrc": "pages/import-flow.html",
+      "pageIndex": 5,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "toolbox",
+      "pageType": "task-driven",
+      "visualNorthStar": "Stepper (1 choose method / 2 parse progress / 3 confirm metadata) with drag-and-drop file area and link paste, wide layout.",
+      "compositionPattern": "Step indicator + single active step panel + bottom primary action.",
+      "continuityAnchors": [
+        "Stepper uses brand blue active state",
+        "Dark input surfaces"
+      ],
+      "componentPlan": [
+        "stepper",
+        "file drop zone",
+        "link input",
+        "metadata form"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [],
+      "qualityRisks": [
+        "step clarity"
+      ]
+    },
+    {
+      "nodeId": "page-digest",
+      "title": "消化加工",
+      "htmlSrc": "pages/digest.html",
+      "pageIndex": 6,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "toolbox",
+      "pageType": "task-driven",
+      "visualNorthStar": "Two-column desktop layout: collapsible source preview left, AI-assisted template and subjective output right,敷衍 warning, bottom action bar.",
+      "compositionPattern": "Source preview column + editor column + bottom action bar.",
+      "continuityAnchors": [
+        "AI template dashed border with 'AI辅助' label",
+        "Warning yellow for敷衍"
+      ],
+      "componentPlan": [
+        "collapsible source preview",
+        "AI template form",
+        "subjective 2-choice output",
+        "warning chip",
+        "bottom actions"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "btn-pause-digest",
+        "btn-save-atom"
+      ],
+      "qualityRisks": [
+        "long form scrolling"
+      ]
+    },
+    {
+      "nodeId": "page-atom-create",
+      "title": "沉淀知识原子",
+      "htmlSrc": "pages/atom-create.html",
+      "pageIndex": 7,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "toolbox",
+      "pageType": "task-driven",
+      "visualNorthStar": "Core card format form (core question / viewpoint / evidence / practice case), PARA category, tags, citation list, visibility radio, draft/public actions, two-column editor.",
+      "compositionPattern": "Long form with grouped fieldsets and sticky bottom action bar, max-w-5xl.",
+      "continuityAnchors": [
+        "Required field asterisks",
+        "Visibility radio with privacy emphasis"
+      ],
+      "componentPlan": [
+        "core format fields",
+        "PARA selector",
+        "tag chips",
+        "citation list",
+        "visibility radios",
+        "bottom actions"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "btn-save-draft",
+        "btn-publish"
+      ],
+      "qualityRisks": [
+        "form length"
+      ]
+    },
+    {
+      "nodeId": "page-knowledge-base",
+      "title": "知识库",
+      "htmlSrc": "pages/knowledge-base.html",
+      "pageIndex": 8,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "toolbox",
+      "pageType": "information-dense",
+      "visualNorthStar": "PARA category sidebar + searchable atom grid with reuse/citation counts, detail panel right, sort/filter bar.",
+      "compositionPattern": "Category sidebar + atom grid + detail panel.",
+      "continuityAnchors": [
+        "Atom card with stats row",
+        "PARA category chips"
+      ],
+      "componentPlan": [
+        "category filter",
+        "search",
+        "atom cards",
+        "detail panel"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "drawer-detail"
+      ],
+      "qualityRisks": [
+        "panel layout on desktop"
+      ]
+    },
+    {
+      "nodeId": "page-public-profile",
+      "title": "认知名片主页",
+      "htmlSrc": "pages/public-profile.html",
+      "pageIndex": 9,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": null,
+      "pageType": "showcase",
+      "visualNorthStar": "Decorated header (avatar/bio/contact/follow), tab switcher (名片/提问/更多), high-weight atom cards with interaction bar, platform badge for free users.",
+      "compositionPattern": "Decorated header + tabs + card feed, max-w-6xl.",
+      "continuityAnchors": [
+        "Decorated header with background",
+        "High-weight card bright border, low-weight muted"
+      ],
+      "componentPlan": [
+        "profile header",
+        "tabs",
+        "atom cards",
+        "interaction bar",
+        "platform badge"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "tab-qa",
+        "btn-follow",
+        "btn-share"
+      ],
+      "qualityRisks": [
+        "header visual balance"
+      ]
+    },
+    {
+      "nodeId": "page-qa-board",
+      "title": "提问看板",
+      "htmlSrc": "pages/qa-board.html",
+      "pageIndex": 10,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": null,
+      "pageType": "task-driven",
+      "visualNorthStar": "Ask question input card, answered Q&A list, AI-avatar answer badge, like actions.",
+      "compositionPattern": "Input composer + Q&A thread list.",
+      "continuityAnchors": [
+        "AI badge styling",
+        "Card-based Q&A items"
+      ],
+      "componentPlan": [
+        "question input",
+        "anonymous toggle",
+        "Q&A list",
+        "AI badge"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "btn-submit-question"
+      ],
+      "qualityRisks": [
+        "thread readability"
+      ]
+    },
+    {
+      "nodeId": "page-notifications",
+      "title": "消息中心",
+      "htmlSrc": "pages/notifications.html",
+      "pageIndex": 11,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "messages",
+      "pageType": "information-dense",
+      "visualNorthStar": "Filter tabs (all/cite/question/auth/system) + notification list with unread dot, inline authorization approve/reject actions.",
+      "compositionPattern": "Filter tabs + list rows with inline actions.",
+      "continuityAnchors": [
+        "Unread red dot",
+        "Authorization inline buttons"
+      ],
+      "componentPlan": [
+        "filter tabs",
+        "notification rows",
+        "inline actions"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "nav-starmap",
+        "nav-toolbox",
+        "nav-me"
+      ],
+      "qualityRisks": [
+        "list density"
+      ]
+    },
+    {
+      "nodeId": "page-settings",
+      "title": "设置",
+      "htmlSrc": "pages/settings.html",
+      "pageIndex": 12,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "me",
+      "pageType": "task-driven",
+      "visualNorthStar": "Grouped settings list (account/privacy/notifications/export/decoration/about) with chevrons, membership card at top, two-column layout with sidebar.",
+      "compositionPattern": "Membership card + grouped list rows, settings sidebar optional.",
+      "continuityAnchors": [
+        "List row with chevron",
+        "Membership tier badge color"
+      ],
+      "componentPlan": [
+        "membership card",
+        "settings groups",
+        "list rows"
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "domIdsRequired": [
+        "nav-starmap",
+        "nav-toolbox",
+        "nav-messages"
+      ],
+      "qualityRisks": [
+        "grouping clarity"
+      ]
+    },
+    {
+      "nodeId": "page-dashboard",
+      "title": "数据看板",
+      "htmlSrc": "pages/dashboard.html",
+      "pageIndex": 13,
+      "deviceType": "desktop",
+      "viewportMode": "document-scroll",
+      "desktopNavigationActiveKey": "toolbox",
+      "pageType": "information-dense",
+      "visualNorthStar": "Overview KPI cards (atoms/reuse rate/iteration rate/cited), trend charts, top reused atoms, dark dashboard surfaces, wide chart layout.",
+      "compositionPattern": "KPI strip + chart cards + top list, multi-column grids.",
+      "continuityAnchors": [
+        "KPI cards with tabular numbers",
+        "Chart brand blue"
+      ],
+      "componentPlan": [
+        "KPI cards",
+        "trend chart",
+        "top atoms list"
+      ],
+      "imagePlan": [],
+      "chartsRequired": true,
+      "domIdsRequired": [],
+      "qualityRisks": [
+        "chart readability on desktop"
+      ]
+    }
+  ]
+}

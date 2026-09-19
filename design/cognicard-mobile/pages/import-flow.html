@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导入素材</title>
+    <style id="theme-vars">
+/* CogniCard Design Tokens — 认知名片平台 */
+
+:root {
+  /* Font system */
+  --cognicard-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cognicard-font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius scale */
+  --cognicard-radius-sm: 4px;
+  --cognicard-radius-md: 8px;
+  --cognicard-radius-lg: 12px;
+  --cognicard-radius-full: 9999px;
+
+  /* Light mode (day / star-map daytime) */
+  --cognicard-background: #F6F7F9;
+  --cognicard-foreground: #0A0E1A;
+  --cognicard-card: #FFFFFF;
+  --cognicard-card-foreground: #0A0E1A;
+  --cognicard-popover: #FFFFFF;
+  --cognicard-popover-foreground: #0A0E1A;
+  --cognicard-primary: #1E3A5F;
+  --cognicard-primary-foreground: #FFFFFF;
+  --cognicard-muted: #E8EBF0;
+  --cognicard-muted-foreground: #5A6578;
+  --cognicard-border: #D8DCE5;
+  --cognicard-input: #FFFFFF;
+  --cognicard-ring: #4A9EFF;
+
+  /* Brand tints */
+  --cognicard-brand-50: #E8F4FF;
+  --cognicard-brand-100: #C7E6FF;
+  --cognicard-brand-200: #96D0FF;
+  --cognicard-brand-300: #5AB8FF;
+  --cognicard-brand-400: #4A9EFF;
+  --cognicard-brand-500: #2B8AFC;
+  --cognicard-brand-600: #1E6FD1;
+  --cognicard-brand-700: #1E3A5F;
+
+  /* Surface scale (dark mode overrides below) */
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  /* Member / state accents */
+  --cognicard-gold: #D4AF37;
+  --cognicard-gold-light: #F3E5AB;
+  --cognicard-silver: #A8B4C4;
+
+  /* State colors (semantic only) */
+  --cognicard-state-success: #22C55E;
+  --cognicard-state-warning: #F59E0B;
+  --cognicard-state-error: #EF4444;
+  --cognicard-state-info: #3B82F6;
+
+  /* Glow / shadow */
+  --cognicard-glow-primary: 0 0 24px rgba(74, 158, 255, 0.35);
+  --cognicard-glow-gold: 0 0 24px rgba(212, 175, 55, 0.35);
+  --cognicard-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(10, 14, 26, 0.18);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(10, 14, 26, 0.30);
+}
+
+.dark {
+  /* Dark mode (night / tool dashboard / immersive) */
+  --cognicard-background: #0A0E1A;
+  --cognicard-foreground: #E8ECF5;
+  --cognicard-card: #1A2233;
+  --cognicard-card-foreground: #E8ECF5;
+  --cognicard-popover: #1A2233;
+  --cognicard-popover-foreground: #E8ECF5;
+  --cognicard-primary: #4A9EFF;
+  --cognicard-primary-foreground: #0A0E1A;
+  --cognicard-muted: #232D42;
+  --cognicard-muted-foreground: #8A96AD;
+  --cognicard-border: #2A3A55;
+  --cognicard-input: #1A2233;
+  --cognicard-ring: #4A9EFF;
+
+  --cognicard-surface-base: var(--cognicard-background);
+  --cognicard-surface-elevated: var(--cognicard-card);
+  --cognicard-surface-highlight: var(--cognicard-muted);
+
+  --cognicard-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.20);
+  --cognicard-shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.40);
+  --cognicard-shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* Typography utilities */
+.cognicard-display {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cognicard-h1 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cognicard-h2 {
+  font-family: var(--cognicard-font-sans);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cognicard-h3 {
+  font-family: var(--cognicard-font-sans);
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cognicard-body {
+  font-family: var(--cognicard-font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cognicard-body-lg {
+  font-family: var(--cognicard-font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cognicard-caption {
+  font-family: var(--cognicard-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.cognicard-mono {
+  font-family: var(--cognicard-font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cognicard-background);
+    --color-foreground: var(--cognicard-foreground);
+    --color-card: var(--cognicard-card);
+    --color-card-foreground: var(--cognicard-card-foreground);
+    --color-popover: var(--cognicard-popover);
+    --color-popover-foreground: var(--cognicard-popover-foreground);
+    --color-primary: var(--cognicard-primary);
+    --color-primary-foreground: var(--cognicard-primary-foreground);
+    --color-muted: var(--cognicard-muted);
+    --color-muted-foreground: var(--cognicard-muted-foreground);
+    --color-border: var(--cognicard-border);
+    --color-input: var(--cognicard-input);
+    --color-ring: var(--cognicard-ring);
+    --radius-sm: var(--cognicard-radius-sm);
+    --radius-md: var(--cognicard-radius-md);
+    --radius-lg: var(--cognicard-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cognicard-background); color: var(--cognicard-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cognicard-background); }
+      .text-background { color: var(--cognicard-background); }
+      .border-background { border-color: var(--cognicard-background); }
+      .ring-background { --tw-ring-color: var(--cognicard-background); }
+      .bg-foreground { background-color: var(--cognicard-foreground); }
+      .text-foreground { color: var(--cognicard-foreground); }
+      .border-foreground { border-color: var(--cognicard-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cognicard-foreground); }
+      .bg-card { background-color: var(--cognicard-card); }
+      .text-card { color: var(--cognicard-card); }
+      .border-card { border-color: var(--cognicard-card); }
+      .ring-card { --tw-ring-color: var(--cognicard-card); }
+      .bg-card-foreground { background-color: var(--cognicard-card-foreground); }
+      .text-card-foreground { color: var(--cognicard-card-foreground); }
+      .border-card-foreground { border-color: var(--cognicard-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cognicard-card-foreground); }
+      .bg-popover { background-color: var(--cognicard-popover); }
+      .text-popover { color: var(--cognicard-popover); }
+      .border-popover { border-color: var(--cognicard-popover); }
+      .ring-popover { --tw-ring-color: var(--cognicard-popover); }
+      .bg-popover-foreground { background-color: var(--cognicard-popover-foreground); }
+      .text-popover-foreground { color: var(--cognicard-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cognicard-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cognicard-popover-foreground); }
+      .bg-primary { background-color: var(--cognicard-primary); }
+      .text-primary { color: var(--cognicard-primary); }
+      .border-primary { border-color: var(--cognicard-primary); }
+      .ring-primary { --tw-ring-color: var(--cognicard-primary); }
+      .bg-primary-foreground { background-color: var(--cognicard-primary-foreground); }
+      .text-primary-foreground { color: var(--cognicard-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cognicard-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cognicard-primary-foreground); }
+      .bg-muted { background-color: var(--cognicard-muted); }
+      .text-muted { color: var(--cognicard-muted); }
+      .border-muted { border-color: var(--cognicard-muted); }
+      .ring-muted { --tw-ring-color: var(--cognicard-muted); }
+      .bg-muted-foreground { background-color: var(--cognicard-muted-foreground); }
+      .text-muted-foreground { color: var(--cognicard-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cognicard-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cognicard-muted-foreground); }
+      .bg-border { background-color: var(--cognicard-border); }
+      .text-border { color: var(--cognicard-border); }
+      .border-border { border-color: var(--cognicard-border); }
+      .ring-border { --tw-ring-color: var(--cognicard-border); }
+      .bg-input { background-color: var(--cognicard-input); }
+      .text-input { color: var(--cognicard-input); }
+      .border-input { border-color: var(--cognicard-input); }
+      .ring-input { --tw-ring-color: var(--cognicard-input); }
+      .bg-ring { background-color: var(--cognicard-ring); }
+      .text-ring { color: var(--cognicard-ring); }
+      .border-ring { border-color: var(--cognicard-ring); }
+      .ring-ring { --tw-ring-color: var(--cognicard-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased bg-background text-foreground">
+    <header class="sticky top-0 z-30 bg-background/95 backdrop-blur border-b border-border">
+        <div class="max-w-md mx-auto h-14 flex items-center justify-between px-4">
+            <a href="tool-dashboard.html" class="p-1 -ml-1 text-foreground hover:text-primary transition-colors" aria-label="返回">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </a>
+            <h1 class="cognicard-h3">导入素材</h1>
+            <span class="w-6"></span>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 pt-5 pb-36">
+        <!-- Stepper -->
+        <div data-dom-id="stepper-import" class="flex items-center justify-between mb-6">
+            <div class="flex-1 flex items-center" data-step-item="1">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-primary text-primary-foreground">1</div>
+                <div class="flex-1 h-0.5 mx-2 bg-primary rounded-full" data-step-line="1"></div>
+            </div>
+            <div class="flex-1 flex items-center" data-step-item="2">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-muted text-muted-foreground">2</div>
+                <div class="flex-1 h-0.5 mx-2 bg-muted rounded-full" data-step-line="2"></div>
+            </div>
+            <div class="flex items-center" data-step-item="3">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-muted text-muted-foreground">3</div>
+            </div>
+        </div>
+        <p class="text-center text-sm text-muted-foreground mb-6" id="step-title">选择导入方式</p>
+
+        <!-- Step 1: Choose import method -->
+        <section data-step-panel="1" class="step-panel space-y-5">
+            <div>
+                <label class="block text-sm font-medium mb-2">文件导入</label>
+                <div data-dom-id="drop-zone-file" class="group cursor-pointer border-2 border-dashed border-border rounded-xl p-8 text-center bg-card hover:border-primary hover:bg-primary/5 transition-colors">
+                    <i data-lucide="upload-cloud" class="w-10 h-10 text-primary mx-auto mb-3"></i>
+                    <p class="text-sm font-medium text-card-foreground">拖拽文件到这里</p>
+                    <p class="text-xs text-muted-foreground mt-1">支持 PDF、Word、图片、Markdown</p>
+                    <input type="file" id="file-input" class="hidden" accept=".pdf,.doc,.docx,.md,.txt,image/*">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">链接导入</label>
+                <div class="relative">
+                    <i data-lucide="link" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                    <input data-dom-id="input-link" type="url" placeholder="粘贴文章链接" class="w-full h-11 pl-9 pr-3 rounded-lg bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">粘贴文本</label>
+                <textarea placeholder="直接粘贴文字内容…" class="w-full h-28 p-3 rounded-lg bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"></textarea>
+            </div>
+
+            <button id="btn-start-parse" type="button" class="w-full h-12 rounded-lg bg-primary text-primary-foreground font-medium shadow-md hover:opacity-90 transition-opacity">
+                开始解析
+            </button>
+        </section>
+
+        <!-- Step 2: Parse progress -->
+        <section data-step-panel="2" class="step-panel hidden space-y-5">
+            <div class="bg-card rounded-xl p-4 border border-border">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <i data-lucide="file-text" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-sm font-medium text-card-foreground truncate">认知觉醒：AI 时代的学习方法.pdf</p>
+                        <p class="text-xs text-muted-foreground">2.4 MB · 正在解析</p>
+                    </div>
+                </div>
+                <div data-dom-id="progress-parse" class="w-full h-2 bg-muted rounded-full overflow-hidden">
+                    <div id="parse-progress-bar" class="h-full bg-primary rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <p id="parse-status" class="text-xs text-muted-foreground mt-3">正在提取摘要与标签…</p>
+            </div>
+
+            <div class="bg-card/50 rounded-xl p-4 border border-border">
+                <p class="text-xs text-muted-foreground leading-relaxed">
+                    系统将自动识别内容语言、提取关键词并生成基础标签。原始素材会保留在素材池中，完成消化后才能沉淀为知识原子。
+                </p>
+            </div>
+        </section>
+
+        <!-- Step 3: Confirm metadata -->
+        <section data-step-panel="3" class="step-panel hidden space-y-5">
+            <div class="bg-card rounded-xl p-4 border border-border space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1.5">标题</label>
+                    <input type="text" value="认知觉醒：AI 时代的学习方法" class="w-full h-11 px-3 rounded-lg bg-input border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1.5">标签</label>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/15 text-primary text-xs">产品思维<button type="button" class="opacity-70 hover:opacity-100">×</button></span>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/15 text-primary text-xs">AI<button type="button" class="opacity-70 hover:opacity-100">×</button></span>
+                        <button type="button" class="inline-flex items-center px-2.5 py-1 rounded-full border border-border text-muted-foreground text-xs hover:border-primary hover:text-primary">+ 添加</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1.5">来源</label>
+                    <div class="relative">
+                        <i data-lucide="globe" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                        <input type="text" value="网络文章" class="w-full h-11 pl-9 pr-3 rounded-lg bg-input border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-ring">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1.5">内容预览</label>
+                    <textarea class="w-full h-32 p-3 rounded-lg bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none" readonly>在 AI 时代，学习的本质从记忆信息转向建立思维模型。我们需要把输入转化为可复用的认知结构，而不是收藏即学会。本文介绍了三种构建个人知识系统的方法：问题驱动、主动输出和迭代复盘。</textarea>
+                </div>
+                <div class="flex items-center gap-2 p-2.5 rounded-lg bg-muted/50 border border-border">
+                    <i data-lucide="info" class="w-4 h-4 text-muted-foreground flex-shrink-0"></i>
+                    <span class="text-xs text-muted-foreground">仅素材，非个人认知。完成消化后才能沉淀为知识原子。</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Step 3 actions -->
+    <div id="step3-actions" class="fixed bottom-[56px] left-0 right-0 z-30 hidden">
+        <div class="max-w-md mx-auto p-4 bg-background/95 backdrop-blur border-t border-border">
+            <div class="flex gap-3">
+                <a href="material-pool.html" data-dom-id="btn-save-material" class="flex-1 h-12 flex items-center justify-center rounded-lg bg-primary text-primary-foreground font-medium shadow-md hover:opacity-90 transition-opacity">
+                    保存到素材池
+                </a>
+                <a href="digest.html" data-dom-id="btn-digest-now" class="h-12 flex items-center justify-center rounded-lg border border-border px-4 text-foreground font-medium hover:border-primary hover:text-primary transition-colors">
+                    立即消化
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global bottom navigation -->
+    <div class="fixed bottom-0 left-0 right-0 z-40">
+        <nav data-mobile-nav="global" class="w-full h-[56px] border-t border-[var(--cognicard-border)] bg-[var(--cognicard-background)]/95 backdrop-blur"><div class="w-full max-w-md mx-auto grid grid-cols-4 h-full"><a href="#" data-nav-key="starmap" data-dom-id="nav-starmap" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="globe" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">星图</span></a><a href="#" data-nav-key="toolbox" data-active="true" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-primary)] font-medium"><i data-lucide="briefcase" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">工具台</span></a><a href="#" data-nav-key="messages" data-dom-id="nav-messages" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="bell" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">消息</span></a><a href="#" data-nav-key="me" data-dom-id="nav-me" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full text-[var(--cognicard-muted-foreground)]"><i data-lucide="user" class="w-5 h-5 shrink-0"></i><span class="text-[11px] leading-none whitespace-nowrap max-w-full truncate">我的</span></a></div></nav>
+    </div>
+
+    <script>
+        (function () {
+            const panels = document.querySelectorAll('[data-step-panel]');
+            const stepItems = document.querySelectorAll('[data-step-item]');
+            const stepLines = document.querySelectorAll('[data-step-line]');
+            const stepTitle = document.getElementById('step-title');
+            const step3Actions = document.getElementById('step3-actions');
+            const progressBar = document.getElementById('parse-progress-bar');
+            const parseStatus = document.getElementById('parse-status');
+
+            const titles = {
+                1: '选择导入方式',
+                2: '正在解析内容',
+                3: '确认素材信息'
+            };
+
+            function showStep(n) {
+                // panels
+                panels.forEach(p => {
+                    p.classList.toggle('hidden', parseInt(p.dataset.stepPanel, 10) !== n);
+                });
+
+                // stepper circles
+                stepItems.forEach(item => {
+                    const s = parseInt(item.dataset.stepItem, 10);
+                    const circle = item.querySelector('div');
+                    if (s <= n) {
+                        circle.className = 'w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-primary text-primary-foreground';
+                    } else {
+                        circle.className = 'w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-muted text-muted-foreground';
+                    }
+                });
+
+                // stepper lines
+                stepLines.forEach(line => {
+                    const s = parseInt(line.dataset.stepLine, 10);
+                    line.className = s < n
+                        ? 'flex-1 h-0.5 mx-2 bg-primary rounded-full'
+                        : 'flex-1 h-0.5 mx-2 bg-muted rounded-full';
+                });
+
+                stepTitle.textContent = titles[n];
+                step3Actions.classList.toggle('hidden', n !== 3);
+            }
+
+            function simulateProgress() {
+                let progress = 0;
+                progressBar.style.width = '0%';
+                const steps = [
+                    { p: 25, t: '正在识别文件格式…' },
+                    { p: 55, t: '正在提取正文与摘要…' },
+                    { p: 80, t: '正在生成基础标签…' },
+                    { p: 100, t: '解析完成' }
+                ];
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i >= steps.length) {
+                        clearInterval(interval);
+                        setTimeout(() => showStep(3), 400);
+                        return;
+                    }
+                    progressBar.style.width = steps[i].p + '%';
+                    parseStatus.textContent = steps[i].t;
+                    i++;
+                }, 600);
+            }
+
+            // Drop zone interactions
+            const dropZone = document.querySelector('[data-dom-id="drop-zone-file"]');
+            const fileInput = document.getElementById('file-input');
+            dropZone.addEventListener('click', () => fileInput.click());
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('border-primary', 'bg-primary/10');
+            });
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('border-primary', 'bg-primary/10');
+            });
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('border-primary', 'bg-primary/10');
+                showStep(2);
+                simulateProgress();
+            });
+            fileInput.addEventListener('change', () => {
+                showStep(2);
+                simulateProgress();
+            });
+
+            document.getElementById('btn-start-parse').addEventListener('click', () => {
+                showStep(2);
+                simulateProgress();
+            });
+
+            showStep(1);
+        })();
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
